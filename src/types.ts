@@ -186,3 +186,73 @@ export interface FriendNote {
   /** ISO date, YYYY-MM-DD. */
   dateAdded: string
 }
+
+/* -------------------------------------------------------------------------- */
+/* Phase 6: the restaurant playbook                                            */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Mirrors data/restaurant-playbook.json _meta.cuisines, in order. Same drift
+ * guard as FOOD_CATEGORIES: restaurantPlaybook.test.ts asserts this literal and
+ * the hand-authored vocabulary stay identical.
+ */
+export const CUISINES = [
+  'american',
+  'italian',
+  'mexican',
+  'chinese',
+  'japanese',
+  'indian',
+  'thai',
+  'mediterranean',
+  'diner',
+  'fast-food',
+  'steakhouse',
+  'seafood',
+  'breakfast',
+  'barbecue',
+] as const
+
+export type Cuisine = (typeof CUISINES)[number]
+
+/**
+ * Shown first on the restaurant screen, always, before any cuisine is chosen
+ * and after. It is the part that works at a restaurant the playbook has never
+ * heard of, which is most of them.
+ */
+export interface UniversalPlaybook {
+  title: string
+  strategies: string[]
+  /** Used when no cuisine is selected yet. */
+  scriptLine: string
+}
+
+/** One entry in the cuisines array. */
+export interface CuisinePlaybook {
+  cuisine: Cuisine
+  /** Display name. Kept in the data so the UI never has to title-case a key. */
+  label: string
+  safeBets: string[]
+  avoid: string[]
+  askFor: string[]
+  /** One sentence she can read to a server or paste into a delivery app. */
+  scriptLine: string
+}
+
+/**
+ * A chain she might type by name. Matching one auto-selects its cuisine and
+ * offers the published nutrition page.
+ */
+export interface RestaurantChain {
+  id: string
+  name: string
+  aliases: string[]
+  cuisine: Cuisine
+  /**
+   * Null when the chain publishes nothing findable, which is the honest state
+   * for several of them. See _meta.maintenanceNote: a chain that stops
+   * publishing gets null here rather than being deleted, because the
+   * cuisine mapping is still worth having.
+   */
+  nutritionUrl: string | null
+}
