@@ -79,7 +79,19 @@ export function remove(key: string): boolean {
   }
 }
 
-/** Clears only this app's keys. Never touches anything else on the origin. */
+/**
+ * Clears only this app's keys. Never touches anything else on the origin.
+ *
+ * NOTHING IN THE APP CALLS THIS TODAY, AND WHATEVER CALLS IT FIRST HAS A
+ * PROBLEM TO SOLVE FIRST.
+ *
+ * It sweeps every `pc:` key, which includes `pc:myVersions`. Her workarounds are
+ * the only content in this app that cannot be regenerated from the repo: see the
+ * note above commitVersion in myVersions.ts. If a reset or a "start over"
+ * feature is ever built, myVersions has to be excluded from this call and given
+ * its own separate, explicit confirmation. Sweeping it up with settings and logs
+ * would be a permanent loss dressed up as a housekeeping action.
+ */
 export function clearAll(): boolean {
   try {
     const doomed: string[] = []
