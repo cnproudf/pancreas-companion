@@ -70,15 +70,15 @@ describe('mealNudgeText', () => {
     expect(mealNudgeText(0)).toBe('Nothing logged yet today.')
   })
 
-  it('offers the 4 to 6 pattern below the range', () => {
+  it('offers the smaller meals pattern below the range', () => {
     expect(mealNudgeText(2)).toBe(
-      'That is 2 so far today, spreading things across 4 to 6 smaller meals is easier on your system.',
+      'That is 2 so far. Smaller meals spread out are easier on your system.',
     )
   })
 
   it('stays neutral inside the range', () => {
     expect(mealNudgeText(5)).toBe(
-      'That is 5 so far today, spread through the day, which is what is easiest on your system.',
+      'That is 5 so far, spread through the day. That is the easy pattern.',
     )
   })
 
@@ -86,13 +86,24 @@ describe('mealNudgeText', () => {
     // Going silent only at the high end reads as disapproval by omission, which
     // is exactly what invariant 10 exists to prevent.
     const text = mealNudgeText(8)
-    expect(text).toBe('That is 8 so far today, spread out, which is easy on your system.')
+    expect(text).toBe('That is 8 so far, spread out. Easy on your system.')
     expect(text.length).toBeGreaterThan(0)
   })
 
-  it('gives every band above zero a reason, not just a count', () => {
+  it('gives every band above zero a reason, not just a bare count', () => {
     for (const count of [1, 3, 4, 6, 7, 12]) {
-      expect(mealNudgeText(count)).toContain('your system')
+      const text = mealNudgeText(count)
+      // The reason is always about what is easy on her, never about a miss.
+      expect(text).toMatch(/eas(y|ier)/i)
+      expect(text.length).toBeGreaterThan(`That is ${count} so far.`.length)
+    }
+  })
+
+  it('stays short enough to read at a glance on a phone', () => {
+    // These sit in the persistent bar at 375px. Three lines of nudge is more
+    // chrome than a count deserves.
+    for (const count of [2, 5, 8]) {
+      expect(mealNudgeText(count).length).toBeLessThanOrEqual(72)
     }
   })
 

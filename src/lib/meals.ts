@@ -36,11 +36,9 @@ export const MEAL_GAP_MINUTES = 60
  */
 export const MEAL_COPY = {
   none: 'Nothing logged yet today.',
-  under:
-    'That is {count} so far today, spreading things across 4 to 6 smaller meals is easier on your system.',
-  inRange:
-    'That is {count} so far today, spread through the day, which is what is easiest on your system.',
-  above: 'That is {count} so far today, spread out, which is easy on your system.',
+  under: 'That is {count} so far. Smaller meals spread out are easier on your system.',
+  inRange: 'That is {count} so far, spread through the day. That is the easy pattern.',
+  above: 'That is {count} so far, spread out. Easy on your system.',
 } as const
 
 /** The band NPF publishes. Not a goal she is scored against. */
