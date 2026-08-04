@@ -60,8 +60,17 @@ export function LiftCard({ item, saved, onToggleSaved, onAnother }: LiftCardProp
     )
   }
 
+  /*
+   * Pale sage rather than near white, so the general card is its own thing
+   * against the sky instead of a blank sheet. Mixed toward --paper rather than
+   * lifted off --laurel directly, which keeps it warm enough to sit under the
+   * gold sunrise without going minty.
+   *
+   * Not a rating surface: no icon, no rating word, no food. --laurel means GREEN
+   * in the traffic light and that meaning is not being borrowed here.
+   */
   return (
-    <article className="rounded-xl border border-stone bg-[#FCFAF6] px-6 py-7 shadow-[0_1px_2px_rgba(28,58,75,0.06),0_10px_28px_-16px_rgba(28,58,75,0.4)] sm:px-8 sm:py-9">
+    <article className="rounded-xl border border-moss/40 bg-[#E5EDE0] px-6 py-7 shadow-[0_1px_2px_rgba(58,107,78,0.08),0_10px_28px_-16px_rgba(58,107,78,0.45)] sm:px-8 sm:py-9">
       <p className={`m-0 font-serif text-ridge-deep ${scale.text} ${scale.measure}`}>{content}</p>
 
       {item.entry.attribution !== undefined && (
@@ -70,7 +79,7 @@ export function LiftCard({ item, saved, onToggleSaved, onAnother }: LiftCardProp
         </p>
       )}
 
-      <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone/70 pt-4">
+      <div className="mt-6 flex items-center justify-between gap-3 border-t border-moss/30 pt-4">
         <HeartButton saved={saved} onToggle={onToggleSaved} tone="card" />
         <button type="button" onClick={onAnother} className={SECONDARY_BUTTON}>
           {LIFT_COPY.another}

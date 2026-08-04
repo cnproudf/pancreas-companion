@@ -18,8 +18,8 @@ interface HeartButtonProps {
 
 const TONE: Record<HeartButtonProps['tone'], { saved: string; unsaved: string }> = {
   card: {
-    saved: 'border-gold/40 bg-gold/10 text-gold-text',
-    unsaved: 'border-stone bg-paper/70 text-ink hover:border-creek',
+    saved: 'border-gold/45 bg-gold/12 text-gold-text',
+    unsaved: 'border-moss/50 bg-white/45 text-ink hover:border-creek',
   },
   note: {
     saved: 'border-transparent bg-gold/15 text-gold-text',

@@ -40,6 +40,10 @@ export function scaleFor(content: string): LiftScale {
   return SMALL
 }
 
-/** Mirrors the secondary button in budgetBar/TodayLogPanel.tsx. */
+/**
+ * The secondary button shape from budgetBar/TodayLogPanel.tsx, retinted for the
+ * sage card. Stone and paper are warm beige and read muddy on green, so the
+ * border follows --moss and the fill is a plain lift off the card.
+ */
 export const SECONDARY_BUTTON =
-  'inline-flex items-center gap-2 rounded-lg border border-stone bg-paper/70 px-3 py-2 text-sm text-ink hover:border-creek'
+  'inline-flex items-center gap-2 rounded-lg border border-moss/50 bg-white/45 px-3 py-2 text-sm text-ink hover:border-creek'
