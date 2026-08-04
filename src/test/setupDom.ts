@@ -19,6 +19,20 @@ afterEach(() => {
 })
 
 /*
+ * jsdom implements no layout, so scrollIntoView is absent rather than a no-op.
+ * The triage screens call it on mount to take the top of the viewport, which
+ * matters on a phone where the header band is around 700px tall. See
+ * components/flare/useRevealOnMount.ts.
+ *
+ * A no-op is the honest stub. Nothing asserts on scroll position, because
+ * jsdom has none to assert on; that check was done by measuring in a real
+ * browser and is recorded in the Phase 9 verification notes.
+ */
+if (typeof Element.prototype.scrollIntoView !== 'function') {
+  Element.prototype.scrollIntoView = function scrollIntoView() {}
+}
+
+/*
  * jsdom does not implement the native <dialog> methods. The symptom sheet and
  * the When To Call card both use showModal, and without these an unrelated test
  * that happens to render either one dies on "node.showModal is not a function".

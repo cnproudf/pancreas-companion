@@ -1,5 +1,6 @@
 import { RED_FLAGS, TRIAGE_COPY } from '../../lib/triage.ts'
 import { useTriage } from '../../state/triage.tsx'
+import { useRevealOnMount } from './useRevealOnMount.ts'
 
 /**
  * What flare mode opens to. Spec section 4.
@@ -22,9 +23,16 @@ import { useTriage } from '../../state/triage.tsx'
  */
 export function RedFlagCheck() {
   const { reportRedFlag, reportNoRedFlag } = useTriage()
+  /*
+    The header band is around 700px on a phone, which left this screen's
+    heading peeking at the bottom edge and every question below the fold. See
+    the note in useRevealOnMount.ts.
+  */
+  const ref = useRevealOnMount<HTMLElement>()
 
   return (
     <section
+      ref={ref}
       aria-labelledby="triage-check-heading"
       data-testid="redflag-check"
       className="mx-auto max-w-xl"

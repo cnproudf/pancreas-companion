@@ -30,7 +30,18 @@ export function DialButton({ contact }: { contact: CareTeamContact }) {
       {contact.phone.trim() !== '' && (
         <span className="numeral mt-0.5 block text-xl leading-tight">{contact.phone}</span>
       )}
-      <span className="mt-0.5 block text-sm">
+      {/*
+        text-base, not text-sm.
+
+        This started at text-sm and a contrast pass caught it at 14px, under
+        addendum section C's 16px floor, on the one card the spec describes as
+        "big text, clear numbers". A role and a note like "after hours" or "ask
+        for the on call GI" is exactly the detail she needs to read correctly
+        while deciding which of two numbers to press. It is secondary to the
+        name and the number above it, which is what the weight and the colour
+        are for, not the size.
+      */}
+      <span className="mt-0.5 block text-base">
         {role}
         {contact.notes.trim() === '' ? '' : `. ${contact.notes.trim()}`}
       </span>

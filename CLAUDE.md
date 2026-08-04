@@ -28,13 +28,44 @@ React + Vite + Tailwind. No component library. No backend except the Worker.
 10. Never scold the user for a food choice. Neutral and forward-looking only.
 
 ## Working agreement
-- Symptom log and Daily Lift render above FlareGate because neither carries food
-  content. AttachFoodSection carries its own flare guard for the same reason
-  FatBudgetBar does. Anything added above the gate that names a food, a gram
-  value, or a meal must move inside it or carry its own guard.
+- Symptom log, Daily Lift, and the When To Call header control render above
+  FlareGate because none of them carries food GUIDANCE. AttachFoodSection
+  carries its own flare guard for the same reason FatBudgetBar does. Anything
+  added above the gate that gives food guidance must move inside it or carry its
+  own guard.
+- Food guidance means a rating, a gram value, a portion, a meal, or anything
+  answering "should I eat this". It is narrower than "names a food", and the
+  narrowing was deliberate: 24 of the 365 Daily Lift entries name a food
+  incidentally ("Bananas are berries", "Corn was bred from a grass called
+  teosinte"), and the broader reading would push the Lift inside the gate and
+  take away the one thing she should still see on her worst day.
+- All three guards ask `foodGuidanceAllowed` in lib/triage.ts. One definition,
+  three call sites. Do not write `currentMode === 'flare'` by hand.
 - Ask before adding any dependency.
 - Ask before changing anything in data/. Those files are hand-authored.
 - Do not build features from later phases before I ask for them.
 - At the end of each phase, commit, merge to main, and push.
-- Invariant 1 is structural via FlareGate but untested end to end until the
-  Phase 9 triage screen exists. Verify it by hand at Phase 9.
+
+## Invariant 1, verified end to end at Phase 9
+
+Structural via FlareGate, and no longer untested. Three layers, in order of how
+much they would catch:
+
+1. `src/components/FlareGate.test.tsx` renders the real App in jsdom and sweeps
+   the page for all 211 food names and for any gram value, at every triage
+   stage and entering flare from every tab. It fails with an explanation of the
+   invariant rather than a diff. Its trap was confirmed to fire by mounting a
+   food name above the gate on purpose and reading the message it produced.
+2. `src/lib/triage.test.ts` covers the policy itself, plus copy guards for rule
+   6 (`DIAGNOSIS_PATTERN`: no branch names a condition or grades her likelihood
+   of having one).
+3. By hand at 375x812. Logged a food in stable, entered flare, and confirmed the
+   main region was triage and nothing else: no tab strip, no budget bar, no
+   "Cod", no gram value anywhere outside the Daily Lift. Confirmed the gate
+   re-arms on reload with no triage key in localStorage. Measured the
+   below-the-fold continue link at 1019px against an 812px viewport. Confirmed
+   the symptom sheet opens during a flare without AttachFoodSection.
+
+The by-hand pass found two things the tests could not: the triage screens opened
+below a 700px header band, fixed by `useRevealOnMount`, and a 14px line on the
+When To Call card, under addendum C's 16px floor.

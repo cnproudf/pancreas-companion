@@ -4,6 +4,7 @@ import { useSettings } from '../../state/settings.tsx'
 import { useTriage } from '../../state/triage.tsx'
 import { CareTeamEditor } from '../whenToCall/CareTeamEditor.tsx'
 import { DialButton } from '../whenToCall/DialButton.tsx'
+import { useRevealOnMount } from './useRevealOnMount.ts'
 
 /**
  * She reported one or more red flags. Spec section 4: "full-screen, unmissable
@@ -38,9 +39,16 @@ export function UrgentPanel() {
   const { settings } = useSettings()
   const { alreadyContacted } = useTriage()
   const contacts = contactsFrom(settings)
+  /*
+    Spec section 4 calls this panel unmissable. It cannot be unmissable while
+    it sits below a 700px header band, so it takes the top of the viewport when
+    it appears. See the note in useRevealOnMount.ts.
+  */
+  const ref = useRevealOnMount<HTMLElement>()
 
   return (
     <section
+      ref={ref}
       aria-labelledby="triage-urgent-heading"
       data-testid="urgent-panel"
       className="mx-auto max-w-xl rounded-lg border-4 border-clay bg-paper p-5"
