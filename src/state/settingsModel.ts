@@ -15,6 +15,10 @@ export const DEFAULT_SETTINGS: Settings = {
   // during onboarding, which is an onboarding decision, not a store default.
   // Until she is asked, the calculator answers.
   dailyFatTarget: null,
+  // Her own starting number, ranked below a real calculation. Adding a field
+  // that defaults to null needs no schemaVersion bump: hydrateSettings merges
+  // field by field, so an older stored blob simply lands on the default.
+  provisionalFatTarget: null,
   age: null,
   heightCm: null,
   weightKg: null,
@@ -42,6 +46,7 @@ export const BODY_STAT_FIELDS = [
  */
 const NULLABLE_NUMBER_FIELDS = new Set<keyof Settings>([
   'dailyFatTarget',
+  'provisionalFatTarget',
   'age',
   'heightCm',
   'weightKg',

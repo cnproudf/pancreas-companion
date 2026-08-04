@@ -262,6 +262,69 @@ describe('computeFatTarget precedence', () => {
   })
 })
 
+/**
+ * provisionalFatTarget is a number she typed in herself so the app could rate
+ * anything at all. dailyFatTarget is a number from her care team. The whole
+ * point of keeping them in separate fields is that the provenance survives, so
+ * these tests pin the ladder rather than just the arithmetic.
+ */
+describe('computeFatTarget and the provisional starting number', () => {
+  const complete: Partial<Settings> = {
+    age: 45,
+    heightCm: 165,
+    weightKg: 68,
+    activityLevel: 'light',
+    biologicalSex: 'female',
+  }
+
+  it('lets a care team override beat a provisional number', () => {
+    const result = computeFatTarget(
+      settingsWith({ currentMode: 'stable', dailyFatTarget: 42, provisionalFatTarget: 20 }),
+    )
+    expect(result.source).toBe('override')
+    expect(result.grams).toBe(42)
+  })
+
+  it('lets a complete calculation beat a provisional number', () => {
+    // Once her real stats are in, the estimate is better grounded than a number
+    // she typed in to get the traffic light working.
+    const result = computeFatTarget(
+      settingsWith({ ...complete, currentMode: 'stable', provisionalFatTarget: 20 }),
+    )
+    expect(result.source).toBe('calculated')
+    expect(result.grams).toBe(50)
+  })
+
+  it('uses the provisional number only when nothing else is available', () => {
+    const result = computeFatTarget(
+      settingsWith({ currentMode: 'stable', provisionalFatTarget: 35 }),
+    )
+    expect(result.source).toBe('provisional')
+    expect(result.grams).toBe(35)
+    expect(result.breakdown).toBeNull()
+    // The inputs really are still absent, so a settings screen can offer to
+    // upgrade this to a real estimate.
+    expect(result.missing).toEqual(['age', 'heightCm', 'weightKg'])
+  })
+
+  it('ignores a provisional number in flare, exactly as it ignores an override', () => {
+    const result = computeFatTarget(
+      settingsWith({ currentMode: 'flare', provisionalFatTarget: 40 }),
+    )
+    expect(result.source).toBe('flare-ceiling')
+    expect(result.grams).toBe(FLARE_CEILING_GRAMS)
+  })
+
+  it('stays incomplete when the provisional number is not a usable one', () => {
+    expect(
+      computeFatTarget(settingsWith({ currentMode: 'stable', provisionalFatTarget: 0 })).source,
+    ).toBe('incomplete')
+    expect(
+      computeFatTarget(settingsWith({ currentMode: 'stable', provisionalFatTarget: -5 })).source,
+    ).toBe('incomplete')
+  })
+})
+
 describe('bodyStatsAreStale', () => {
   const now = Date.parse('2026-08-03T12:00:00.000Z')
 

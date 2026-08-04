@@ -11,8 +11,15 @@ import type { Food, FoodFlag, Settings } from '../types.ts'
 import { computeFatTarget, type MissingInput } from './fatTarget.ts'
 import { rateFood, rateFoodEntry, type FoodRating } from './rating.ts'
 
-/** Where the target came from. Excludes "incomplete", which has no number. */
-export type TargetSource = 'flare-ceiling' | 'override' | 'calculated'
+/**
+ * Where the target came from. Excludes "incomplete", which has no number.
+ *
+ * The UI must keep these distinct rather than collapsing them to "we have a
+ * number": "override" is her care team's instruction and "provisional" is a
+ * placeholder she typed in herself, and describing the second as the first
+ * would misstate where the guidance came from.
+ */
+export type TargetSource = 'flare-ceiling' | 'override' | 'calculated' | 'provisional'
 
 export type RateForSettingsResult =
   | {

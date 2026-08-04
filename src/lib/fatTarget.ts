@@ -97,6 +97,21 @@ export type FatTargetResult =
       missing: null
     }
   | {
+      /**
+       * Her own starting number, so the app can rate something before her body
+       * stats are in. Used only when there is nothing better: no care team
+       * number, and not enough inputs to calculate.
+       *
+       * Carries `missing` rather than null, because those inputs really are
+       * still absent and a settings screen should be able to offer to upgrade
+       * this to a real estimate. Never describe it as authoritative.
+       */
+      source: 'provisional'
+      grams: number
+      breakdown: null
+      missing: MissingInput[]
+    }
+  | {
       /** Not enough inputs yet. Ask for these, do not guess. */
       source: 'incomplete'
       grams: null
@@ -178,13 +193,17 @@ export function calculateFatTarget(
  * settings, and where that number came from.
  *
  * Precedence:
- *   1. Flare mode. Fixed 15g ceiling. The manual override is deliberately NOT
- *      used here: an override is a normal-eating daily target from her
- *      dietitian, and surfacing 30 to 50g during a flare would be wrong in the
- *      dangerous direction.
- *   2. Manual override, when set.
+ *   1. Flare mode. Fixed 15g ceiling. Neither the manual override nor the
+ *      provisional number is used here: both are normal-eating daily targets,
+ *      and surfacing 30 to 50g during a flare would be wrong in the dangerous
+ *      direction.
+ *   2. Manual override, when set. A number from her care team.
  *   3. Calculation, when the inputs are all present.
- *   4. Incomplete.
+ *   4. Her own provisional starting number, when set. Ranked below the
+ *      calculation on purpose: once the app can produce a real estimate from
+ *      her stats, that estimate is better grounded than a number she typed in
+ *      to get the traffic light working.
+ *   5. Incomplete.
  */
 export function computeFatTarget(settings: Settings): FatTargetResult {
   if (settings.currentMode === 'flare') {
@@ -225,11 +244,20 @@ export function computeFatTarget(settings: Settings): FatTargetResult {
     }
   }
 
-  if (breakdown === null) {
-    return { source: 'incomplete', grams: null, breakdown: null, missing }
+  if (breakdown !== null) {
+    return { source: 'calculated', grams: breakdown.grams, breakdown, missing: null }
   }
 
-  return { source: 'calculated', grams: breakdown.grams, breakdown, missing: null }
+  if (isPositiveNumber(settings.provisionalFatTarget)) {
+    return {
+      source: 'provisional',
+      grams: settings.provisionalFatTarget,
+      breakdown: null,
+      missing,
+    }
+  }
+
+  return { source: 'incomplete', grams: null, breakdown: null, missing }
 }
 
 /** Ninety days in milliseconds. The soft prompt threshold. Never nag. */

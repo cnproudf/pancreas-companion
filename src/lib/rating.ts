@@ -170,7 +170,11 @@ export function mathRating(fatGrams: number, thresholds: Thresholds): Rating {
   return 'red'
 }
 
-function formatGrams(grams: number): string {
+/**
+ * Exported so budget.ts can phrase gram counts identically. Two copies of this
+ * drift, and the failure mode is the same number written two ways on one screen.
+ */
+export function formatGrams(grams: number): string {
   const rounded = Math.round(grams * 10) / 10
   return `${rounded} ${rounded === 1 ? 'gram' : 'grams'}`
 }
