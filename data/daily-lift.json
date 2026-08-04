@@ -1,0 +1,319 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Daily Lift rotation. Target is 365 entries so nothing repeats within a year. This file holds the first 60.",
+    "types": [
+      "fun-fact",
+      "encouragement",
+      "funny-story",
+      "quote",
+      "tiny-win"
+    ],
+    "rotationRule": "Select deterministically by day-of-year so the entry is stable across refreshes. Friend notes from friends-notes.json should be interleaved so one appears roughly twice a week.",
+    "toneGuidance": "Light, specific, never toxic-positive. No 'everything happens for a reason.' No 'just stay strong.' Weird facts, small absurd history, and the occasional plain acknowledgment that this is hard."
+  },
+  "entries": [
+    {
+      "id": "lift-001",
+      "type": "fun-fact",
+      "content": "Otters hold hands while they sleep so they do not drift apart from each other."
+    },
+    {
+      "id": "lift-002",
+      "type": "fun-fact",
+      "content": "The Appalachian Mountains are older than the Atlantic Ocean. They are older than bones, older than trees, and older than the rings of Saturn. They were once as tall as the Himalayas."
+    },
+    {
+      "id": "lift-003",
+      "type": "encouragement",
+      "content": "You are doing a hard thing that most people never have to think about for one second of their lives. That counts, even on the days it does not feel like it counts."
+    },
+    {
+      "id": "lift-004",
+      "type": "fun-fact",
+      "content": "The Blue Ridge is blue because the trees exhale a compound called isoprene, which scatters blue light. That haze on the ridgeline is literally the forest breathing."
+    },
+    {
+      "id": "lift-005",
+      "type": "tiny-win",
+      "content": "Drink a full glass of water right now. That is it. That is the whole assignment for this notification."
+    },
+    {
+      "id": "lift-006",
+      "type": "funny-story",
+      "content": "In 1932, Australia declared war on emus. Actual soldiers, actual machine guns. The emus scattered, regrouped, and outmaneuvered them so thoroughly that the operation was called off. The official report noted the birds had leadership."
+    },
+    {
+      "id": "lift-007",
+      "type": "fun-fact",
+      "content": "Wombats produce cube-shaped droppings. Scientists spent years figuring out how. The answer involves variable stiffness in the intestinal walls, and someone got a real academic prize for it."
+    },
+    {
+      "id": "lift-008",
+      "type": "encouragement",
+      "content": "You do not have to be graceful about this. You just have to keep going, and you are already doing that part."
+    },
+    {
+      "id": "lift-009",
+      "type": "fun-fact",
+      "content": "Southern Appalachia has more salamander species than anywhere else on earth. The Great Smokies are known internationally as the salamander capital of the world."
+    },
+    {
+      "id": "lift-010",
+      "type": "funny-story",
+      "content": "In 1982 a man named Larry Walters tied 45 weather balloons to a lawn chair and floated to 16,000 feet over Los Angeles, startling two commercial pilots. The FAA fined him. An official reportedly said they knew he had broken some rule, they just had to work out which one."
+    },
+    {
+      "id": "lift-011",
+      "type": "fun-fact",
+      "content": "Crows recognize individual human faces and hold grudges for years. They also bring gifts to people who are kind to them. Small shiny things, left deliberately."
+    },
+    {
+      "id": "lift-012",
+      "type": "tiny-win",
+      "content": "Text somebody you have been meaning to text. Sixty seconds. They will be glad you did."
+    },
+    {
+      "id": "lift-013",
+      "type": "encouragement",
+      "content": "Bad day? Fine. Tomorrow gets to be a different day. That is the entire deal and nobody can take it from you."
+    },
+    {
+      "id": "lift-014",
+      "type": "fun-fact",
+      "content": "Every summer in the Smokies, thousands of synchronous fireflies blink in unison. Whole hillsides go dark and light together. It is one of only a few places in the world where they do this."
+    },
+    {
+      "id": "lift-015",
+      "type": "funny-story",
+      "content": "Rabbit Hash, Kentucky has elected a dog as mayor almost continuously since 1998. There have been contested elections. There have been scandals. The current administration remains a dog."
+    },
+    {
+      "id": "lift-016",
+      "type": "fun-fact",
+      "content": "Octopuses have three hearts and blue blood. Two hearts pump to the gills, one pumps to the body, and the body one stops beating when they swim, which is why they mostly prefer to crawl."
+    },
+    {
+      "id": "lift-017",
+      "type": "encouragement",
+      "content": "The goal today is not perfect. The goal is fed and hydrated. Anything past that is extra credit."
+    },
+    {
+      "id": "lift-018",
+      "type": "fun-fact",
+      "content": "Mount Rogers, the highest point in Virginia, has wild ponies living on it. Nobody rides them. They are just up there, being ponies, at 5,700 feet."
+    },
+    {
+      "id": "lift-019",
+      "type": "funny-story",
+      "content": "In 1995 a man robbed two Pittsburgh banks with lemon juice on his face, having concluded that because lemon juice works as invisible ink, it would make him invisible to security cameras. He was genuinely shocked when they caught him. Two researchers read about it and built an entire theory of human overconfidence on the case."
+    },
+    {
+      "id": "lift-020",
+      "type": "tiny-win",
+      "content": "Step outside for two minutes. Even if it is ugly out. Especially if it is ugly out."
+    },
+    {
+      "id": "lift-021",
+      "type": "fun-fact",
+      "content": "Trees in a forest are connected underground by fungal networks and trade nutrients through them. Older trees will send sugar to struggling seedlings that are not even their own."
+    },
+    {
+      "id": "lift-022",
+      "type": "encouragement",
+      "content": "Your body is doing repair work you cannot see and did not authorize. Be a little patient with the crew."
+    },
+    {
+      "id": "lift-023",
+      "type": "fun-fact",
+      "content": "Honeybees can recognize individual human faces. They do it by treating the face as an unusual flower, which is somehow both scientifically accurate and very sweet."
+    },
+    {
+      "id": "lift-024",
+      "type": "funny-story",
+      "content": "The 1904 Olympic marathon in St. Louis was so badly run that the first man across the line had ridden eleven miles in a car, the eventual winner was given rat poison and brandy by his handlers as a performance aid, and one runner was chased a mile off course by wild dogs. He still finished ninth."
+    },
+    {
+      "id": "lift-025",
+      "type": "fun-fact",
+      "content": "A group of flamingos is called a flamboyance. A group of porcupines is a prickle. A group of crows is a murder, but a group of ravens is an unkindness, which feels harsh toward the ravens."
+    },
+    {
+      "id": "lift-026",
+      "type": "encouragement",
+      "content": "You did not do anything to deserve this. Full stop. No hidden clause, no lesson you were supposed to learn."
+    },
+    {
+      "id": "lift-027",
+      "type": "fun-fact",
+      "content": "There is a jellyfish that can revert to an earlier stage of its own life cycle when injured or starving, essentially aging backward. It is called Turritopsis dohrnii and it is, as far as anyone can tell, biologically immortal."
+    },
+    {
+      "id": "lift-028",
+      "type": "tiny-win",
+      "content": "Put on the song. You know the one. Play it loud enough to be slightly inconsiderate."
+    },
+    {
+      "id": "lift-029",
+      "type": "fun-fact",
+      "content": "Cows have best friends. When separated from them, their heart rates go up and they produce more stress hormones. They also get visibly happier when reunited."
+    },
+    {
+      "id": "lift-030",
+      "type": "funny-story",
+      "content": "Tug of war was an Olympic sport until 1920. In the 1908 London games, the American team formally protested after losing to a British squad made up of Liverpool police officers who competed in their steel-toed duty boots. The British argued these were simply their ordinary work shoes. They kept the medal."
+    },
+    {
+      "id": "lift-031",
+      "type": "encouragement",
+      "content": "It is allowed to be unfair and survivable at the same time. Both things can be true and today they are."
+    },
+    {
+      "id": "lift-032",
+      "type": "fun-fact",
+      "content": "The oldest known individual tree on earth is a bristlecone pine in California, roughly 4,800 years old. It was already a thousand years old when the first stone of the pyramids was cut."
+    },
+    {
+      "id": "lift-033",
+      "type": "quote",
+      "content": "The mountains are calling and I must go.",
+      "attribution": "John Muir"
+    },
+    {
+      "id": "lift-034",
+      "type": "fun-fact",
+      "content": "Sea otters keep a favorite rock in a loose pouch of skin under their forearm and use it for years to crack shellfish. They have a rock. It is their rock."
+    },
+    {
+      "id": "lift-035",
+      "type": "tiny-win",
+      "content": "Write down one question for your next doctor's appointment right now, while you are thinking of it. Future you will be grateful."
+    },
+    {
+      "id": "lift-036",
+      "type": "encouragement",
+      "content": "You are allowed to be sick of this. Being sick of it is not the same thing as giving up, and you are clearly not giving up."
+    },
+    {
+      "id": "lift-037",
+      "type": "fun-fact",
+      "content": "Norway has knighted a penguin. His name is Sir Nils Olav and he holds the rank of brigadier in the Norwegian King's Guard. He lives at the Edinburgh Zoo and inspects the troops when they visit."
+    },
+    {
+      "id": "lift-038",
+      "type": "funny-story",
+      "content": "In 1919 a storage tank in Boston burst and sent two and a half million gallons of molasses through the North End at 35 miles per hour. For decades afterward, residents swore that on hot days you could still smell it in the streets."
+    },
+    {
+      "id": "lift-039",
+      "type": "fun-fact",
+      "content": "Hummingbirds are the only birds that can fly backward. Their hearts beat over 1,200 times a minute in flight, and they can remember every flower they have visited and how long it takes each one to refill."
+    },
+    {
+      "id": "lift-040",
+      "type": "encouragement",
+      "content": "Somebody built this app for you. That did not happen by accident and it was not an obligation."
+    },
+    {
+      "id": "lift-041",
+      "type": "fun-fact",
+      "content": "Rats laugh when tickled. The sound is too high-pitched for human hearing, so researchers had to slow the recordings down to hear it. When they did, it turned out the rats were also chasing the researchers' hands, asking for more."
+    },
+    {
+      "id": "lift-042",
+      "type": "tiny-win",
+      "content": "Open a window. Two inches counts."
+    },
+    {
+      "id": "lift-043",
+      "type": "fun-fact",
+      "content": "The Wilderness Road through the Cumberland Gap carried around 300,000 people west between 1775 and 1810. Most of them walked. Some of them were your people, statistically speaking."
+    },
+    {
+      "id": "lift-044",
+      "type": "funny-story",
+      "content": "Talkeetna, Alaska had a cat named Stubbs as its honorary mayor for twenty years. He held office hours at the general store, drank water out of a wine glass with catnip in it, and was reportedly a very effective communicator on matters of local tourism."
+    },
+    {
+      "id": "lift-045",
+      "type": "fun-fact",
+      "content": "Butterflies taste with their feet. When one lands on you, it is checking whether you are food. It is a small insult, but a delicate one."
+    },
+    {
+      "id": "lift-046",
+      "type": "encouragement",
+      "content": "The people who love you are not keeping score of how well you are handling this. They are just glad you are here."
+    },
+    {
+      "id": "lift-047",
+      "type": "fun-fact",
+      "content": "A day on Venus is longer than a year on Venus. It takes 243 Earth days to rotate once and only 225 to go around the sun. Time is stranger than it looks from here."
+    },
+    {
+      "id": "lift-048",
+      "type": "tiny-win",
+      "content": "Sit somewhere with a view for five minutes and do absolutely nothing else. No phone. The view counts even if it is a parking lot."
+    },
+    {
+      "id": "lift-049",
+      "type": "fun-fact",
+      "content": "A cat's purr sits between 25 and 150 hertz, a frequency range associated in some research with bone density and tissue repair. Nobody is claiming cats are medicine. But they might be a little bit medicine."
+    },
+    {
+      "id": "lift-050",
+      "type": "encouragement",
+      "content": "Nobody is grading you on this. There is no version of you who was supposed to handle it better."
+    },
+    {
+      "id": "lift-051",
+      "type": "funny-story",
+      "content": "In 1518 in Strasbourg, a woman stepped into the street and began to dance. Within a month, hundreds had joined her, dancing for days without stopping. The city's response was to build a stage and hire musicians, on the theory that the cure was more dancing. It was not."
+    },
+    {
+      "id": "lift-052",
+      "type": "fun-fact",
+      "content": "Sloths can hold their breath longer than dolphins. Around forty minutes, by slowing their heart rate to a third of normal. They are not lazy. They are extremely efficient and everyone has misjudged them."
+    },
+    {
+      "id": "lift-053",
+      "type": "fun-fact",
+      "content": "There is a town in Norway called Rjukan that spends half the year in mountain shadow. In 2013 they installed enormous mirrors on the mountainside to bounce sunlight down into the town square. People come out and stand in the reflected patch of light."
+    },
+    {
+      "id": "lift-054",
+      "type": "encouragement",
+      "content": "Small and frequent beats big and heroic. That is true of meals and it is true of most of the rest of it too."
+    },
+    {
+      "id": "lift-055",
+      "type": "fun-fact",
+      "content": "The national animal of Scotland is the unicorn. It has been since the 1300s. There was no debate about this. They simply picked it."
+    },
+    {
+      "id": "lift-056",
+      "type": "tiny-win",
+      "content": "Name one thing that went right in the last three days. It is allowed to be extremely small."
+    },
+    {
+      "id": "lift-057",
+      "type": "fun-fact",
+      "content": "Bananas are berries. Strawberries are not. Botanists have been quietly aware of this for centuries and have made no serious effort to correct anyone."
+    },
+    {
+      "id": "lift-058",
+      "type": "quote",
+      "content": "Look for the helpers. You will always find people who are helping.",
+      "attribution": "Fred Rogers"
+    },
+    {
+      "id": "lift-059",
+      "type": "fun-fact",
+      "content": "Some turtles can breathe through their hindquarters. This is a real and well documented adaptation called cloacal respiration, it allows them to overwinter underwater, and there is no dignified way to phrase it."
+    },
+    {
+      "id": "lift-060",
+      "type": "encouragement",
+      "content": "This ridge you are on is very old and has seen a great deal. It will still be here on the other side of this, and so will you."
+    }
+  ]
+}

@@ -1,0 +1,763 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "batch": "216-365",
+    "note": "Final batch. With entries 001-215 this completes a full 365-day rotation."
+  },
+  "entries": [
+    {
+      "id": "lift-216",
+      "type": "fun-fact",
+      "content": "Snails have thousands of tiny teeth arranged on a ribbon-like tongue. Limpet teeth are made of the strongest known biological material, stronger by weight than spider silk."
+    },
+    {
+      "id": "lift-217",
+      "type": "encouragement",
+      "content": "Today is allowed to be a maintenance day. Not every day has to move something forward."
+    },
+    {
+      "id": "lift-218",
+      "type": "funny-story",
+      "content": "In 1983 an Australian farmer named Cliff Young, aged 61, showed up to a 544-mile ultramarathon from Sydney to Melbourne in work boots and overalls. Everyone assumed he was a spectator. He won by more than a day, having not realized competitors were supposed to stop and sleep, and then split his prize money among the other runners."
+    },
+    {
+      "id": "lift-219",
+      "type": "fun-fact",
+      "content": "The Mediterranean Sea dried up almost completely about six million years ago and then refilled, possibly in as little as a couple of years, through a channel at Gibraltar. Geologists call it the Zanclean flood."
+    },
+    {
+      "id": "lift-220",
+      "type": "tiny-win",
+      "content": "Put clean sheets on the bed. It is a very cheap way to feel like a different person."
+    },
+    {
+      "id": "lift-221",
+      "type": "encouragement",
+      "content": "You are not required to be optimistic. You are only required to keep going, and those are separate jobs."
+    },
+    {
+      "id": "lift-222",
+      "type": "fun-fact",
+      "content": "Ravens can plan for the future. In experiments they will decline an immediate treat in favor of a tool they will need tomorrow, which for a long time was thought to be something only great apes did."
+    },
+    {
+      "id": "lift-223",
+      "type": "fun-fact",
+      "content": "Big Stone Gap has a town bookstore that a group of local women bought and ran themselves, and a novel written about it that became a small national phenomenon. Southwest Virginia keeps quietly producing this kind of thing."
+    },
+    {
+      "id": "lift-224",
+      "type": "funny-story",
+      "content": "The 1908 Olympic marathon ended with the leader, Dorando Pietri, stumbling into the stadium going the wrong way and collapsing five times. Officials helped him across the line, which got him disqualified. Queen Alexandra was so moved that she had a separate gilded cup made and gave it to him anyway."
+    },
+    {
+      "id": "lift-225",
+      "type": "encouragement",
+      "content": "Nobody is thinking about your restrictions at dinner as much as you are. And the ones who are thinking about them are on your side."
+    },
+    {
+      "id": "lift-226",
+      "type": "fun-fact",
+      "content": "There is a Japanese word, komorebi, for sunlight filtering through leaves. There is a German one, Waldeinsamkeit, for the specific feeling of being alone in a forest. Both describe things you have absolutely experienced and never had a word for."
+    },
+    {
+      "id": "lift-227",
+      "type": "tiny-win",
+      "content": "Delete one app you do not like. You know which one."
+    },
+    {
+      "id": "lift-228",
+      "type": "fun-fact",
+      "content": "Chickens can recognize over a hundred individual faces, including human ones, and remember them for years. They also have a rudimentary understanding of object permanence, which many toddlers do not."
+    },
+    {
+      "id": "lift-229",
+      "type": "encouragement",
+      "content": "Being the person who researches everything is a real contribution to your own care. It is also exhausting. Both."
+    },
+    {
+      "id": "lift-230",
+      "type": "funny-story",
+      "content": "A ship's cat named Simon served aboard the British sloop HMS Amethyst, survived a shell hit during the 1949 Yangtze Incident, and kept the rat population down while the crew was trapped on the river for three months. He was awarded the Dickin Medal for animal gallantry, the only cat ever to receive it."
+    },
+    {
+      "id": "lift-231",
+      "type": "fun-fact",
+      "content": "Saturn is less dense than water. If you could find a bathtub large enough, it would float."
+    },
+    {
+      "id": "lift-232",
+      "type": "tiny-win",
+      "content": "Write down your dietitian's phone number somewhere you will find it. Save yourself the search next time."
+    },
+    {
+      "id": "lift-233",
+      "type": "encouragement",
+      "content": "The hardest part of a chronic thing is that there is no finish line to sprint toward. So there is also no way to fall behind."
+    },
+    {
+      "id": "lift-234",
+      "type": "fun-fact",
+      "content": "Bananas sold in grocery stores are genetically identical clones of a single plant. The variety before this one was wiped out by a fungus in the 1950s, which is why artificial banana flavor does not taste like the banana you know. It tastes like the old one."
+    },
+    {
+      "id": "lift-235",
+      "type": "fun-fact",
+      "content": "The Devil's Bathtub in Scott County is a natural blue-green pool carved into the rock, reachable only by a trail that crosses the same creek about a dozen times. Everyone arrives with wet boots and nobody minds."
+    },
+    {
+      "id": "lift-236",
+      "type": "funny-story",
+      "content": "The Post-it Note exists because a chemist at 3M invented an adhesive that was, by every measure, a failure. It took another employee five years of internal pestering, and the specific problem of bookmarks falling out of his hymnal, to find a use for it."
+    },
+    {
+      "id": "lift-237",
+      "type": "encouragement",
+      "content": "You can hold two things: gratitude that it was caught, and fury that it happened. Nobody has to pick."
+    },
+    {
+      "id": "lift-238",
+      "type": "fun-fact",
+      "content": "Elephants greet each other after a separation with a whole ceremony: rumbling, trumpeting, spinning, ear flapping, urinating, and trunk-touching, all at once, for several minutes. The longer the separation, the bigger the reunion."
+    },
+    {
+      "id": "lift-239",
+      "type": "tiny-win",
+      "content": "Put on something with a good texture. Softness is a legitimate strategy."
+    },
+    {
+      "id": "lift-240",
+      "type": "fun-fact",
+      "content": "It probably rains diamonds on Neptune and Uranus. Extreme pressure squeezes the carbon in their atmospheres into crystal, which then sinks slowly through thousands of miles of slush."
+    },
+    {
+      "id": "lift-241",
+      "type": "encouragement",
+      "content": "Nothing about this is a referendum on your discipline or your character. Pancreases do what they do."
+    },
+    {
+      "id": "lift-242",
+      "type": "funny-story",
+      "content": "By a decree attributed to Charles II, at least six ravens must remain at the Tower of London or the kingdom will fall. They are formally on the staff, with names and a Ravenmaster. In 1986 a raven named George was dismissed from service for eating television aerials, and the discharge was entered in the official record."
+    },
+    {
+      "id": "lift-243",
+      "type": "fun-fact",
+      "content": "Pigs have been taught to play video games with a joystick, understanding that moving the controller moves the cursor on the screen. They are not good at it. They are much better than anyone expected."
+    },
+    {
+      "id": "lift-244",
+      "type": "tiny-win",
+      "content": "Say no to one thing this week. Pick the one that has been sitting on your chest."
+    },
+    {
+      "id": "lift-245",
+      "type": "encouragement",
+      "content": "You are still allowed to make plans. Not everything has to be provisional forever."
+    },
+    {
+      "id": "lift-246",
+      "type": "fun-fact",
+      "content": "The Blue Ridge Parkway took 52 years to finish, from 1935 to 1987. The last section, the Linn Cove Viaduct, was built in pieces from above so no heavy equipment would touch the mountainside."
+    },
+    {
+      "id": "lift-247",
+      "type": "quote",
+      "content": "The secret of getting ahead is getting started.",
+      "attribution": "Mark Twain"
+    },
+    {
+      "id": "lift-248",
+      "type": "fun-fact",
+      "content": "Bar-headed geese migrate over the Himalayas, flying at altitudes where the air holds a third of the oxygen at sea level. They do it in a single day, without acclimatizing, because they have hemoglobin that grips oxygen harder than ours."
+    },
+    {
+      "id": "lift-249",
+      "type": "funny-story",
+      "content": "The Wife Carrying World Championships are held annually in Finland. The prize is the wife's weight in beverages. The dominant technique involves the carried spouse hanging upside down on the carrier's back, and it has a name, and there is a coaching literature."
+    },
+    {
+      "id": "lift-250",
+      "type": "encouragement",
+      "content": "Some days you will do everything right and still feel awful. That is not evidence the effort was pointless. It is just the shape of the thing."
+    },
+    {
+      "id": "lift-251",
+      "type": "fun-fact",
+      "content": "The word salary comes from the Latin for salt, because Roman soldiers received an allowance connected to buying it. Salt was, for most of human history, one of the most valuable substances in ordinary life."
+    },
+    {
+      "id": "lift-252",
+      "type": "tiny-win",
+      "content": "Make your bed, or deliberately do not make your bed. Either is fine. The point is deciding on purpose."
+    },
+    {
+      "id": "lift-253",
+      "type": "fun-fact",
+      "content": "Astronauts consistently report that space smells like seared steak or hot metal. The smell clings to their suits when they come back inside. Nobody has fully explained it."
+    },
+    {
+      "id": "lift-254",
+      "type": "encouragement",
+      "content": "The friends who bring you food that you can actually eat are a specific and rare kind of friend. Keep them close."
+    },
+    {
+      "id": "lift-255",
+      "type": "funny-story",
+      "content": "In 1983 an Air Canada 767 ran out of fuel at 41,000 feet because of a units conversion error during the switch to metric. The captain, who happened to be a glider pilot, dead-sticked it onto a decommissioned airstrip in Manitoba that was being used that day for drag racing. Everyone walked away."
+    },
+    {
+      "id": "lift-256",
+      "type": "fun-fact",
+      "content": "A study out of Glasgow catalogued 421 Scots words and phrases for snow, including feefle, for snow swirling into a corner, and skelf, for a single large flake."
+    },
+    {
+      "id": "lift-257",
+      "type": "encouragement",
+      "content": "The fact that you are still curious about anything at all, on a week like this, is not nothing."
+    },
+    {
+      "id": "lift-258",
+      "type": "fun-fact",
+      "content": "The Olympus Mons volcano on Mars is roughly three times the height of Everest and about the size of Arizona. Its slope is so gradual that if you were standing on it, you would not be able to tell you were on a mountain."
+    },
+    {
+      "id": "lift-259",
+      "type": "tiny-win",
+      "content": "Text one person a photo of something with no explanation. Let them wonder."
+    },
+    {
+      "id": "lift-260",
+      "type": "fun-fact",
+      "content": "Bees have been trained to detect explosives, tuberculosis, and lung cancer by smell. They learn in a few minutes and work for a sugar reward, which is a substantially better deal than most jobs."
+    },
+    {
+      "id": "lift-261",
+      "type": "encouragement",
+      "content": "Nobody handed you a manual. You are writing it as you go and it will be useful to someone else eventually."
+    },
+    {
+      "id": "lift-262",
+      "type": "funny-story",
+      "content": "On the third of September 1967, Sweden switched the entire country from driving on the left to driving on the right, overnight. Everyone predicted carnage. Accident rates actually fell for months afterward, because every driver in Sweden was terrified and driving extremely carefully."
+    },
+    {
+      "id": "lift-263",
+      "type": "fun-fact",
+      "content": "Lake Vostok sits under two and a half miles of Antarctic ice and has been sealed off from the surface for something like fifteen million years. There appears to be life in it."
+    },
+    {
+      "id": "lift-264",
+      "type": "encouragement",
+      "content": "You have permission to cancel. The people worth keeping will not hold it against you and the others were going to be trouble anyway."
+    },
+    {
+      "id": "lift-265",
+      "type": "fun-fact",
+      "content": "The Anglo-Zanzibar War of 1896 lasted thirty-eight minutes and remains the shortest war in recorded history. The ultimatum expired at 9:00 in the morning and the whole thing was over before ten."
+    },
+    {
+      "id": "lift-266",
+      "type": "tiny-win",
+      "content": "Look through your own camera roll from a year ago. Just for a few minutes."
+    },
+    {
+      "id": "lift-267",
+      "type": "fun-fact",
+      "content": "A blue whale calf gains roughly two hundred pounds a day on its mother's milk. It is born already larger than most land animals will ever be."
+    },
+    {
+      "id": "lift-268",
+      "type": "encouragement",
+      "content": "You are not failing at this. You are doing it. Those look almost identical from the inside and are not the same at all."
+    },
+    {
+      "id": "lift-269",
+      "type": "funny-story",
+      "content": "The Cardiff Giant was a ten-foot stone man buried on a farm in New York, dug up in 1869, and exhibited as a petrified prehistoric human. P.T. Barnum tried to buy it, was refused, and simply built a copy. The owner of the original then sued Barnum for calling his fake a fake."
+    },
+    {
+      "id": "lift-270",
+      "type": "fun-fact",
+      "content": "Whitetop Mountain, the second highest point in Virginia, has open grassy balds at the summit that nobody has ever fully explained. There is no obvious reason trees do not grow there, and there are theories, and none of them are settled."
+    },
+    {
+      "id": "lift-271",
+      "type": "encouragement",
+      "content": "The energy you spend managing this is real work, even though nobody pays you for it and it does not appear on any list."
+    },
+    {
+      "id": "lift-272",
+      "type": "fun-fact",
+      "content": "Sea otters have the densest fur of any animal, up to a million hairs per square inch. They have no blubber at all, so the fur is the entire strategy, and they spend a large share of their waking life grooming it."
+    },
+    {
+      "id": "lift-273",
+      "type": "tiny-win",
+      "content": "Eat something you like today, within budget, on purpose, and pay attention while you eat it."
+    },
+    {
+      "id": "lift-274",
+      "type": "quote",
+      "content": "There is something infinitely healing in the repeated refrains of nature.",
+      "attribution": "Rachel Carson"
+    },
+    {
+      "id": "lift-275",
+      "type": "funny-story",
+      "content": "Roy Sullivan, a park ranger in Shenandoah National Park, was struck by lightning seven separate times between 1942 and 1977 and survived all seven. He lost a toenail, his eyebrows, and several hats. People eventually stopped standing near him, which he said bothered him more than the lightning."
+    },
+    {
+      "id": "lift-276",
+      "type": "fun-fact",
+      "content": "Fireflies are beetles, not flies. Their light is close to 100 percent efficient, producing almost no heat. A standard incandescent bulb wastes about 90 percent of its energy as heat, which makes the firefly roughly ten times better at the one job."
+    },
+    {
+      "id": "lift-277",
+      "type": "encouragement",
+      "content": "Your standards for yourself would be considered cruel if you applied them to anyone else. Consider a temporary amnesty."
+    },
+    {
+      "id": "lift-278",
+      "type": "fun-fact",
+      "content": "The Christmas Truce of 1914 was not ordered by anyone. Soldiers along parts of the Western Front simply climbed out, exchanged food and buttons, buried their dead together, and in some places played football. Command spent the following years making sure it did not happen again."
+    },
+    {
+      "id": "lift-279",
+      "type": "tiny-win",
+      "content": "Sit on the porch. If there is no porch, sit near a window and pretend."
+    },
+    {
+      "id": "lift-280",
+      "type": "encouragement",
+      "content": "There is a version of next year where this is background noise instead of the main event. That version is reachable from here."
+    },
+    {
+      "id": "lift-281",
+      "type": "fun-fact",
+      "content": "Octopuses have been observed collecting coconut shells, carrying them awkwardly across the seafloor, and reassembling them later as portable shelter. Tool use with delayed benefit, by an animal with no bones and a nine-month lifespan."
+    },
+    {
+      "id": "lift-282",
+      "type": "funny-story",
+      "content": "The bog snorkelling world championship is held in a Welsh peat bog. Competitors must complete two lengths of a sixty-yard trench using only flippers, without conventional swimming strokes. There is a category for mountain bike bog snorkelling, in which the bike is weighted so it stays on the bottom."
+    },
+    {
+      "id": "lift-283",
+      "type": "fun-fact",
+      "content": "The tallest tree ever reliably measured was a mountain ash in Australia in 1872, recorded at over 400 feet. Nothing standing today comes close. There were forests once that we can only read about."
+    },
+    {
+      "id": "lift-284",
+      "type": "encouragement",
+      "content": "You have gotten information you did not want. Having it is still better than not having it, even when it does not feel that way at two in the morning."
+    },
+    {
+      "id": "lift-285",
+      "type": "tiny-win",
+      "content": "Write down one question you have been meaning to ask a doctor and have kept forgetting. Put it in your phone."
+    },
+    {
+      "id": "lift-286",
+      "type": "fun-fact",
+      "content": "Cows produce noticeably more milk when they listen to slow music. The optimal tempo is around 100 beats per minute. Faster music makes production drop."
+    },
+    {
+      "id": "lift-287",
+      "type": "fun-fact",
+      "content": "Camp Washington-Carver near Clifftop, West Virginia was the first African American 4-H camp in the United States, opened in 1942. Its great chestnut log lodge is still standing, it is now a mountain cultural arts center, and you can walk inside it."
+    },
+    {
+      "id": "lift-288",
+      "type": "encouragement",
+      "content": "Everything you are learning about your own body right now is going to be useful for the rest of your life. That is a real return on a rotten investment."
+    },
+    {
+      "id": "lift-289",
+      "type": "funny-story",
+      "content": "In 1897 the Indiana General Assembly nearly passed a bill legally redefining the value of pi. It cleared the House unanimously. A visiting mathematics professor happened to be in the building on other business, read it, and quietly explained the problem to a few senators."
+    },
+    {
+      "id": "lift-290",
+      "type": "fun-fact",
+      "content": "Wolves have been observed adopting orphaned pups from rival packs. There is no obvious evolutionary advantage and it happens anyway."
+    },
+    {
+      "id": "lift-291",
+      "type": "tiny-win",
+      "content": "Do the small annoying task you have been avoiding. Not the big one. The five-minute one."
+    },
+    {
+      "id": "lift-292",
+      "type": "encouragement",
+      "content": "It is fine to be the one who needs things for a while. You have been the other one plenty."
+    },
+    {
+      "id": "lift-293",
+      "type": "fun-fact",
+      "content": "The Nile crocodile lets a small bird pick its teeth clean and does not eat it. Herodotus wrote this down 2,400 years ago and everyone assumed he had made it up until it was photographed."
+    },
+    {
+      "id": "lift-294",
+      "type": "fun-fact",
+      "content": "A group of jellyfish is a smack. A group of hedgehogs is a prickle. A group of owls is a parliament, which is either very flattering to owls or very unflattering to legislatures."
+    },
+    {
+      "id": "lift-295",
+      "type": "funny-story",
+      "content": "Silly Putty was developed during the Second World War as a synthetic rubber substitute and was useless for that. It was sold as a novelty in plastic eggs instead. In 1968 the crew of Apollo 8 carried some to space to keep their tools from floating away."
+    },
+    {
+      "id": "lift-296",
+      "type": "encouragement",
+      "content": "You do not have to be an inspiration. You are allowed to just be a person who had a bad year."
+    },
+    {
+      "id": "lift-297",
+      "type": "fun-fact",
+      "content": "Trees communicate distress chemically. When acacias are browsed by giraffes, they release ethylene, and downwind trees begin producing bitter tannins before the giraffes reach them. The giraffes have adapted by feeding into the wind."
+    },
+    {
+      "id": "lift-298",
+      "type": "tiny-win",
+      "content": "Open the good dishes. Use them for something ordinary. That is what they are for and nobody has ever been glad they waited."
+    },
+    {
+      "id": "lift-299",
+      "type": "fun-fact",
+      "content": "Abingdon has been continuously settled since the 1770s and is named, depending on who you ask, for Daniel Boone's dogs being carried off by wolves at that spot. The original name was Wolf Hills. Somebody clearly made a marketing decision."
+    },
+    {
+      "id": "lift-300",
+      "type": "encouragement",
+      "content": "Three hundred entries into this file and the point has not changed: somebody wanted you to open your phone and find something other than bad news."
+    },
+    {
+      "id": "lift-301",
+      "type": "fun-fact",
+      "content": "The heart of a hibernating groundhog beats about five times a minute. It also drops its body temperature to a few degrees above the temperature of its burrow and stops shivering entirely."
+    },
+    {
+      "id": "lift-302",
+      "type": "funny-story",
+      "content": "In 1985 Coca-Cola replaced its formula after extensive taste testing that said people preferred the new one. The company received something like 400,000 letters and calls of protest, one man in Seattle filed a class action, and the old formula was back on shelves in 79 days."
+    },
+    {
+      "id": "lift-303",
+      "type": "fun-fact",
+      "content": "Corn was bred from a grass called teosinte that produces a cob the size of your little finger with about a dozen hard kernels. Someone in southern Mexico spent generations turning it into corn. It is possibly the most impressive thing anyone has ever done to a plant."
+    },
+    {
+      "id": "lift-304",
+      "type": "encouragement",
+      "content": "There is a difference between giving up and putting something down for a while. You are allowed the second one."
+    },
+    {
+      "id": "lift-305",
+      "type": "tiny-win",
+      "content": "Send someone a photograph of the sky wherever you are. No caption."
+    },
+    {
+      "id": "lift-306",
+      "type": "fun-fact",
+      "content": "The Vinegar Bible of 1717 is famous entirely because of a typo, printing the Parable of the Vineyard as the Parable of the Vinegar. Collectors now pay more for the mistake than the correct edition ever fetched."
+    },
+    {
+      "id": "lift-307",
+      "type": "encouragement",
+      "content": "The doctor's appointment you are dreading is a Tuesday, and after it there will be a Wednesday."
+    },
+    {
+      "id": "lift-308",
+      "type": "fun-fact",
+      "content": "Emperor penguins huddle in a rotating formation during the Antarctic winter, and the birds on the cold outside edge are gradually moved into the warm center. The whole mass shuffles a few inches at a time, continuously, for months."
+    },
+    {
+      "id": "lift-309",
+      "type": "funny-story",
+      "content": "A Japanese company in the 1980s researched why bullet trains produced a sonic boom exiting tunnels. The chief engineer, a birdwatcher, redesigned the nose based on the kingfisher's beak, which enters water without a splash. The trains got quieter, faster, and used less electricity."
+    },
+    {
+      "id": "lift-310",
+      "type": "fun-fact",
+      "content": "Iceland has an official naming committee that must approve any name not already on the approved list. Applications get rejected. There is an appeals process. People have gone to court over it."
+    },
+    {
+      "id": "lift-311",
+      "type": "encouragement",
+      "content": "Your appetite will come back. It is one of the more reliably reported things in the recovery literature and one of the least believable when you are in it."
+    },
+    {
+      "id": "lift-312",
+      "type": "tiny-win",
+      "content": "Reorganize one drawer. The junk drawer counts and is arguably the best choice."
+    },
+    {
+      "id": "lift-313",
+      "type": "fun-fact",
+      "content": "Sunflowers track the sun across the sky when young, then permanently settle facing east as they mature. East-facing flowers warm up faster in the morning and get visited by five times as many pollinators."
+    },
+    {
+      "id": "lift-314",
+      "type": "quote",
+      "content": "Live in each season as it passes.",
+      "attribution": "Henry David Thoreau"
+    },
+    {
+      "id": "lift-315",
+      "type": "fun-fact",
+      "content": "The at symbol has different names around the world: a snail in Italian, an elephant's trunk in Danish, a monkey's tail in Dutch, and a little dog in Russian. Nobody agreed and everyone committed."
+    },
+    {
+      "id": "lift-316",
+      "type": "encouragement",
+      "content": "It is reasonable to be angry at an organ. Go ahead."
+    },
+    {
+      "id": "lift-317",
+      "type": "funny-story",
+      "content": "In 1958 a nuclear device was accidentally released over a farm in Mars Bluff, South Carolina. The conventional explosives detonated, the nuclear core did not, and the family in the house survived. The crater is still there and the town has put up a sign."
+    },
+    {
+      "id": "lift-318",
+      "type": "fun-fact",
+      "content": "A cubic inch of soil from a healthy forest contains more living organisms than there are humans on Earth. You have walked over that your whole life."
+    },
+    {
+      "id": "lift-319",
+      "type": "tiny-win",
+      "content": "Write one sentence to somebody who will never see it. Then delete it or keep it, your call."
+    },
+    {
+      "id": "lift-320",
+      "type": "encouragement",
+      "content": "The version of this that you fear is almost never the version that arrives. It is usually less dramatic and more boring, which is better."
+    },
+    {
+      "id": "lift-321",
+      "type": "fun-fact",
+      "content": "Cats do not meow at other cats. Adult cats communicate with each other by scent and body language. The meow is something they developed almost exclusively to talk to us."
+    },
+    {
+      "id": "lift-322",
+      "type": "fun-fact",
+      "content": "The Cumberland Gap is a natural notch in a mountain wall that runs for hundreds of miles with almost no other break. Bison found it first. Then the Shawnee and Cherokee. Then everybody else."
+    },
+    {
+      "id": "lift-323",
+      "type": "encouragement",
+      "content": "Someone in your life is quietly proud of you and has not said so, because people are bad at that. Assume it is happening."
+    },
+    {
+      "id": "lift-324",
+      "type": "funny-story",
+      "content": "In 1802 a Massachusetts town sent President Jefferson a 1,235-pound wheel of cheese as a political gesture. It took several weeks to arrive, was served at the White House for two years, and the room where it sat reportedly never smelled quite right again."
+    },
+    {
+      "id": "lift-325",
+      "type": "fun-fact",
+      "content": "Whales sing in dialects, and the songs change every year. A new melody can start with one population and spread across an entire ocean over a few seasons, moving eastward like a hit record."
+    },
+    {
+      "id": "lift-326",
+      "type": "tiny-win",
+      "content": "Set a five-minute timer and put things away until it goes off. Then stop, even if you are not done."
+    },
+    {
+      "id": "lift-327",
+      "type": "encouragement",
+      "content": "The fear is loudest right after the diagnosis and gets quieter with information. You are actively collecting information."
+    },
+    {
+      "id": "lift-328",
+      "type": "fun-fact",
+      "content": "The Roanoke Star on Mill Mountain is nearly ninety feet tall, made of 2,000 feet of neon tubing, and was built in 1949 as a Christmas decoration for a shopping promotion. Nobody ever took it down."
+    },
+    {
+      "id": "lift-329",
+      "type": "fun-fact",
+      "content": "Ancient Roman concrete gets stronger over time, because seawater reacts with volcanic ash in the mix to grow interlocking crystals. Modern concrete degrades. We have only recently worked out how they did it."
+    },
+    {
+      "id": "lift-330",
+      "type": "encouragement",
+      "content": "You are allowed to want to talk about literally anything else. Bring up something dumb. It is medicinal."
+    },
+    {
+      "id": "lift-331",
+      "type": "funny-story",
+      "content": "The town of Talkeetna's mayoral cat had a successor problem. When Stubbs died in 2017 at age twenty, the town could not agree on a replacement and the office went informally vacant. Several dogs campaigned. The matter was, by most accounts, never really settled."
+    },
+    {
+      "id": "lift-332",
+      "type": "fun-fact",
+      "content": "Flamingos are born gray. They turn pink from carotenoids in what they eat. A flamingo on the wrong diet fades, which is either a useful metaphor or a warning, depending on the day."
+    },
+    {
+      "id": "lift-333",
+      "type": "tiny-win",
+      "content": "Look out a window for two full minutes without doing anything else. It is longer than it sounds."
+    },
+    {
+      "id": "lift-334",
+      "type": "encouragement",
+      "content": "Being careful is not the same as being fragile. You are being careful for excellent reasons."
+    },
+    {
+      "id": "lift-335",
+      "type": "fun-fact",
+      "content": "There is a fungus in Oregon covering nearly four square miles, all one organism, estimated at 2,400 years old and possibly much older. It is mostly underground and it is the largest living thing anyone has found."
+    },
+    {
+      "id": "lift-336",
+      "type": "funny-story",
+      "content": "The University of Queensland has been running an experiment since 1927 to prove that pitch, which shatters like glass when struck, is actually a fluid. Nine drops have fallen in almost a century. The physicist who tended it for 52 years died having never once seen a drop fall."
+    },
+    {
+      "id": "lift-337",
+      "type": "fun-fact",
+      "content": "Otters have been observed teaching their young to use rocks, and different otter populations use different techniques, passed down and not reinvented. That is culture, in the technical sense."
+    },
+    {
+      "id": "lift-338",
+      "type": "encouragement",
+      "content": "Whatever today was, it is now behind you, and that is the single most underrated feature of days."
+    },
+    {
+      "id": "lift-339",
+      "type": "tiny-win",
+      "content": "Put on a coat and walk to the end of the driveway and back. That is the entire outing."
+    },
+    {
+      "id": "lift-340",
+      "type": "fun-fact",
+      "content": "The reason old books smell the way they do is lignin in the paper breaking down and releasing compounds chemically related to vanilla. You are smelling paper slowly turning into vanilla."
+    },
+    {
+      "id": "lift-341",
+      "type": "encouragement",
+      "content": "You are more than a set of dietary restrictions and a chart. Anyone who forgets that, including you, is wrong."
+    },
+    {
+      "id": "lift-342",
+      "type": "fun-fact",
+      "content": "Bees maintain the inside of the hive at about 95 degrees year round, cooling it in summer by fanning their wings and warming it in winter by vibrating their flight muscles in shifts. Nobody is in charge. It just happens."
+    },
+    {
+      "id": "lift-343",
+      "type": "funny-story",
+      "content": "In 1938 a pilot named Douglas Corrigan filed a flight plan from New York to California, took off, and landed in Ireland 28 hours later, claiming his compass had malfunctioned. Nobody believed him for a second. He got a ticker-tape parade down Broadway and stuck to the story for the rest of his life."
+    },
+    {
+      "id": "lift-344",
+      "type": "fun-fact",
+      "content": "Mount Rogers and Whitetop are the two highest points in Virginia and are visible from each other. Between them run the Grayson Highlands, where the wild ponies keep the balds open by grazing, which is the only reason the views exist."
+    },
+    {
+      "id": "lift-345",
+      "type": "tiny-win",
+      "content": "Text somebody a memory. Just the memory, no lead-in. Watch what happens."
+    },
+    {
+      "id": "lift-346",
+      "type": "encouragement",
+      "content": "The bad stretch will end. Not because you deserve it to, but because bad stretches do."
+    },
+    {
+      "id": "lift-347",
+      "type": "fun-fact",
+      "content": "Wombats do not just produce cube-shaped droppings, they stack them on rocks and logs at nose height to mark territory. The cube shape stops them rolling off. Evolution solved a very specific problem."
+    },
+    {
+      "id": "lift-348",
+      "type": "quote",
+      "content": "Although the world is full of suffering, it is also full of the overcoming of it.",
+      "attribution": "Helen Keller"
+    },
+    {
+      "id": "lift-349",
+      "type": "fun-fact",
+      "content": "Migrating birds can see Earth's magnetic field, probably as a visual overlay, using a protein in their eyes that responds to it. They are not navigating by feel. They are looking at it."
+    },
+    {
+      "id": "lift-350",
+      "type": "encouragement",
+      "content": "You are not required to be at peace with this. Peace is optional. Functioning is enough."
+    },
+    {
+      "id": "lift-351",
+      "type": "funny-story",
+      "content": "The first person to survive going over Niagara Falls in a barrel was a 63-year-old schoolteacher named Annie Edson Taylor, in 1901, who did it hoping to make enough money to avoid the poorhouse. She sent a cat over first to test the barrel. The cat also survived and got substantially more press."
+    },
+    {
+      "id": "lift-352",
+      "type": "fun-fact",
+      "content": "Sequoias can survive fire, and in fact need it. The heat opens their cones. A grove that has not burned in a century stops producing seedlings."
+    },
+    {
+      "id": "lift-353",
+      "type": "tiny-win",
+      "content": "Wash your face with cold water. It is a very old trick and it still works."
+    },
+    {
+      "id": "lift-354",
+      "type": "encouragement",
+      "content": "Every meal you have figured out this month is now a meal you know how to make. That list only grows."
+    },
+    {
+      "id": "lift-355",
+      "type": "fun-fact",
+      "content": "The Carter Family recorded in a converted hat warehouse in Bristol in 1927, and the songs they brought in had been passed down orally in the mountains for generations. Nobody in that room knew they were preserving anything."
+    },
+    {
+      "id": "lift-356",
+      "type": "fun-fact",
+      "content": "There are more possible arrangements of a shuffled deck of cards than there are atoms on Earth. Any deck you shuffle properly has almost certainly never existed before in that order and never will again."
+    },
+    {
+      "id": "lift-357",
+      "type": "encouragement",
+      "content": "The day you stop thinking about this constantly will arrive without announcing itself. You will notice it a week late."
+    },
+    {
+      "id": "lift-358",
+      "type": "funny-story",
+      "content": "In 1971 a man in Pennsylvania attempted to sue Satan and his servants in federal court for placing obstacles in his path. The judge dismissed the case, noting among other issues the significant practical problem of serving process on the defendant."
+    },
+    {
+      "id": "lift-359",
+      "type": "tiny-win",
+      "content": "Go stand outside in the dark for one minute and look up. Even from town you will see more than you expect."
+    },
+    {
+      "id": "lift-360",
+      "type": "fun-fact",
+      "content": "Salamanders in the southern Appalachians are so localized that some species exist on a single mountain and nowhere else on earth. Walk over the ridge and you are in a different one's entire world."
+    },
+    {
+      "id": "lift-361",
+      "type": "encouragement",
+      "content": "The thing you are afraid you cannot handle, you are currently handling. That is what this is."
+    },
+    {
+      "id": "lift-362",
+      "type": "fun-fact",
+      "content": "The oldest known melody with notation is a Hurrian hymn on a clay tablet from Syria, about 3,400 years old. Musicologists disagree about how to play it, so there are several recordings, all of them somebody's best guess at a song from the Bronze Age."
+    },
+    {
+      "id": "lift-363",
+      "type": "tiny-win",
+      "content": "Do nothing at all for ten minutes. Deliberately. It is much harder than it sounds and it counts."
+    },
+    {
+      "id": "lift-364",
+      "type": "fun-fact",
+      "content": "The mountains you live in were once as tall as the Himalayas and have been wearing down for 300 million years. Everything you can see from a ridgeline in southwest Virginia is what is left after unimaginable patience."
+    },
+    {
+      "id": "lift-365",
+      "type": "encouragement",
+      "content": "You made it a year with this thing. Whatever the year was, you are on the other side of it, and there is a whole other year of these waiting."
+    }
+  ]
+}

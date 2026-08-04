@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "purpose": "Short notes from the people who love Sam. These appear in the Daily Lift rotation, styled differently from the general entries, roughly twice a week.",
+    "howToAdd": [
+      "1. Open this file on GitHub and click the pencil icon to edit.",
+      "2. Copy one of the entries below, paste it at the end of the list, and change the id, from, and content.",
+      "3. Make sure there is a comma after the entry before yours, and no comma after the last one.",
+      "4. Scroll down, click Commit changes. That is it. It will show up in the app.",
+      "If that sounds like too much, just send your note to Chad and he will add it."
+    ],
+    "guidance": [
+      "Short is better. Two or three sentences.",
+      "Specific is better than general. A real memory beats a general sentiment every time.",
+      "You do not have to mention her health at all. Most of the best ones will not.",
+      "Do not write anything you would not say out loud on a bad day."
+    ]
+  },
+  "notes": [
+
+    {
+      "id": "note-001",
+      "from": "Chad",
+      "content": "I built this because I could not think of anything else useful to do, and because you should not have to spend your energy doing math about a chicken sandwich. Text me when something on here is wrong and I will fix it.",
+      "dateAdded": "2026-08-03"
+    },
+    {
+      "id": "note-002",
+      "from": "Chad",
+      "content": "Sample entry, replace or delete. Write about a real thing. The time she did the specific thing. That is what lands at seven in the morning on a rough day.",
+      "dateAdded": "2026-08-03"
+    }
+
+  ]
+}

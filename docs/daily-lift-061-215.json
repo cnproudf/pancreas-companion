@@ -1,0 +1,790 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "batch": "061-215",
+    "note": "Merge into the entries array of daily-lift.json, or load as a second file and concatenate. Keep ids unique."
+  },
+  "entries": [
+    {
+      "id": "lift-061",
+      "type": "fun-fact",
+      "content": "Honey never spoils. Archaeologists have found pots of it in Egyptian tombs, three thousand years old, still perfectly edible."
+    },
+    {
+      "id": "lift-062",
+      "type": "encouragement",
+      "content": "Today does not have to be productive. It only has to be gotten through, and you have a perfect record of getting through days so far."
+    },
+    {
+      "id": "lift-063",
+      "type": "fun-fact",
+      "content": "Sharks are older than trees. They have been swimming around for about 400 million years, and trees showed up roughly 50 million years later."
+    },
+    {
+      "id": "lift-064",
+      "type": "funny-story",
+      "content": "In 1859 the United States and Britain nearly went to war over a pig that wandered into the wrong potato patch on San Juan Island. Troops were deployed. Warships arrived. The standoff lasted twelve years. The only casualty was the pig."
+    },
+    {
+      "id": "lift-065",
+      "type": "tiny-win",
+      "content": "Stretch your arms over your head. All the way. That is the whole thing."
+    },
+    {
+      "id": "lift-066",
+      "type": "fun-fact",
+      "content": "The Barter Theatre in Abingdon opened in 1933 and let people pay for tickets with produce. Forty cents or the equivalent in ham. It worked so well the company gained weight during the Depression."
+    },
+    {
+      "id": "lift-067",
+      "type": "encouragement",
+      "content": "Nobody who loves you is measuring how gracefully you are handling this. They are just glad the phone still rings."
+    },
+    {
+      "id": "lift-068",
+      "type": "fun-fact",
+      "content": "Squirrels bury far more nuts than they ever dig up. Ecologists estimate they are responsible for planting a substantial share of the oak forests in North America, entirely by forgetting."
+    },
+    {
+      "id": "lift-069",
+      "type": "funny-story",
+      "content": "In 1986 Cleveland released a million and a half balloons at once as a publicity stunt. They came down over the airport, over Lake Erie, and over the highway, shutting down all three. The city has never done it again."
+    },
+    {
+      "id": "lift-070",
+      "type": "fun-fact",
+      "content": "There is a word in Spanish, sobremesa, for the time you spend at the table after the meal is over, just talking. No English equivalent exists, which says something about us."
+    },
+    {
+      "id": "lift-071",
+      "type": "tiny-win",
+      "content": "Look at something more than twenty feet away for twenty seconds. Your eyes will thank you and it costs nothing."
+    },
+    {
+      "id": "lift-072",
+      "type": "encouragement",
+      "content": "Managing this well and feeling awful about it are not mutually exclusive. You can be doing everything right and still hate it."
+    },
+    {
+      "id": "lift-073",
+      "type": "fun-fact",
+      "content": "The New River, which runs through southwest Virginia and on into West Virginia, is one of the oldest rivers on earth. It is older than the mountains it cuts through, which is why it runs the wrong way."
+    },
+    {
+      "id": "lift-074",
+      "type": "fun-fact",
+      "content": "Platypuses glow blue-green under ultraviolet light. Nobody knows why. They also have no stomach, sweat milk, and detect prey using electrical fields. At some point evolution was clearly just experimenting."
+    },
+    {
+      "id": "lift-075",
+      "type": "quote",
+      "content": "Hope is the thing with feathers that perches in the soul.",
+      "attribution": "Emily Dickinson"
+    },
+    {
+      "id": "lift-076",
+      "type": "funny-story",
+      "content": "Percy Spencer invented the microwave in 1945 because a chocolate bar melted in his pocket while he was standing near a radar set. His first deliberate test was popcorn. His second was an egg, which exploded in a colleague's face."
+    },
+    {
+      "id": "lift-077",
+      "type": "encouragement",
+      "content": "You are allowed to grieve foods. It sounds small written down and it is not small when you are living it."
+    },
+    {
+      "id": "lift-078",
+      "type": "fun-fact",
+      "content": "Bald eagles build the largest nests of any bird. One in Florida was measured at nearly ten feet across and weighed close to three tons. They just kept adding to it every year."
+    },
+    {
+      "id": "lift-079",
+      "type": "tiny-win",
+      "content": "Put on real socks. Not the ratty ones. The good pair you have been saving for no reason."
+    },
+    {
+      "id": "lift-080",
+      "type": "fun-fact",
+      "content": "The Bristol Sessions of 1927, recorded on the Tennessee and Virginia state line, are generally considered the beginning of country music as a recorded art form. The Carter Family and Jimmie Rodgers both walked into that building as unknowns."
+    },
+    {
+      "id": "lift-081",
+      "type": "funny-story",
+      "content": "Velcro exists because a Swiss engineer went hunting in 1941, came home covered in burrs, and instead of being annoyed, put one under a microscope."
+    },
+    {
+      "id": "lift-082",
+      "type": "encouragement",
+      "content": "The version of you from before this is not gone. She is just currently dealing with something."
+    },
+    {
+      "id": "lift-083",
+      "type": "fun-fact",
+      "content": "Naked mole rats appear not to feel certain kinds of pain, almost never develop cancer, and can survive eighteen minutes without oxygen. They are also, objectively, quite ugly, which feels like a fair trade."
+    },
+    {
+      "id": "lift-084",
+      "type": "fun-fact",
+      "content": "Monarch butterflies migrate thousands of miles to a handful of specific trees in Mexico. No individual butterfly makes the round trip. The ones that arrive are the great-grandchildren of the ones that left, and they find the same trees."
+    },
+    {
+      "id": "lift-085",
+      "type": "tiny-win",
+      "content": "Look up what phase the moon is in tonight. Then go look at it."
+    },
+    {
+      "id": "lift-086",
+      "type": "encouragement",
+      "content": "Progress in this is not a line. It is a scribble that trends in a direction if you stand far enough back."
+    },
+    {
+      "id": "lift-087",
+      "type": "funny-story",
+      "content": "In 1973, Johnny Carson made an offhand joke about a toilet paper shortage. There was no shortage. Within days there was a very real one, lasting weeks, entirely because everyone rushed out to buy toilet paper. He apologized on air. It did not help."
+    },
+    {
+      "id": "lift-088",
+      "type": "fun-fact",
+      "content": "Prairie dogs have one of the most complex known animal languages. Their alarm calls appear to distinguish not just between a hawk and a coyote, but between a tall human in a yellow shirt and a short human in blue."
+    },
+    {
+      "id": "lift-089",
+      "type": "encouragement",
+      "content": "There is no correct amount of thinking about your health. Some days it will be all you think about and that is not a failure of perspective."
+    },
+    {
+      "id": "lift-090",
+      "type": "fun-fact",
+      "content": "The Appalachian Trail was one man's idea, published in a planning journal in 1921. Benton MacKaye proposed it as a place for working people to rest. Volunteers built the rest of it."
+    },
+    {
+      "id": "lift-091",
+      "type": "tiny-win",
+      "content": "Put a snack in your bag right now, so you are not stuck somewhere with nothing you can eat."
+    },
+    {
+      "id": "lift-092",
+      "type": "fun-fact",
+      "content": "Giraffes hum to each other at night, at a frequency low enough that nobody noticed for decades. Researchers left recorders running in zoos and found hours of it."
+    },
+    {
+      "id": "lift-093",
+      "type": "quote",
+      "content": "Be joyful though you have considered all the facts.",
+      "attribution": "Wendell Berry"
+    },
+    {
+      "id": "lift-094",
+      "type": "funny-story",
+      "content": "In 2005 Christie's and Sotheby's competed for a $20 million art collection. The owner could not decide, so he had them settle it with rock, paper, scissors. Christie's consulted the eleven-year-old twin daughters of an employee, who advised scissors. Christie's won."
+    },
+    {
+      "id": "lift-095",
+      "type": "encouragement",
+      "content": "You did not choose this and you are handling it anyway. Those two facts sit right next to each other and both stay true."
+    },
+    {
+      "id": "lift-096",
+      "type": "fun-fact",
+      "content": "Carrots were purple, white, and yellow for most of their history. The orange ones came from Dutch growers in the 1600s and are, historically speaking, the weird ones."
+    },
+    {
+      "id": "lift-097",
+      "type": "fun-fact",
+      "content": "Mammoth Cave in Kentucky has over 425 mapped miles of passage and surveyors keep finding more. It is more than twice as long as any other known cave system on earth and nobody knows where it ends."
+    },
+    {
+      "id": "lift-098",
+      "type": "tiny-win",
+      "content": "Listen to one album all the way through, in order, without skipping. Like it is 1994 and you have no choice."
+    },
+    {
+      "id": "lift-099",
+      "type": "encouragement",
+      "content": "Hard days are data, not verdicts."
+    },
+    {
+      "id": "lift-100",
+      "type": "fun-fact",
+      "content": "Beavers' teeth are orange because they contain iron, which makes them harder than most metals in a pocketknife. They also never stop growing, which is why beavers have to keep chewing."
+    },
+    {
+      "id": "lift-101",
+      "type": "funny-story",
+      "content": "A brown bear named Wojtek was adopted by Polish soldiers in 1942 and eventually enlisted so he could travel with them, receiving the rank of private and later corporal. At Monte Cassino he carried artillery shells. He retired to the Edinburgh Zoo, where old soldiers came to visit him."
+    },
+    {
+      "id": "lift-102",
+      "type": "fun-fact",
+      "content": "The word petrichor was coined in 1964 for the smell of rain on dry earth. It comes from Greek roots meaning stone and the fluid that runs in the veins of the gods."
+    },
+    {
+      "id": "lift-103",
+      "type": "encouragement",
+      "content": "You do not owe anyone an inspiring version of this. You are allowed to just have a medical condition and be annoyed about it."
+    },
+    {
+      "id": "lift-104",
+      "type": "tiny-win",
+      "content": "Take the long way somewhere today. Even if the long way is two extra minutes."
+    },
+    {
+      "id": "lift-105",
+      "type": "fun-fact",
+      "content": "Cleopatra lived closer in time to the moon landing than to the building of the Great Pyramid. The pyramids were already ancient tourist attractions when she was alive."
+    },
+    {
+      "id": "lift-106",
+      "type": "fun-fact",
+      "content": "Burke's Garden in Tazewell County is a bowl-shaped valley ringed entirely by mountains, formed when a limestone cavern collapsed. Locals call it God's Thumbprint. The Vanderbilts wanted to build Biltmore there and the farmers would not sell."
+    },
+    {
+      "id": "lift-107",
+      "type": "encouragement",
+      "content": "Somebody, somewhere, is having a completely ordinary Tuesday because of something you did once. You will probably never find out about it."
+    },
+    {
+      "id": "lift-108",
+      "type": "funny-story",
+      "content": "In 1925 a man named Victor Lustig sold the Eiffel Tower for scrap metal to a French businessman, using forged government stationery. It worked so well that he came back a month later and sold it again."
+    },
+    {
+      "id": "lift-109",
+      "type": "fun-fact",
+      "content": "Dolly Parton's Imagination Library has mailed more than 250 million free books to children, starting with kids in Sevier County, Tennessee, because her own father could not read."
+    },
+    {
+      "id": "lift-110",
+      "type": "tiny-win",
+      "content": "Find one photograph you had forgotten you had. Look at it for a minute."
+    },
+    {
+      "id": "lift-111",
+      "type": "encouragement",
+      "content": "Being tired of explaining it to people is completely reasonable. You are permitted to just say you are fine and change the subject."
+    },
+    {
+      "id": "lift-112",
+      "type": "fun-fact",
+      "content": "The pistol shrimp snaps its claw so fast that the collapsing bubble it creates briefly reaches temperatures approaching the surface of the sun. It is roughly the size of your thumb."
+    },
+    {
+      "id": "lift-113",
+      "type": "fun-fact",
+      "content": "Oxford University was already teaching students when the Aztec Empire was founded. There was no Aztec Empire yet, and there were already Oxford graduates complaining about the food."
+    },
+    {
+      "id": "lift-114",
+      "type": "encouragement",
+      "content": "A body that hurts is not a body that failed you. It is a body telling you something in the only language it has."
+    },
+    {
+      "id": "lift-115",
+      "type": "funny-story",
+      "content": "The town of Fair Haven, Vermont elected a goat named Lincoln as its honorary mayor in 2019. The runner-up was a dog. There was a formal inauguration. The goat left a mess on the floor of the town office during the ceremony, which several attendees felt was thematically appropriate."
+    },
+    {
+      "id": "lift-116",
+      "type": "fun-fact",
+      "content": "There are more trees on Earth than there are stars in the Milky Way. Roughly three trillion to a few hundred billion. It is not close."
+    },
+    {
+      "id": "lift-117",
+      "type": "tiny-win",
+      "content": "Write down one thing you are looking forward to. It is allowed to be very small and very soon."
+    },
+    {
+      "id": "lift-118",
+      "type": "fun-fact",
+      "content": "Koala fingerprints are so similar to human ones that they have reportedly confused forensic examiners. There is no known reason a koala needs fingerprints."
+    },
+    {
+      "id": "lift-119",
+      "type": "encouragement",
+      "content": "You have already survived one hundred percent of the worst days of your life. The statistics on this are extremely good."
+    },
+    {
+      "id": "lift-120",
+      "type": "fun-fact",
+      "content": "The dulcimer is one of only a handful of instruments that originated in the United States, and it came out of the Appalachian mountains. Nobody is entirely sure who built the first one."
+    },
+    {
+      "id": "lift-121",
+      "type": "funny-story",
+      "content": "Play-Doh was originally sold as wallpaper cleaner. When coal heating declined and wallpaper stopped getting sooty, the company was headed for bankruptcy until someone's sister-in-law, a nursery school teacher, mentioned that children liked to model with it."
+    },
+    {
+      "id": "lift-122",
+      "type": "tiny-win",
+      "content": "Do one dish. Not the dishes. One dish."
+    },
+    {
+      "id": "lift-123",
+      "type": "fun-fact",
+      "content": "Arctic terns migrate from the Arctic to the Antarctic and back every year. Over a lifetime, one bird flies roughly the distance to the moon and back three times. They also see more daylight than any other animal on earth."
+    },
+    {
+      "id": "lift-124",
+      "type": "encouragement",
+      "content": "The people who show up for this will surprise you, in both directions. Pay attention to who shows up and let the rest go."
+    },
+    {
+      "id": "lift-125",
+      "type": "fun-fact",
+      "content": "Vanilla is the seed pod of an orchid, and outside of one region of Mexico it has to be hand pollinated, flower by flower, within about twelve hours of opening. That is why real vanilla costs what it costs."
+    },
+    {
+      "id": "lift-126",
+      "type": "quote",
+      "content": "We suffer more in imagination than in reality.",
+      "attribution": "Seneca"
+    },
+    {
+      "id": "lift-127",
+      "type": "funny-story",
+      "content": "Bubble wrap was invented in 1957 as textured wallpaper. When that failed, the inventors tried marketing it as greenhouse insulation. That failed too. It became packing material almost by accident, and popping it was never part of the business plan."
+    },
+    {
+      "id": "lift-128",
+      "type": "fun-fact",
+      "content": "Dogs' nose prints are as unique as human fingerprints, and some countries accept them as legal identification for a registered animal."
+    },
+    {
+      "id": "lift-129",
+      "type": "encouragement",
+      "content": "You are not behind. There is no schedule for this and nobody is holding a clipboard."
+    },
+    {
+      "id": "lift-130",
+      "type": "tiny-win",
+      "content": "Sit in a patch of sun for ten minutes. Move the chair if you have to."
+    },
+    {
+      "id": "lift-131",
+      "type": "fun-fact",
+      "content": "The Sahara was green six thousand years ago, with lakes and hippos. There are cave paintings deep in the desert showing people swimming."
+    },
+    {
+      "id": "lift-132",
+      "type": "fun-fact",
+      "content": "Natural Bridge in Rockbridge County was surveyed by a young George Washington, who reportedly carved his initials into the rock, and later owned by Thomas Jefferson, who bought it from King George III for twenty shillings because he thought it should belong to everyone."
+    },
+    {
+      "id": "lift-133",
+      "type": "encouragement",
+      "content": "It is fine if the only thing you accomplished today was eating something that did not hurt. That was the assignment."
+    },
+    {
+      "id": "lift-134",
+      "type": "funny-story",
+      "content": "In 1963 France sent a cat into space. Her name was Felicette, she was a stray from the streets of Paris, and she came back alive. It took until 2019 for anyone to build her a statue."
+    },
+    {
+      "id": "lift-135",
+      "type": "fun-fact",
+      "content": "Mantis shrimp have sixteen types of color receptor. Humans have three. Nobody is sure what they see, only that it is almost certainly not what we see."
+    },
+    {
+      "id": "lift-136",
+      "type": "tiny-win",
+      "content": "Change your pillowcase. It is a startlingly effective intervention for how little it costs."
+    },
+    {
+      "id": "lift-137",
+      "type": "encouragement",
+      "content": "Asking for help is not a withdrawal from an account. There is no account."
+    },
+    {
+      "id": "lift-138",
+      "type": "fun-fact",
+      "content": "The Great Dismal Swamp on the Virginia and North Carolina line sheltered self-emancipated people for generations. Archaeologists have found the remains of whole communities on islands deep inside it, built by people the wider world never recorded."
+    },
+    {
+      "id": "lift-139",
+      "type": "fun-fact",
+      "content": "A tortoise named Jonathan has been living on the island of St Helena since around 1882. He was already an adult when he arrived. He has outlived thirty-odd British governors and is still, as of recent reports, eating well."
+    },
+    {
+      "id": "lift-140",
+      "type": "funny-story",
+      "content": "In 1924 a dog named Bobbie was separated from his family on a trip to Indiana. Six months later he turned up at their door in Oregon, having walked roughly 2,500 miles. People along the route later wrote in describing a footsore collie who had stayed a night and then moved on."
+    },
+    {
+      "id": "lift-141",
+      "type": "encouragement",
+      "content": "This will not always feel this loud. Chronic things get quieter, not because they leave, but because you get better at carrying them."
+    },
+    {
+      "id": "lift-142",
+      "type": "fun-fact",
+      "content": "Nintendo was founded in 1889 and spent its first seventy years making playing cards. It also, at various points, ran a taxi company, a chain of love hotels, and an instant rice business, all of which failed."
+    },
+    {
+      "id": "lift-143",
+      "type": "tiny-win",
+      "content": "Learn one bird by its call. Just one. The cardinal is a good place to start and they are everywhere."
+    },
+    {
+      "id": "lift-144",
+      "type": "fun-fact",
+      "content": "The fax machine was patented in 1843, more than thirty years before the telephone. Someone worked out how to send a picture over a wire before anyone worked out how to send a voice."
+    },
+    {
+      "id": "lift-145",
+      "type": "encouragement",
+      "content": "You are the only person who knows what this actually feels like from the inside. Trust yourself on that over anyone's opinion about how you should be doing."
+    },
+    {
+      "id": "lift-146",
+      "type": "fun-fact",
+      "content": "Hummingbirds build their nests with spider silk, which lets the nest stretch as the chicks grow. The whole thing is about the size of a walnut shell."
+    },
+    {
+      "id": "lift-147",
+      "type": "funny-story",
+      "content": "WD-40 is named for what it is: the fortieth attempt at a water displacement formula. The first thirty-nine did not work and somebody kept a numbered log."
+    },
+    {
+      "id": "lift-148",
+      "type": "quote",
+      "content": "If there is no struggle, there is no progress.",
+      "attribution": "Frederick Douglass"
+    },
+    {
+      "id": "lift-149",
+      "type": "fun-fact",
+      "content": "Sperm whales sleep vertically, in pods, all pointed the same direction like a stand of underwater trees. Nobody knew until 2008, when a research boat drifted into a group of them by accident."
+    },
+    {
+      "id": "lift-150",
+      "type": "tiny-win",
+      "content": "Put something in the donate pile. One thing. You will feel better than the size of the act suggests."
+    },
+    {
+      "id": "lift-151",
+      "type": "encouragement",
+      "content": "The fact that you would do all of this for a friend without hesitating is a good reason to let a friend do it for you."
+    },
+    {
+      "id": "lift-152",
+      "type": "fun-fact",
+      "content": "Woolly mammoths were still alive on Wrangel Island when the Great Pyramid was already built and standing. The last ones died around 1650 BC."
+    },
+    {
+      "id": "lift-153",
+      "type": "fun-fact",
+      "content": "The Crooked Road is a 330-mile music trail through southwest Virginia, linking places where people have been playing the same tunes continuously for over a century. On a Friday night in Floyd, the jamboree at the country store still fills up."
+    },
+    {
+      "id": "lift-154",
+      "type": "funny-story",
+      "content": "The world championship of cheese rolling is held on a hill in Gloucestershire so steep that most competitors do not run down it so much as fall down it, in pursuit of a nine-pound wheel of Double Gloucester that reaches 70 miles per hour. Ambulances are stationed at the bottom as a matter of routine."
+    },
+    {
+      "id": "lift-155",
+      "type": "encouragement",
+      "content": "Your worth was never contingent on your usefulness. It is a little insulting that anyone let you believe otherwise."
+    },
+    {
+      "id": "lift-156",
+      "type": "fun-fact",
+      "content": "Elephants appear to grieve. They return to the bones of dead herd members years later, touch them carefully with their trunks, and stand quietly for long stretches before moving on."
+    },
+    {
+      "id": "lift-157",
+      "type": "tiny-win",
+      "content": "Call someone instead of texting them. Two minutes. Voices are different."
+    },
+    {
+      "id": "lift-158",
+      "type": "fun-fact",
+      "content": "There is a Welsh word, hiraeth, for homesickness for a place you cannot return to, or that may never have existed. It has no clean translation, which is the whole point of it."
+    },
+    {
+      "id": "lift-159",
+      "type": "encouragement",
+      "content": "You can be scared and still be handling it. Courage was never the absence of the other thing."
+    },
+    {
+      "id": "lift-160",
+      "type": "funny-story",
+      "content": "The popsicle was invented in 1905 by an eleven-year-old named Frank Epperson who left a cup of soda powder and water on the porch overnight with the stirring stick still in it. He waited eighteen years to patent it."
+    },
+    {
+      "id": "lift-161",
+      "type": "fun-fact",
+      "content": "The Moon is drifting away from Earth at about an inch and a half per year. Total solar eclipses will eventually stop happening. We are living in the window where they still line up perfectly, which is a remarkable coincidence to be alive for."
+    },
+    {
+      "id": "lift-162",
+      "type": "encouragement",
+      "content": "It is not vanity to want your life back. It is the correct response."
+    },
+    {
+      "id": "lift-163",
+      "type": "fun-fact",
+      "content": "Pigeons can be trained to distinguish a Monet from a Picasso, and to generalize to paintings they have never seen. A group of researchers in Japan established this and were, by all accounts, as surprised as anyone."
+    },
+    {
+      "id": "lift-164",
+      "type": "tiny-win",
+      "content": "Turn your phone face down for one hour. Not off. Just face down."
+    },
+    {
+      "id": "lift-165",
+      "type": "fun-fact",
+      "content": "Grandfather Mountain in North Carolina is one of the oldest mountains in the world, and the rock at its summit is estimated at around a billion years old. You can put your hand on it."
+    },
+    {
+      "id": "lift-166",
+      "type": "encouragement",
+      "content": "You do not have to make meaning out of this. Some things are just difficult and do not owe you a lesson."
+    },
+    {
+      "id": "lift-167",
+      "type": "funny-story",
+      "content": "In 1994 and again in 1987, squirrels chewed through power lines and knocked the NASDAQ offline. Wall Street has been taken down more times by squirrels than by hackers."
+    },
+    {
+      "id": "lift-168",
+      "type": "fun-fact",
+      "content": "Axolotls can regrow limbs, jaws, spinal cord tissue, and portions of their brain, and they do it without scarring. They also appear to be smiling at all times, which under the circumstances seems fair."
+    },
+    {
+      "id": "lift-169",
+      "type": "fun-fact",
+      "content": "The Great Wall of China is not visible from space with the naked eye, despite what everyone was told in school. Astronauts have repeatedly confirmed this and nobody wants to hear it."
+    },
+    {
+      "id": "lift-170",
+      "type": "encouragement",
+      "content": "Small and steady is not a consolation prize. It is how almost everything that lasts gets built."
+    },
+    {
+      "id": "lift-171",
+      "type": "tiny-win",
+      "content": "Look up how to say hello in a language you do not speak. Say it out loud once."
+    },
+    {
+      "id": "lift-172",
+      "type": "fun-fact",
+      "content": "Goats have regional accents. Kids raised in different groups develop different calls, and their accents shift when they move to a new herd."
+    },
+    {
+      "id": "lift-173",
+      "type": "funny-story",
+      "content": "In 1876, meat fell from a clear sky over Bath County, Kentucky, for several minutes. Two men tasted it, because that is apparently what you do. The leading scientific explanation involves a flock of vultures being sick in flight simultaneously, which somehow remains the least strange part of the story."
+    },
+    {
+      "id": "lift-174",
+      "type": "encouragement",
+      "content": "The bar today is: still here, still trying, ate something. You cleared it before lunch."
+    },
+    {
+      "id": "lift-175",
+      "type": "fun-fact",
+      "content": "Voyager 1 has left the solar system carrying a gold-plated record with greetings in fifty-five languages, whale song, a Bach prelude, and a photograph of a grocery store. It will outlast the Earth."
+    },
+    {
+      "id": "lift-176",
+      "type": "fun-fact",
+      "content": "The Homeplace and the ramp festivals across southwest Virginia and eastern Kentucky have been running for generations, and the smell is famously detectable from a considerable distance for several days afterward. People plan around it and go anyway."
+    },
+    {
+      "id": "lift-177",
+      "type": "tiny-win",
+      "content": "Set out tomorrow's medications tonight. Future you gets one less decision at seven in the morning."
+    },
+    {
+      "id": "lift-178",
+      "type": "encouragement",
+      "content": "You are allowed to have a whole personality that is not about being sick. It is still in there."
+    },
+    {
+      "id": "lift-179",
+      "type": "fun-fact",
+      "content": "Dolphins appear to have names. Each one develops a signature whistle in its first year, other dolphins use it to address them specifically, and they will answer to it even when it is played back years later."
+    },
+    {
+      "id": "lift-180",
+      "type": "funny-story",
+      "content": "The chocolate chip cookie was invented by Ruth Wakefield at the Toll House Inn in 1938. The widely repeated story is that she ran out of baker's chocolate and improvised. She said this was nonsense and that she knew exactly what she was doing."
+    },
+    {
+      "id": "lift-181",
+      "type": "quote",
+      "content": "You have power over your mind, not outside events.",
+      "attribution": "Marcus Aurelius"
+    },
+    {
+      "id": "lift-182",
+      "type": "fun-fact",
+      "content": "Bees communicate the location of flowers by dancing. The angle of the dance encodes the direction relative to the sun, and the duration encodes the distance. A bee can tell another bee to go two miles northeast, and the other bee will."
+    },
+    {
+      "id": "lift-183",
+      "type": "encouragement",
+      "content": "Comparison to other people with this is a losing game. Everyone's pancreas negotiates differently."
+    },
+    {
+      "id": "lift-184",
+      "type": "tiny-win",
+      "content": "Take a photograph of something completely ordinary in your house. In ten years it will be the picture you are glad you have."
+    },
+    {
+      "id": "lift-185",
+      "type": "fun-fact",
+      "content": "Hungry Mother State Park in Smyth County is named for a story about a woman and child who escaped captivity and wandered until she collapsed, and the child was found saying only the words hungry, mother. It is a beautiful park with an extremely bleak name and nobody there apologizes for it."
+    },
+    {
+      "id": "lift-186",
+      "type": "fun-fact",
+      "content": "Horses can read human facial expressions and remember them. In one study, horses shown a photograph of an angry face reacted differently to that same person hours later, in the flesh, when the person was perfectly neutral."
+    },
+    {
+      "id": "lift-187",
+      "type": "encouragement",
+      "content": "You have been improvising this entire time, and you have been doing it well. Improvising well looks like this. It looks like uncertainty and then a decision."
+    },
+    {
+      "id": "lift-188",
+      "type": "funny-story",
+      "content": "In 1999 a couple divorcing in Las Vegas could not agree on how to divide their Beanie Baby collection. The judge ordered them to sit on the courtroom floor and take turns picking, one at a time, in front of everyone."
+    },
+    {
+      "id": "lift-189",
+      "type": "fun-fact",
+      "content": "Cuttlefish can hypnotize prey by running pulsing bands of color across their skin. They are colorblind, so they are producing a display they cannot see, using a mechanism nobody has fully explained."
+    },
+    {
+      "id": "lift-190",
+      "type": "tiny-win",
+      "content": "Write one sentence in a notebook. Any sentence. It does not have to be good or true."
+    },
+    {
+      "id": "lift-191",
+      "type": "fun-fact",
+      "content": "A spoonful of neutron star material would weigh about a billion tons. The star it came from is roughly the size of a city and spins hundreds of times a second."
+    },
+    {
+      "id": "lift-192",
+      "type": "encouragement",
+      "content": "Nobody gets through a life without a chapter like this one. You are just in yours right now, and it is not the last chapter."
+    },
+    {
+      "id": "lift-193",
+      "type": "fun-fact",
+      "content": "Ants farm. Leafcutter ants cultivate a specific fungus underground, feed it leaves, weed out competing molds, and have been doing this continuously for around fifty million years. They domesticated a crop before we existed."
+    },
+    {
+      "id": "lift-194",
+      "type": "funny-story",
+      "content": "The Great Fruitcake Toss in Manitou Springs, Colorado runs annually and includes a division for mechanically launched fruitcake. The record involves a device built by engineers using compressed air and exceeds a quarter mile. Recycled fruitcakes are accepted at the door."
+    },
+    {
+      "id": "lift-195",
+      "type": "tiny-win",
+      "content": "Water a plant. If you do not have one, ask somebody about theirs. People love talking about their plants."
+    },
+    {
+      "id": "lift-196",
+      "type": "encouragement",
+      "content": "You are not a burden for having needs. Everyone has needs. Yours just happen to be legible right now."
+    },
+    {
+      "id": "lift-197",
+      "type": "fun-fact",
+      "content": "The star-nosed mole can identify and eat a piece of food in about two tenths of a second, which is close to the physical limit of what a nervous system can do. It is functionally blind and lives in the mud."
+    },
+    {
+      "id": "lift-198",
+      "type": "fun-fact",
+      "content": "Jupiter's Great Red Spot is a storm that has been running for at least 350 years, and possibly much longer. It is shrinking, and nobody knows why or what happens when it stops."
+    },
+    {
+      "id": "lift-199",
+      "type": "encouragement",
+      "content": "Rest is not what you earn after the work. On weeks like this one it is the work."
+    },
+    {
+      "id": "lift-200",
+      "type": "funny-story",
+      "content": "A Toronto lawyer named Charles Vance Millar died in 1926 leaving most of his estate to whichever woman in the city bore the most children in the following ten years. He had no children and appears to have done it purely to see what would happen. It went to court for a decade. Four women eventually split the money, with nine children each."
+    },
+    {
+      "id": "lift-201",
+      "type": "tiny-win",
+      "content": "Find one song you loved when you were sixteen and play it. Full volume. No apologies."
+    },
+    {
+      "id": "lift-202",
+      "type": "fun-fact",
+      "content": "Tardigrades survive vacuum, radiation, temperatures near absolute zero, and pressures greater than the deep ocean. They are under a millimeter long, look like small confused bears, and live in the moss on your roof."
+    },
+    {
+      "id": "lift-203",
+      "type": "encouragement",
+      "content": "The plan will change. That is not a sign the plan was wrong. Plans are supposed to change when you learn things."
+    },
+    {
+      "id": "lift-204",
+      "type": "fun-fact",
+      "content": "The Mothman was reported in Point Pleasant, West Virginia in 1966 by two young couples who said something with red eyes chased their car. There is now an annual festival, a museum, and a twelve-foot chrome statue. Whatever happened, the town has made the most of it."
+    },
+    {
+      "id": "lift-205",
+      "type": "quote",
+      "content": "Keep your face always toward the sunshine.",
+      "attribution": "Walt Whitman"
+    },
+    {
+      "id": "lift-206",
+      "type": "fun-fact",
+      "content": "The Amazon River once flowed the other direction, west into the Pacific. The rising of the Andes gradually dammed it, turned it into an inland sea, and eventually reversed the whole thing eastward."
+    },
+    {
+      "id": "lift-207",
+      "type": "encouragement",
+      "content": "Some days the win is a phone call you did not want to make and made anyway."
+    },
+    {
+      "id": "lift-208",
+      "type": "funny-story",
+      "content": "The Slinky was invented when a naval engineer knocked a tension spring off a shelf in 1943 and watched it walk down a stack of books instead of falling. His wife found the name in the dictionary. It means sleek and graceful, which is generous."
+    },
+    {
+      "id": "lift-209",
+      "type": "tiny-win",
+      "content": "Ask somebody how they are doing and then actually wait for the answer."
+    },
+    {
+      "id": "lift-210",
+      "type": "fun-fact",
+      "content": "Peregrine falcons dive at over 200 miles per hour, which required evolving small cones in their nostrils to slow the incoming air so their lungs are not ruptured. Aircraft engineers later borrowed the design principle for jet inlets."
+    },
+    {
+      "id": "lift-211",
+      "type": "encouragement",
+      "content": "You will get better at this. Not because it gets easier, but because you are already learning it, whether or not it feels like learning."
+    },
+    {
+      "id": "lift-212",
+      "type": "fun-fact",
+      "content": "Peanuts are not nuts. They are legumes, more closely related to beans. Almonds are not nuts either. They are the seed inside a fruit, and the fruit is essentially a small dry peach."
+    },
+    {
+      "id": "lift-213",
+      "type": "tiny-win",
+      "content": "Look at a map of somewhere you would like to go. Zoom in on a street. Imagine walking down it."
+    },
+    {
+      "id": "lift-214",
+      "type": "encouragement",
+      "content": "There is no gold star for suffering quietly. If it is bad, you are allowed to say it is bad, out loud, to a person."
+    },
+    {
+      "id": "lift-215",
+      "type": "fun-fact",
+      "content": "The Greenbrier resort in West Virginia concealed a full congressional fallout shelter under its west wing for thirty years, with a chamber for the House and one for the Senate. Guests danced upstairs the entire time. A newspaper finally reported it in 1992."
+    }
+  ]
+}

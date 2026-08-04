@@ -1,0 +1,18 @@
+name = "pancreas-helper-api"
+main = "index.js"
+compatibility_date = "2026-08-01"
+
+# Rate limiting store. Create it first with:
+#   npx wrangler kv namespace create RATE_LIMIT_KV
+# then paste the returned id below. If you skip this, the Worker still runs
+# and simply does not rate limit.
+#
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "PASTE_THE_ID_HERE"
+
+# Do NOT put the API key here. Set it as an encrypted secret:
+#   npx wrangler secret put ANTHROPIC_API_KEY
+
+[observability]
+enabled = true
