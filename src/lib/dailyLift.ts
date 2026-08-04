@@ -5,9 +5,9 @@
  * 216-365) so batches could be written and reviewed separately. They are merged
  * here into one array of 365. Same never-throw policy as foods.ts.
  *
- * Phase 2 stops at the arrays. Choosing today's entry, the deterministic
- * day-of-year rotation, and weighting friend notes to roughly twice a week are
- * Phase 5.
+ * This module stops at the arrays. Choosing today's item, the deterministic
+ * per-day rotation, and the twice-a-week friend note weighting live in
+ * liftRotation.ts, which is pure and knows nothing about parsing.
  */
 
 import liftFile1 from '@data/daily-lift.json'
@@ -20,7 +20,8 @@ import { isNonEmptyString, isRecord, type DataProblem } from './validate.ts'
 /**
  * A friend note is not a lift entry. It has no `type` and it does have a `from`.
  * Rather than invent a "from-a-friend" type the hand-authored data does not
- * carry, the two shapes stay distinct and Phase 5 interleaves this union.
+ * carry, the two shapes stay distinct and liftRotation.ts interleaves this
+ * union.
  */
 export type LiftItem =
   | { kind: 'lift'; entry: LiftEntry }

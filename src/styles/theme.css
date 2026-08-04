@@ -6,6 +6,60 @@
   laurel green, creek water, warm paper. Dignified, not costume.
 */
 
+/*
+  Webfonts, decided in Phase 5 because the Daily Lift is where typography starts
+  carrying real weight.
+
+  Vendored as woff2 in src/assets/fonts/ rather than linked from a CDN, because
+  the app has to open cold with no signal. Referenced relatively so Vite treats
+  them as assets: it hashes them and applies the /pancreas-companion/ base
+  itself, which is safer than writing that base into a url() by hand. They land
+  in dist/assets/, which vite.config.ts already precaches via its woff2 glob.
+
+  Both are single variable files carrying the whole weight axis, so headings at
+  600 and the Daily Lift card at 400 cost one download between them. Italic is a
+  separate face on purpose: Crimson Pro is used italic for quote attributions
+  and the friend note signature, and a synthesized oblique on a serif is ugly.
+
+  Licensing: SIL OFL 1.1, see src/assets/fonts/LICENSE-OFL.txt.
+*/
+
+@font-face {
+  font-family: 'Crimson Pro';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('../assets/fonts/crimson-pro-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Crimson Pro';
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('../assets/fonts/crimson-pro-latin-wght-italic.woff2') format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url('../assets/fonts/source-sans-3-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   /* Ridges, near to far */
   --ridge-deep: #1c3a4b; /* nearest ridge, primary text, headers */
@@ -57,15 +111,19 @@
   --color-clay: var(--clay);
 
   /*
-    System font stacks for now. Real webfonts (the warm old-fashioned serif the
-    addendum asks for) are a Phase 5 decision, when typography starts carrying
-    visual weight. A CDN link would break the offline requirement, so whatever
-    we pick will need to be self hosted.
+    Crimson Pro for headings and the Daily Lift card: warm, slightly
+    old-fashioned, the well-set church bulletin the addendum asks for. Source
+    Sans 3 for body and UI: humanist and warm rather than corporate.
+
+    The old system stacks stay behind them as fallback, so the first paint
+    before the woff2 arrives is a near miss rather than Times New Roman.
   */
   --font-serif:
-    Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+    'Crimson Pro', Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua',
+    'Times New Roman', serif;
   --font-sans:
-    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
 
   /* Minimum 16px body, 18px preferred (addendum section C) */
   --text-base: 1.125rem;
