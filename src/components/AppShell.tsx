@@ -5,6 +5,7 @@ import { DisclaimerFooter } from './DisclaimerFooter.tsx'
 import { ModeSelector } from './ModeSelector.tsx'
 import { Ridgeline } from './Ridgeline.tsx'
 import { LogFeelingBar } from './symptomLog/LogFeelingBar.tsx'
+import { WhenToCallButton } from './whenToCall/WhenToCallButton.tsx'
 
 /**
  * Header band, main slot, sticky log bar, persistent disclaimer footer. The mode
@@ -15,23 +16,29 @@ import { LogFeelingBar } from './symptomLog/LogFeelingBar.tsx'
  * Lift card sitting in it, and the ridgeline below with the sun coming up
  * behind. Sunrise over the ridge. It is the first thing she sees.
  *
- * THREE THINGS LIVE OUTSIDE FlareGate, FOR TWO DIFFERENT REASONS.
+ * FOUR THINGS LIVE OUTSIDE FlareGate, FOR TWO DIFFERENT REASONS.
  *
  * FatBudgetBar is here for layout convenience and carries its own flare guard,
  * because it does show food content and must not render above triage.
  *
- * DailyLift and LogFeelingBar are here on purpose, and both rest on the same
- * justification: they render no food content. No rating, no grams, no meal, no
- * food name. The Lift is the one piece she should still see on her worst day,
- * and the log bar is the one thing she most needs to REACH on it, because pain
- * and symptom chips and a note carry nothing about food.
+ * DailyLift, LogFeelingBar, and WhenToCallButton are here on purpose, and all
+ * three rest on the same justification: they render no food GUIDANCE. No
+ * rating, no gram value, no portion, no meal, nothing answering "should I eat
+ * this". The Lift is the one piece she should still see on her worst day, the
+ * log bar is the one thing she most needs to REACH on it, and the When To Call
+ * card is red flags and phone numbers, which is the opposite of food content.
  *
- * That justification is load bearing and has to stay true. If either ever gains
- * food content it moves inside FlareGate, signature image and all. The one part
- * of the log sheet that is food content, AttachFoodSection, already carries its
- * own flare guard for exactly this reason. See the longer notes in
- * DailyLift.tsx, LogFeelingBar.tsx, and AttachFoodSection.tsx, which travel with
- * their components.
+ * When To Call is the strongest case of the three, and spec 5.10 asks for it in
+ * as many words: "reachable from a persistent icon in the header". It stays
+ * reachable at every triage stage, including the urgent panel. A card that she
+ * could only open after answering a question would be the wrong card.
+ *
+ * That justification is load bearing and has to stay true. If any of them ever
+ * gains food guidance it moves inside FlareGate, signature image and all. The
+ * one part of the log sheet that is food content, AttachFoodSection, already
+ * carries its own flare guard for exactly this reason. See the longer notes in
+ * DailyLift.tsx, LogFeelingBar.tsx, WhenToCallButton.tsx, and
+ * AttachFoodSection.tsx, which travel with their components.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -62,13 +69,28 @@ export function AppShell({ children }: { children: ReactNode }) {
               would be competing with the only content that matters here. The h1
               stays for structure, just not for looking at.
             */}
-            <p aria-hidden="true" className="m-0 text-sm font-semibold tracking-wide text-ridge-mid">
-              Pancreas Companion
-            </p>
-            <p className="mt-0.5 mb-0 text-xs text-ridge-mid">
-              Everything you enter stays on this device.
-            </p>
-            <h1 className="sr-only">Pancreas Companion</h1>
+            {/*
+              The title line and the When To Call control share a row. The
+              control is on the right, at full weight, because it is the one
+              thing in this header she may need to find in a hurry and the app
+              name is deliberately the quietest thing on the screen.
+            */}
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p
+                  aria-hidden="true"
+                  className="m-0 text-sm font-semibold tracking-wide text-ridge-mid"
+                >
+                  Pancreas Companion
+                </p>
+                <p className="mt-0.5 mb-0 text-xs text-ridge-mid">
+                  Everything you enter stays on this device.
+                </p>
+                <h1 className="sr-only">Pancreas Companion</h1>
+              </div>
+
+              <WhenToCallButton />
+            </div>
 
             <div className="mt-6">
               <DailyLift />

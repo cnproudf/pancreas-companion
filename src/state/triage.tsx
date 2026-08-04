@@ -24,6 +24,16 @@ import { useSettings } from './settings.tsx'
 export interface TriageApi {
   /** Only meaningful in flare mode. Always a valid stage regardless. */
   stage: TriageStage
+  /**
+   * True when the current mode is flare, whatever the stage.
+   *
+   * Separate from `stage` because "cleared" alone does not mean she is in a
+   * flare, and the flare guidance panel must not appear in stable mode. The
+   * stamp in `answer` makes that combination unreachable today, but a gate that
+   * depends on an unreachable state staying unreachable is a gate waiting to
+   * break.
+   */
+  inFlare: boolean
   /** Convenience for the three guards. mode is read from settings here. */
   foodAllowed: boolean
   /** She reported one or more red flags. */
@@ -79,6 +89,7 @@ export function TriageProvider({ children }: { children: ReactNode }) {
   const value = useMemo<TriageApi>(
     () => ({
       stage,
+      inFlare: mode === 'flare',
       foodAllowed: foodGuidanceAllowed(mode, stage),
       reportRedFlag,
       reportNoRedFlag,

@@ -121,6 +121,15 @@ describe('TRIAGE_COPY', () => {
     expect(TRIAGE_COPY.guidanceStillWrong).toContain('something is wrong')
   })
 
+  /*
+   * The header control and the guidance link do different things, so they must
+   * not share an accessible name. They did in the first build: both said "When
+   * to call", one opening the card and one reopening the five questions.
+   */
+  it('does not reuse the header control name for the guidance link', () => {
+    expect(TRIAGE_COPY.guidanceBackToCheck).not.toBe(TRIAGE_COPY.whenToCallOpen)
+  })
+
   it('frames the flare number as a ceiling rather than a goal', () => {
     expect(TRIAGE_COPY.guidanceCeiling).toContain('15 grams')
     expect(TRIAGE_COPY.guidanceCeiling).toContain('not a goal')

@@ -33,6 +33,16 @@ import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import App from '../App.tsx'
 import { FOODS } from '../lib/foods.ts'
+import { RED_FLAGS, TRIAGE_COPY } from '../lib/triage.ts'
+
+/** Both triage answers, by their visible label. */
+function answerRedFlagCheck(answer: 'yes' | 'no') {
+  fireEvent.click(
+    screen.getByRole('button', {
+      name: answer === 'yes' ? TRIAGE_COPY.answerYes : TRIAGE_COPY.answerNo,
+    }),
+  )
+}
 
 /* -------------------------------------------------------------------------- */
 /* Driving the app the way she would                                           */
@@ -147,7 +157,7 @@ describe('FlareGate, invariant 1', () => {
     expect(screen.getByRole('heading', { name: 'Your daily fat target' })).toBeDefined()
   })
 
-  it('closes on entering flare mode, from every tab', () => {
+  it('opens on the red flag check, from every tab', () => {
     render(<App />)
 
     const tabs = within(screen.getByRole('tablist', { name: 'Screens' })).getAllByRole('tab')
@@ -159,9 +169,24 @@ describe('FlareGate, invariant 1', () => {
 
       selectMode('A bad time')
 
+      expect(screen.getByTestId('redflag-check')).toBeDefined()
       expect(screen.queryByRole('tablist', { name: 'Screens' })).toBeNull()
       expectNoFoodContent(`in flare mode, entered from the "${tab.textContent}" tab`)
     }
+  })
+
+  it('asks the five questions from spec section 4 and offers both answers', () => {
+    render(<App />)
+    selectMode('A bad time')
+
+    const check = screen.getByTestId('redflag-check')
+    expect(within(check).getAllByRole('listitem')).toHaveLength(RED_FLAGS.length)
+    for (const flag of RED_FLAGS) {
+      expect(within(check).getByText(flag)).toBeDefined()
+    }
+
+    expect(within(check).getByRole('button', { name: 'Yes, one or more' })).toBeDefined()
+    expect(within(check).getByRole('button', { name: 'No, but I feel off' })).toBeDefined()
   })
 
   it('withholds the fat budget bar while the gate is closed', () => {
@@ -178,15 +203,69 @@ describe('FlareGate, invariant 1', () => {
     expect(screen.queryAllByText(/used today|logged today/)).toHaveLength(0)
   })
 
-  it('keeps the three things that belong above the gate', () => {
+  it('keeps the four things that belong above the gate', () => {
     render(<App />)
     selectMode('A bad time')
 
-    /* The Lift, the log bar, the mode selector, and the disclaimer footer. */
+    /* The Lift, the log bar, When To Call, the mode selector, and the footer. */
     expect(screen.getByTestId('daily-lift')).toBeDefined()
     expect(screen.getByRole('button', { name: 'Log how I am feeling' })).toBeDefined()
+    expect(screen.getByRole('button', { name: TRIAGE_COPY.whenToCallOpen })).toBeDefined()
     expect(screen.getByRole('radiogroup', { name: /How are you doing/ })).toBeDefined()
     expect(screen.getByText(/General information only/)).toBeDefined()
+  })
+
+  /*
+   * Spec 5.10 wants this reachable from a persistent header icon. "Persistent"
+   * has to include the triage stages, or it is a card she can only open once
+   * she has answered a question, which is the wrong card.
+   */
+  it('reaches When To Call at every triage stage', () => {
+    render(<App />)
+
+    function openAndCheck(where: string) {
+      fireEvent.click(screen.getByRole('button', { name: TRIAGE_COPY.whenToCallOpen }))
+
+      const card = screen.getByTestId('when-to-call')
+      for (const flag of RED_FLAGS) {
+        expect(within(card).getByText(flag), `${flag} missing ${where}`).toBeDefined()
+      }
+      expect(within(card).getByText(TRIAGE_COPY.whenToCallUrgency)).toBeDefined()
+
+      fireEvent.click(within(card).getByRole('button', { name: TRIAGE_COPY.whenToCallClose }))
+    }
+
+    openAndCheck('in stable mode')
+
+    selectMode('A bad time')
+    openAndCheck('at the red flag check')
+
+    answerRedFlagCheck('yes')
+    openAndCheck('on the urgent panel')
+
+    fireEvent.click(screen.getByRole('button', { name: TRIAGE_COPY.urgentContinue }))
+    openAndCheck('after triage cleared')
+  })
+
+  /*
+   * The card and the gate read one constant. Two copies of this list would
+   * drift silently: the card she reaches from the header would stop matching
+   * the screen that gates her flare, and nobody would notice until it mattered.
+   */
+  it('lists the same red flags on the card and at the gate', () => {
+    render(<App />)
+    selectMode('A bad time')
+
+    const atGate = within(screen.getByTestId('redflag-check'))
+      .getAllByRole('listitem')
+      .map((item) => item.textContent)
+
+    fireEvent.click(screen.getByRole('button', { name: TRIAGE_COPY.whenToCallOpen }))
+    const onCard = within(screen.getByTestId('when-to-call'))
+      .getAllByRole('listitem')
+      .map((item) => item.textContent)
+
+    expect(onCard).toEqual(atGate)
   })
 
   /*
@@ -208,6 +287,135 @@ describe('FlareGate, invariant 1', () => {
     selectMode('A bad time')
     expect(screen.queryByRole('tablist', { name: 'Screens' })).toBeNull()
     expectNoFoodContent('in flare mode, after leaving and returning')
+  })
+
+  /* ------------------------------------------------------------------------ */
+  /* The yes branch                                                            */
+  /* ------------------------------------------------------------------------ */
+
+  it('shows the contact panel on a yes, with no food content behind it', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('yes')
+
+    expect(screen.getByTestId('urgent-panel')).toBeDefined()
+    expect(screen.queryByRole('tablist', { name: 'Screens' })).toBeNull()
+    expect(screen.queryByTestId('flare-guidance')).toBeNull()
+    expectNoFoodContent('on the urgent contact panel')
+  })
+
+  /*
+   * Spec section 4 wants a button that dials her doctor. With no numbers saved
+   * the panel offers the editor instead of a dead control, because a contact
+   * she cannot add during a flare is not much better than no contact.
+   */
+  it('offers a way to add a number when she has none saved', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('yes')
+
+    const panel = screen.getByTestId('urgent-panel')
+    expect(within(panel).getByText(/have not added your care team numbers/)).toBeDefined()
+    expect(within(panel).getByRole('button', { name: TRIAGE_COPY.contactsAdd })).toBeDefined()
+  })
+
+  it('dials a saved number with a tel link', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('yes')
+
+    fireEvent.click(screen.getByRole('button', { name: TRIAGE_COPY.contactsAdd }))
+    fireEvent.change(screen.getByLabelText(TRIAGE_COPY.contactsName), {
+      target: { value: 'Dr. Whitmore' },
+    })
+    fireEvent.change(screen.getByLabelText(TRIAGE_COPY.contactsPhone), {
+      target: { value: '(555) 555-0134' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: TRIAGE_COPY.contactsSave }))
+
+    const dial = screen.getByRole('link', { name: 'Call Dr. Whitmore' })
+    expect(dial.getAttribute('href')).toBe('tel:5555550134')
+    /* Adding a number must not have opened the door to food content. */
+    expectNoFoodContent('on the urgent panel after adding a number')
+  })
+
+  /*
+   * Her assertion, not the app's conclusion. Section 4: "because sometimes she
+   * has already called and is waiting."
+   */
+  it('continues to food guidance when she says she has already contacted them', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('yes')
+
+    fireEvent.click(screen.getByRole('button', { name: TRIAGE_COPY.urgentContinue }))
+
+    expect(screen.getByTestId('flare-guidance')).toBeDefined()
+    expect(screen.getByRole('tablist', { name: 'Screens' })).toBeDefined()
+  })
+
+  /* ------------------------------------------------------------------------ */
+  /* The no branch                                                             */
+  /* ------------------------------------------------------------------------ */
+
+  it('opens flare guidance on a no, and lets the app back in behind it', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('no')
+
+    const guidance = screen.getByTestId('flare-guidance')
+    expect(within(guidance).getByText(TRIAGE_COPY.guidanceLiquids)).toBeDefined()
+    expect(within(guidance).getByText(TRIAGE_COPY.guidanceSchedule)).toBeDefined()
+    expect(screen.getByRole('tablist', { name: 'Screens' })).toBeDefined()
+  })
+
+  /*
+   * A no is not a clearance. The line that routes to a person and the way back
+   * to the red flag list both stay visible rather than going behind the
+   * disclosure.
+   */
+  it('keeps the route back to a person out of the disclosure', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('no')
+
+    const guidance = screen.getByTestId('flare-guidance')
+    const details = within(guidance).getByText(TRIAGE_COPY.guidanceMoreLabel).closest('details')
+
+    expect(details).not.toBeNull()
+    expect((details as HTMLDetailsElement).open).toBe(false)
+    expect(within(guidance).getByText(TRIAGE_COPY.guidanceCannotEat).closest('details')).toBeNull()
+    expect(
+      within(guidance).getByText(/Still feel like something is wrong/).closest('details'),
+    ).toBeNull()
+  })
+
+  it('goes back to the questions from the guidance screen', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('no')
+
+    const guidance = screen.getByTestId('flare-guidance')
+    fireEvent.click(
+      within(guidance).getByRole('button', { name: TRIAGE_COPY.guidanceBackToCheck }),
+    )
+
+    expect(screen.getByTestId('redflag-check')).toBeDefined()
+    expectNoFoodContent('after reopening the red flag check from flare guidance')
+  })
+
+  /*
+   * The flare ceiling is an upper bound, not a goal (addendum section A). The
+   * bar comes back after triage clears and has to say so, because a bar filling
+   * toward a number reads as a goal without a line that says otherwise.
+   */
+  it('re-admits the budget bar after triage, framed as a ceiling', () => {
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('no')
+
+    expect(screen.getAllByText(/of 15g used today/).length).toBeGreaterThan(0)
+    expect(screen.getByText(/ceiling for today, not something to aim for/)).toBeDefined()
   })
 
   /*

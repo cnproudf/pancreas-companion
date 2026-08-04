@@ -166,6 +166,18 @@ export const TRIAGE_COPY = {
   guidanceCannotEat: 'If you cannot eat at all, that is worth telling your care team.',
   /* Also stays visible. A no is not a clearance, so the way back is never hidden. */
   guidanceStillWrong: 'Still feel like something is wrong?',
+  /*
+   * The link that reopens the red flag check.
+   *
+   * The reviewed copy labelled this "When to call", which collided with the
+   * persistent header control of that name: two buttons, one accessible name,
+   * two different destinations. One opens the card, this one reopens the five
+   * questions. A screen reader would have announced them identically.
+   *
+   * So it says what it does instead. The intent the reviewed line carried, that
+   * a no is not a clearance and the way back stays visible, is unchanged.
+   */
+  guidanceBackToCheck: 'Go through the check again',
 
   /* The When To Call card, spec 5.10. */
   whenToCallTitle: 'When to call',
