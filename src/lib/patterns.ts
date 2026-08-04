@@ -32,6 +32,15 @@ import { calendarSpan, formatDayLong, windowSpan } from './days.ts'
 import { sumFat, type FoodLog } from './foodLog.ts'
 import { CHIP_LABELS, type SymptomChip, type SymptomEntry, type SymptomLog } from './symptomLog.ts'
 
+/**
+ * The chip that spec 5.6 calls a flagged malabsorption entry.
+ *
+ * Read from SYMPTOM_CHIPS's union rather than written as a bare string, so
+ * renaming the key in symptomLog.ts breaks the build here instead of quietly
+ * reporting zero flagged entries forever.
+ */
+const MALABSORPTION_CHIP: SymptomChip = 'stool-greasy-floating-pale'
+
 /* -------------------------------------------------------------------------- */
 /* Day slots: the shape invariant 5 rests on                                   */
 /* -------------------------------------------------------------------------- */
@@ -187,6 +196,34 @@ export interface LoggedSummary {
   /** Days with food logged, and the mean grams across only those days. */
   daysWithFoodLogged: number
   averageFatAcrossLoggedDays: number | null
+
+  /*
+   * The two counts spec 5.6 asks the appointment export for, and they live here
+   * rather than in appointmentPrep.ts on purpose.
+   *
+   * This object is where "daysLogged is the only denominator" is stated and
+   * held. A second module counting days out of window.symptomDays would be a
+   * second place where that rule has to be remembered, and the printed page a
+   * clinician reads is the worst possible place for it to have been forgotten.
+   * Both fields below are derived from the SAME `logged` array daysLogged is,
+   * so neither can exceed its denominator and a gap day cannot reach them.
+   */
+
+  /**
+   * Logged days where at least one entry carried a symptom chip. Spec 5.6's
+   * "number of symptomatic days", and at most daysLogged.
+   *
+   * Note what this is not. It is not "days she had symptoms", which is a claim
+   * about her body that this app cannot make about a day with no entry on it.
+   * It is days she RECORDED symptoms, and the copy that renders it says so.
+   */
+  daysWithSymptomsLogged: number
+
+  /** Entries carrying the greasy, floating, or pale stool chip. At most entryCount. */
+  malabsorptionEntries: number
+
+  /** Logged days carrying at least one such entry. At most daysLogged. */
+  daysWithMalabsorptionFlag: number
 }
 
 function mean(values: readonly number[]): number | null {
@@ -217,6 +254,20 @@ export function summarize(window: PatternWindow): LoggedSummary {
     hardestLogged: hardest,
     daysWithFoodLogged: fatLogged.length,
     averageFatAcrossLoggedDays: mean(fatLogged.map((day) => day.grams)),
+
+    daysWithSymptomsLogged: logged.filter((day) =>
+      day.events.some((entry) => entry.symptoms.length > 0),
+    ).length,
+
+    malabsorptionEntries: logged.reduce(
+      (running, day) =>
+        running + day.events.filter((entry) => entry.symptoms.includes(MALABSORPTION_CHIP)).length,
+      0,
+    ),
+
+    daysWithMalabsorptionFlag: logged.filter((day) =>
+      day.events.some((entry) => entry.symptoms.includes(MALABSORPTION_CHIP)),
+    ).length,
   }
 }
 
@@ -530,6 +581,15 @@ export const PATTERN_COPY = {
   hardDaysLine: 'Compared against the {count} hardest days you logged, the ones at {threshold} or above.',
 
   patternItem: '{name} shows up before {hard} of those. It also shows up on {other} other days you logged.',
+  /*
+   * The singular. Found in Phase 10 by reading the appointment export out loud:
+   * "It also shows up on 1 other days you logged" was printing on the page that
+   * goes to her gastroenterologist. The counter-evidence number is the one that
+   * keeps this list honest, so the sentence carrying it should not be the one
+   * that reads as a bug.
+   */
+  patternItemOneOther:
+    '{name} shows up before {hard} of those. It also shows up on 1 other day you logged.',
   patternItemNoOthers: '{name} shows up before {hard} of those, and on no other day you logged.',
 
   historyTitle: 'Your entries',
@@ -593,7 +653,11 @@ export function hardDaysLineText(hardDays: HardDays): string | null {
 /** Always renders both counts. The type makes the second one unskippable. */
 export function patternItemText(pattern: PossiblePattern): string {
   const template =
-    pattern.beforeOtherDays === 0 ? PATTERN_COPY.patternItemNoOthers : PATTERN_COPY.patternItem
+    pattern.beforeOtherDays === 0
+      ? PATTERN_COPY.patternItemNoOthers
+      : pattern.beforeOtherDays === 1
+        ? PATTERN_COPY.patternItemOneOther
+        : PATTERN_COPY.patternItem
 
   return template
     .replace('{name}', pattern.name)

@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { AppointmentPrepButton } from '../components/appointmentPrep/AppointmentPrepButton.tsx'
 import { ChartLegend } from '../components/patterns/ChartLegend.tsx'
 import { EntryHistory } from '../components/patterns/EntryHistory.tsx'
 import { LoggedSummary } from '../components/patterns/LoggedSummary.tsx'
@@ -58,6 +59,13 @@ export function Patterns() {
 
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6">
+      {/*
+        Spec 5.6. At the top rather than buried under the chart, because it is
+        the reason she opens this tab on the day before an appointment, and the
+        chart is not what she came for that day.
+      */}
+      <AppointmentPrepButton />
+
       <section
         aria-labelledby="patterns-heading"
         className="rounded-lg border border-stone bg-white/50 p-5"

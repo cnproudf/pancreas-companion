@@ -236,6 +236,71 @@ describe('pain: gap, skipped, and a logged zero are three different things', () 
 })
 
 /* ========================================================================== */
+/* Spec 5.6's two counts, for the appointment export                          */
+/* ========================================================================== */
+
+describe('symptomatic days and flagged malabsorption entries', () => {
+  const MALABSORPTION = 'stool-greasy-floating-pale' as const
+
+  it('counts a logged day carrying any chip, and not one carrying none', () => {
+    const log: SymptomLog = {
+      '2026-08-04': [symptom('2026-08-04', 6, { symptoms: ['nausea'] })],
+      // Logged, real, and not symptomatic: a pain number with no chips on it.
+      '2026-08-03': [symptom('2026-08-03', 4)],
+    }
+    const summary = summarize(windowOf(30, log))
+
+    expect(summary.daysLogged).toBe(2)
+    expect(summary.daysWithSymptomsLogged).toBe(1)
+  })
+
+  /*
+   * THE INVARIANT 5 CASE. A window is mostly gaps, and every one of them has to
+   * stay out of both counts. An unlogged day is unknown, not a day without
+   * symptoms, and this page goes to her gastroenterologist.
+   */
+  it('never counts an unlogged day toward either number', () => {
+    const summary = summarize(
+      windowOf(30, { '2026-08-04': [symptom('2026-08-04', 6, { symptoms: ['nausea'] })] }),
+    )
+
+    expect(summary.windowDays).toBe(30)
+    expect(summary.daysWithSymptomsLogged).toBe(1)
+    expect(summary.daysWithMalabsorptionFlag).toBe(0)
+  })
+
+  it('keeps both counts inside their denominators', () => {
+    const log: SymptomLog = {
+      '2026-08-04': [
+        symptom('2026-08-04', 6, { symptoms: ['nausea', MALABSORPTION] }),
+        { ...symptom('2026-08-04', 7, { symptoms: [MALABSORPTION] }), id: 'b' },
+      ],
+      '2026-08-02': [symptom('2026-08-02', 3, { symptoms: ['fatigue'] })],
+    }
+    const summary = summarize(windowOf(30, log))
+
+    expect(summary.daysWithSymptomsLogged).toBeLessThanOrEqual(summary.daysLogged)
+    expect(summary.daysWithMalabsorptionFlag).toBeLessThanOrEqual(summary.daysLogged)
+    expect(summary.malabsorptionEntries).toBeLessThanOrEqual(summary.entryCount)
+
+    // Two flagged entries, both on one day. Entries and days are not the same
+    // number and the printed page reports the one it names.
+    expect(summary.malabsorptionEntries).toBe(2)
+    expect(summary.daysWithMalabsorptionFlag).toBe(1)
+    expect(summary.daysWithSymptomsLogged).toBe(2)
+  })
+
+  it('reports zero rather than null when nothing carried the chip', () => {
+    const summary = summarize(windowOf(30, symptomLogOf({ '2026-08-04': 6 })))
+
+    // Zero is honest here in a way it never is for an average: she logged, and
+    // none of what she logged carried the chip. That is an observation.
+    expect(summary.malabsorptionEntries).toBe(0)
+    expect(summary.daysWithMalabsorptionFlag).toBe(0)
+  })
+})
+
+/* ========================================================================== */
 /* Hardest logged days                                                        */
 /* ========================================================================== */
 
@@ -408,6 +473,19 @@ describe('findPatterns', () => {
   it('says so plainly when a food appeared on no other logged day', () => {
     const text = patternItemText({ name: 'Toast', beforeHardDays: 3, beforeOtherDays: 0 })
     expect(text).toContain('no other day you logged')
+  })
+
+  /*
+   * Found by reading the appointment export out loud in Phase 10. The
+   * counter-evidence count is the number that keeps this list honest, so the
+   * sentence carrying it should not be the one that reads as a bug on the page
+   * her gastroenterologist is holding.
+   */
+  it('says one other day, not one other days', () => {
+    const text = patternItemText({ name: 'Toast', beforeHardDays: 3, beforeOtherDays: 1 })
+
+    expect(text).toContain('1 other day you logged')
+    expect(text).not.toContain('1 other days')
   })
 
   it('drops a food that appeared too few times to mean anything', () => {

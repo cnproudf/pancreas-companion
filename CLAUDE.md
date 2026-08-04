@@ -46,6 +46,25 @@ React + Vite + Tailwind. No component library. No backend except the Worker.
 - Do not build features from later phases before I ask for them.
 - At the end of each phase, commit, merge to main, and push.
 
+## The appointment export does no arithmetic, and that is deliberate
+
+`lib/appointmentPrep.ts` composes `summarize` and `findPatterns` and calls the
+`*Text` helpers from `patterns.ts`. It contains no division, no rounding, and no
+counting. The printed page and the pattern view therefore state the same
+denominators from the same strings by construction rather than by anyone
+remembering to keep them in step.
+
+If that page ever needs a number `patterns.ts` does not have, it goes in
+`summarize`, next to the comment saying daysLogged is the only denominator. That
+is where `daysWithSymptomsLogged` and `malabsorptionEntries` went in Phase 10,
+and it is why they are not in the new module.
+
+`PrepSheet` is a portal to `document.body`, NOT a native `<dialog>` like the
+app's other two overlays. Top layer content paginates badly when printed. It is
+mounted from the Patterns tab, so it is inside FlareGate and the gate closing
+takes it down; `FlareGate.test.tsx` covers that, and the trap was confirmed to
+fire by leaking `children` past the gate on purpose.
+
 ## Invariant 1, verified end to end at Phase 9
 
 Structural via FlareGate, and no longer untested. Three layers, in order of how
