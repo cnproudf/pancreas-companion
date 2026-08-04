@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+
+/*
+  Design system: Blue Ridge. See docs/spec-addendum.md section C.
+  The Blue Ridge in late afternoon. Layered ridgelines fading into haze,
+  laurel green, creek water, warm paper. Dignified, not costume.
+*/
+
+:root {
+  /* Ridges, near to far */
+  --ridge-deep: #1c3a4b; /* nearest ridge, primary text, headers */
+  --ridge-mid: #3d6382; /* middle distance */
+  --ridge-haze: #8fa9bc; /* farthest ridge, DECORATIVE ONLY, never text on light */
+
+  /* Greens */
+  --laurel: #3a6b4e; /* mountain laurel, GREEN rating */
+  --moss: #6b8f6b; /* soft accent, secondary buttons */
+
+  /* Water */
+  --creek: #3e7c7a; /* links and interactive elements */
+
+  /* Ground */
+  --paper: #f5f2ea; /* page background, warm off-white */
+  --stone: #ded7c9; /* card borders, dividers */
+  --ink: #22282b; /* body text */
+
+  /* Ratings and alerts */
+  --gold: #b5762c; /* YELLOW rating fill, Daily Lift accent */
+  --gold-text: #8a5a20; /* darker variant, use for text on paper */
+  --clay: #9e3b2f; /* RED rating, and the When To Call card */
+}
+
+/*
+  Contrast rules, non-negotiable (addendum section C):
+  - color-gold does not meet WCAG AA against paper for small text. Fills, bars,
+    and icons only. Use color-gold-text for any yellow-rating wording.
+  - color-ridge-haze is decoration. Never body text, never labels, never
+    anything a person needs to read.
+  - Every traffic light rating carries a color, an icon, AND a word.
+*/
+
+@theme {
+  --color-ridge-deep: var(--ridge-deep);
+  --color-ridge-mid: var(--ridge-mid);
+  --color-ridge-haze: var(--ridge-haze); /* decoration only, never text */
+
+  --color-laurel: var(--laurel);
+  --color-moss: var(--moss);
+  --color-creek: var(--creek);
+
+  --color-paper: var(--paper);
+  --color-stone: var(--stone);
+  --color-ink: var(--ink);
+
+  --color-gold: var(--gold); /* fills, bars, icons only, never small text */
+  --color-gold-text: var(--gold-text);
+  --color-clay: var(--clay);
+
+  /*
+    System font stacks for now. Real webfonts (the warm old-fashioned serif the
+    addendum asks for) are a Phase 5 decision, when typography starts carrying
+    visual weight. A CDN link would break the offline requirement, so whatever
+    we pick will need to be self hosted.
+  */
+  --font-serif:
+    Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', serif;
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Minimum 16px body, 18px preferred (addendum section C) */
+  --text-base: 1.125rem;
+}
+
+html {
+  background-color: var(--paper);
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  color: var(--ridge-deep);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* Numbers are read at a glance in bad lighting. Tabular figures, generous size. */
+.numeral {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Large touch targets, 44px minimum (addendum section C) */
+button,
+[role='radio'],
+a[role='button'] {
+  min-height: 44px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--creek);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
