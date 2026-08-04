@@ -13,11 +13,13 @@ import {
   appendEntry,
   entriesFor,
   makeEntry,
+  makeEstimateEntry,
   readLog,
   removeEntry as removeFromLog,
   sumFat,
   updateEntry as updateInLog,
   writeLog,
+  type EstimateEntryInput,
   type FoodLog,
   type FoodLogEntry,
 } from '../lib/foodLog.ts'
@@ -50,6 +52,11 @@ export interface FoodLogApi {
   gramsUsedToday: number
   /** Appends to today and persists. Returns the entry so the UI can name it. */
   logFood: (food: Food) => FoodLogEntry
+  /**
+   * Phase 11. Same, for a gram value the Worker estimated rather than one out of
+   * the dataset. The entry it writes carries foodId null and aiEstimated true.
+   */
+  logEstimate: (input: EstimateEntryInput) => FoodLogEntry
   /** Returns the entry it removed, so the UI can offer an undo. Null if absent. */
   removeEntry: (id: string) => FoodLogEntry | null
   /** Corrects the grams on one entry. Name and serving are not editable. */
@@ -102,6 +109,24 @@ export function FoodLogProvider({ children }: { children: ReactNode }) {
       commit(appendEntry(latest.current, entry, key))
       // Logging is the other thing that heals a stale day, alongside the focus
       // listener above.
+      setTodayKey(key)
+      return entry
+    },
+    [commit],
+  )
+
+  /*
+   * Phase 11. Identical bookkeeping to logFood, different constructor. The two
+   * are not merged because the difference is exactly the thing being recorded:
+   * makeEntry proves an entry came from the dataset, makeEstimateEntry proves it
+   * did not.
+   */
+  const logEstimate = useCallback(
+    (input: EstimateEntryInput): FoodLogEntry => {
+      const entry = makeEstimateEntry(input)
+      const key = dateKey(new Date(entry.loggedAt))
+
+      commit(appendEntry(latest.current, entry, key))
       setTodayKey(key)
       return entry
     },
@@ -167,6 +192,7 @@ export function FoodLogProvider({ children }: { children: ReactNode }) {
       entriesToday,
       gramsUsedToday,
       logFood,
+      logEstimate,
       removeEntry,
       updateEntryGrams,
       restoreEntry,
@@ -178,6 +204,7 @@ export function FoodLogProvider({ children }: { children: ReactNode }) {
       entriesToday,
       gramsUsedToday,
       logFood,
+      logEstimate,
       removeEntry,
       updateEntryGrams,
       restoreEntry,

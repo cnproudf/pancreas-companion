@@ -111,6 +111,32 @@ export const PREP_COPY = {
   malabsorptionNone:
     'Nothing you logged here carried the greasy, floating, or pale stool note.',
 
+  /*
+   * PHASE 11. WHERE THE FAT NUMBERS ON THIS PAGE CAME FROM.
+   *
+   * Most entries carry a gram value from the app's own list, which is hand
+   * authored and openly approximate. Some now carry one a language model
+   * estimated from a name she typed, because the list did not have that food.
+   * Those are a weaker kind of number, and a clinician acting on a fat total has
+   * a right to know how much of it is which.
+   *
+   * Denominated like every other statistic here, and rendered only when the
+   * count is above zero, so a log with no estimates in it says nothing at all
+   * rather than saying "0 of 12", which would invite the reading that estimates
+   * are a thing she is doing wrong.
+   */
+  /*
+   * Shaped like malabsorptionLine rather than like symptomaticLine, and for a
+   * reason worth keeping: "Of the 1 food entries you logged, 1 carry" is
+   * ungrammatical at a count of one, and a count of one is the common case here.
+   * Putting the number after the verb makes the sentence read correctly at every
+   * count without needing a plural rule.
+   */
+  aiEstimatedLine:
+    'A fat value estimated from a description, rather than one from the app list, is on {entries} of the {foodEntryCount} food entries you logged.',
+  aiEstimatedNote:
+    'Those estimates come from a language model and were not measured. They are the ones worth checking.',
+
   targetTitle: 'Daily fat target',
   targetLine: '{grams} grams of fat.',
   targetNone:
@@ -181,6 +207,10 @@ export interface PrepDocument {
   /** The plain sentence about what the note means. Only when it appears. */
   malabsorptionInfo: string | null
 
+  /** Phase 11. Both null unless at least one entry carries an estimated value. */
+  aiEstimatedLine: string | null
+  aiEstimatedNote: string | null
+
   target: PrepTarget | null
 
   /**
@@ -218,6 +248,7 @@ export function buildPrep(
 
   const nothingLogged = summary.daysLogged === 0 && summary.daysWithFoodLogged === 0
   const flagged = summary.malabsorptionEntries > 0
+  const anyEstimated = summary.aiEstimatedEntries > 0
 
   return {
     coversLine: range,
@@ -258,6 +289,18 @@ export function buildPrep(
 
     /* The one plain sentence, from the sheet that collects the chip. */
     malabsorptionInfo: flagged ? SYMPTOM_COPY.stoolInfo : null,
+
+    /*
+     * Substitution only. Both numbers come out of summarize, and the sentence
+     * they go into names its own denominator, which is the whole rule this
+     * module is built on.
+     */
+    aiEstimatedLine: anyEstimated
+      ? PREP_COPY.aiEstimatedLine
+          .replace('{foodEntryCount}', String(summary.foodEntryCount))
+          .replace('{entries}', String(summary.aiEstimatedEntries))
+      : null,
+    aiEstimatedNote: anyEstimated ? PREP_COPY.aiEstimatedNote : null,
 
     target: targetFor(settings),
     footerLine: footerLineFor(printName, first, last),

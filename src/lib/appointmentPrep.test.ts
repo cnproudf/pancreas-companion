@@ -103,6 +103,7 @@ describe('PREP_COPY', () => {
       PREP_COPY.malabsorptionLine,
       PREP_COPY.malabsorptionDaysLine,
       PREP_COPY.malabsorptionNone,
+      PREP_COPY.aiEstimatedLine,
     ]
 
     for (const line of statistics) expect(line, line).toContain('you logged')
@@ -112,6 +113,70 @@ describe('PREP_COPY', () => {
   it('states plainly that this is logged events only', () => {
     expect(PREP_COPY.loggedOnly).toContain('only what was logged')
     expect(PREP_COPY.loggedOnly).toContain('not days that went well')
+  })
+})
+
+/* ========================================================================== */
+/* Phase 11: which fat numbers on this page a model estimated                   */
+/* ========================================================================== */
+
+/**
+ * A clinician acting on a fat total has a right to know how much of it the app
+ * looked up and how much a language model guessed from a name she typed. This is
+ * the highest stakes rendering of that distinction in the app, for the same
+ * reason the module header gives about invariant 5: this page carries authority.
+ */
+describe('the estimated entry lines', () => {
+  const estimated = (key: string, name: string, hour: number, grams = 5): FoodLogEntry => ({
+    ...foodEntry(key, name, hour, grams),
+    aiEstimated: true,
+  })
+
+  it('says nothing at all when nothing was estimated', () => {
+    const document = prep({}, { '2026-08-01': [foodEntry('2026-08-01', 'Cod', 12)] })
+
+    /*
+     * Deliberately absent rather than "0 of 1". A zero line would invite the
+     * reading that estimates are something she is doing wrong, which is
+     * invariant 10 arriving through the back door on the one page she does not
+     * write.
+     */
+    expect(document.aiEstimatedLine).toBeNull()
+    expect(document.aiEstimatedNote).toBeNull()
+  })
+
+  it('counts the estimated entries against the food entries she logged', () => {
+    const document = prep(
+      {},
+      {
+        '2026-08-01': [
+          foodEntry('2026-08-01', 'Cod', 12),
+          estimated('2026-08-01', 'Zzyzx casserole', 18),
+        ],
+        '2026-08-02': [estimated('2026-08-02', 'Shawarma', 13)],
+      },
+    )
+
+    expect(document.aiEstimatedLine).toContain('2')
+    expect(document.aiEstimatedLine).toContain('3')
+    expect(document.aiEstimatedLine).toContain('you logged')
+    expect(document.aiEstimatedNote).toBe(PREP_COPY.aiEstimatedNote)
+  })
+
+  /*
+   * The denominator is FOOD entries. entryCount on the summary counts symptom
+   * events, and putting a symptom denominator under a fat statistic is exactly
+   * the class of error the no-arithmetic rule in appointmentPrep.ts exists to
+   * make impossible.
+   */
+  it('denominates against food entries, not symptom events', () => {
+    const document = prep(
+      symptomLogOf({ '2026-08-01': 5, '2026-08-02': 6, '2026-08-03': 4 }),
+      { '2026-08-01': [estimated('2026-08-01', 'Zzyzx casserole', 18)] },
+    )
+
+    // One food entry, one of them estimated. Three symptom events, irrelevant.
+    expect(document.aiEstimatedLine).toContain('1 of the 1 food entries')
   })
 })
 

@@ -1,25 +1,39 @@
 import { useMemo, useState } from 'react'
+import { AiEstimateCard } from '../components/ai/AiEstimateCard.tsx'
+import { AiLookupButton } from '../components/ai/AiLookupButton.tsx'
+import { AiPending } from '../components/ai/AiPending.tsx'
 import { BudgetImpactLine } from '../components/foodChecker/BudgetImpactLine.tsx'
 import { FoodSearchInput } from '../components/foodChecker/FoodSearchInput.tsx'
 import { ModificationsSection } from '../components/foodChecker/ModificationsSection.tsx'
 import { NearMissList } from '../components/foodChecker/NearMissList.tsx'
 import { TargetPrompt } from '../components/foodChecker/TargetPrompt.tsx'
 import { TrafficLightCard } from '../components/foodChecker/TrafficLightCard.tsx'
+import { computeFatTarget } from '../lib/fatTarget.ts'
 import { searchFoods, type FoodMatch } from '../lib/foodSearch.ts'
 import { NEAR_MISS_SCORE, normalize } from '../lib/fuzzy.ts'
 import { rateFoodForSettings } from '../lib/rateForSettings.ts'
+import { useAiLookup } from '../state/useAiLookup.ts'
 import { useFoodLog } from '../state/foodLog.tsx'
 import { useSettings } from '../state/settings.tsx'
 
 /**
  * The food checker. Main spec section 5.1.
  *
- * Local data only. No Worker, no AI: that is Phase 11, and until it exists the
- * honest answer to an unknown food is "not in my list yet, here is the closest
- * thing I do have", never a spinner that goes nowhere.
+ * Local data first, always. The Worker is asked ONLY when nothing in the local
+ * dataset cleared MIN_MATCH_SCORE, which is the 'near-miss' branch below. A
+ * local hit never triggers a call: 211 hand authored entries with real serving
+ * descriptions beat a model's guess at the same food, and spending a request to
+ * second guess them would be slower and worse.
+ *
+ * When the Worker is unreachable, slow, or says something the copy guards
+ * refuse, this screen is exactly what it was for the first ten phases: "not in
+ * my list yet, here is the closest thing I do have". Invariant 7, and the reason
+ * NearMissList still renders above the AI block rather than being replaced by it.
  *
  * This screen renders inside FlareGate (see App.tsx), so in flare mode it does
- * not mount at all and triage comes first. Invariant 1.
+ * not mount at all and triage comes first. Invariant 1. The lookup carries its
+ * own guard on top of that, because a request already in flight does not care
+ * that its component unmounted. See useAiLookup.ts.
  */
 
 /** Enough alternates to correct a wrong first guess, few enough to scan. */
@@ -33,7 +47,8 @@ type SearchState =
 
 export function FoodChecker() {
   const { settings } = useSettings()
-  const { gramsUsedToday, logFood } = useFoodLog()
+  const { gramsUsedToday, logFood, logEstimate } = useFoodLog()
+  const ai = useAiLookup()
 
   const [query, setQuery] = useState('')
   // Set when she taps an alternate, so the card can follow her choice instead
@@ -64,10 +79,39 @@ export function FoodChecker() {
       ? rateFoodForSettings(settings, search.best.food, { gramsUsedToday })
       : null
 
+  /*
+   * The target, for the Worker payload. computeFatTarget is already the one
+   * source of T, and rateForSettings calls it too; this reads it directly
+   * because the payload needs the number even in the branches where there is no
+   * rating on screen.
+   *
+   * When there is no target there is nothing honest to send. The Worker's prompt
+   * rates against a remaining budget, and a made up 30 would produce a
+   * confident traffic light built on a number she never gave us. So the lookup
+   * is withheld entirely, the same way the local card withholds its rating.
+   */
+  const target = computeFatTarget(settings)
+  const lookupAvailable = target.source !== 'incomplete'
+
   function onQueryChange(next: string) {
     setQuery(next)
     setPickedId(null)
     setJustLogged(null)
+    // A new query means the old answer is about to be wrong. Drops any result
+    // on screen and aborts anything still in flight.
+    ai.reset()
+  }
+
+  function runLookup() {
+    if (target.source === 'incomplete') return
+    ai.run({
+      query,
+      queryType: 'food',
+      mode: settings.currentMode,
+      dailyTarget: target.grams,
+      remainingBudget: Math.max(0, target.grams - gramsUsedToday),
+      context: { settings, gramsUsedToday, query },
+    })
   }
 
   /** An alternate under a real match. Keep her query, just switch the card. */
@@ -120,8 +164,67 @@ export function FoodChecker() {
         </p>
       )}
 
+      {/*
+        THE ONLY PLACE THE WORKER IS ASKED ABOUT A FOOD.
+
+        This branch is reached only when searchFoods returned nothing at
+        MIN_MATCH_SCORE. The local answer renders first and stays: whatever comes
+        back, NearMissList is still above it with the closest things the dataset
+        does have.
+      */}
       {search.kind === 'near-miss' && (
-        <NearMissList candidates={search.candidates} onPick={onPickNearMiss} />
+        <>
+          <NearMissList candidates={search.candidates} onPick={onPickNearMiss} />
+
+          {lookupAvailable && (
+            <AiLookupButton
+              onClick={runLookup}
+              disabled={ai.state.kind === 'pending'}
+              hasResult={ai.state.kind === 'ready'}
+            />
+          )}
+
+          {ai.state.kind === 'pending' && <AiPending />}
+
+          {ai.state.kind === 'ready' && (
+            <AiEstimateCard advice={ai.state.advice}>
+              {/*
+                Logging an estimate. Invariant: this must never enter the log
+                with the same standing as a dataset entry, so it goes through
+                logEstimate, which writes foodId null and aiEstimated true.
+
+                Withheld when there is no gram value, because there would be
+                nothing to log but a name and a zero, and a zero would quietly
+                understate her day.
+              */}
+              {ai.state.advice.fatGrams !== null && (
+                <div className="mt-4 border-t border-stone pt-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const grams = ai.state.kind === 'ready' ? ai.state.advice.fatGrams : null
+                      if (grams === null) return
+                      const entry = logEstimate({
+                        name: query,
+                        servingDescription:
+                          ai.state.kind === 'ready' ? ai.state.advice.servingAssumed : '',
+                        fatGrams: grams,
+                      })
+                      setJustLogged(entry.name)
+                    }}
+                    className="w-full rounded-lg border-2 border-ridge-mid bg-paper px-4 py-3 font-semibold text-ridge-deep hover:border-ridge-deep hover:bg-white/50"
+                  >
+                    Log this estimate
+                  </button>
+
+                  <p role="status" className="mt-2 mb-0 text-center text-sm text-ink">
+                    {justLogged === null ? '' : `Added to today as an estimate. ${justLogged}.`}
+                  </p>
+                </div>
+              )}
+            </AiEstimateCard>
+          )}
+        </>
       )}
 
       {search.kind === 'matched' && result !== null && result.status === 'rated' && (

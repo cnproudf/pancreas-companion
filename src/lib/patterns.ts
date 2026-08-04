@@ -74,7 +74,21 @@ export type SymptomDay =
 
 /** One calendar day of logged fat. Same rule: a gap carries no grams. */
 export type FatDay =
-  | { kind: 'logged'; dateKey: string; grams: number; entryCount: number }
+  | {
+      kind: 'logged'
+      dateKey: string
+      grams: number
+      entryCount: number
+      /**
+       * Phase 11. How many of that day's entries carried a gram value the Worker
+       * estimated rather than one out of the dataset.
+       *
+       * It rides on FatDay because summarize only ever sees this type, never the
+       * FoodLogEntry objects behind it, and the appointment prep sheet needs the
+       * total. A gap gets no field at all, same rule as grams.
+       */
+      aiEstimatedCount: number
+    }
   | { kind: 'gap'; dateKey: string }
 
 export interface PatternWindow {
@@ -123,7 +137,13 @@ export function buildWindow(
   const fatDays: FatDay[] = days.map((dateKey) => {
     const entries = foodLog[dateKey]
     if (entries === undefined || entries.length === 0) return { kind: 'gap', dateKey }
-    return { kind: 'logged', dateKey, grams: sumFat(entries), entryCount: entries.length }
+    return {
+      kind: 'logged',
+      dateKey,
+      grams: sumFat(entries),
+      entryCount: entries.length,
+      aiEstimatedCount: entries.filter((entry) => entry.aiEstimated === true).length,
+    }
   })
 
   return { days: [...days], symptomDays, fatDays }
@@ -224,6 +244,23 @@ export interface LoggedSummary {
 
   /** Logged days carrying at least one such entry. At most daysLogged. */
   daysWithMalabsorptionFlag: number
+
+  /**
+   * PHASE 11. Food entries in the window, and how many of them carry a gram
+   * value the Worker estimated.
+   *
+   * Note that foodEntryCount is a SECOND entry count and is not entryCount
+   * above, which counts symptom events. They are two different series and
+   * conflating them would put a symptom denominator under a fat statistic.
+   *
+   * These live here rather than in appointmentPrep.ts for the reason recorded at
+   * the top of that module: it does no arithmetic, and a number it needs goes in
+   * summarize, next to the note that daysLogged is the only denominator. Same
+   * place daysWithSymptomsLogged and malabsorptionEntries went in Phase 10.
+   */
+  foodEntryCount: number
+  /** At most foodEntryCount. Zero for every log written before Phase 11. */
+  aiEstimatedEntries: number
 }
 
 function mean(values: readonly number[]): number | null {
@@ -254,6 +291,9 @@ export function summarize(window: PatternWindow): LoggedSummary {
     hardestLogged: hardest,
     daysWithFoodLogged: fatLogged.length,
     averageFatAcrossLoggedDays: mean(fatLogged.map((day) => day.grams)),
+
+    foodEntryCount: fatLogged.reduce((running, day) => running + day.entryCount, 0),
+    aiEstimatedEntries: fatLogged.reduce((running, day) => running + day.aiEstimatedCount, 0),
 
     daysWithSymptomsLogged: logged.filter((day) =>
       day.events.some((entry) => entry.symptoms.length > 0),

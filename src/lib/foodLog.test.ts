@@ -5,6 +5,7 @@ import {
   FOOD_LOG_STORAGE_KEY,
   hydrateLog,
   makeEntry,
+  makeEstimateEntry,
   readLog,
   removeEntry,
   sumFat,
@@ -254,5 +255,89 @@ describe('readLog and writeLog', () => {
       throw new Error('private mode')
     })
     expect(readLog()).toEqual({})
+  })
+})
+
+/**
+ * PHASE 11. An entry whose gram value the Worker estimated.
+ *
+ * The round trip cases below are the ones that matter, and they are not
+ * ceremony. hydrateEntry rebuilds the entry field by field, so a field that is
+ * added to the interface and not to the hydrator is kept by the write and
+ * dropped by the next read: it works for the whole session that added it and is
+ * silently gone after a reload, with nothing throwing and nothing failing to
+ * type check. Asserting the round trip is the only thing that catches it.
+ */
+describe('makeEstimateEntry', () => {
+  it('marks the entry as not from the dataset, and as estimated', () => {
+    const result = makeEstimateEntry(
+      { name: 'zzyzx casserole', servingDescription: 'one serving', fatGrams: 14 },
+      new Date(2026, 7, 3, 18, 0, 0),
+    )
+
+    // foodId null is what that field was reserved for. It must never resolve
+    // against data/foods.json, because there is no entry to resolve to.
+    expect(result.foodId).toBeNull()
+    expect(result.aiEstimated).toBe(true)
+    expect(result.name).toBe('zzyzx casserole')
+  })
+
+  it('rounds grams to one decimal, like every other gram value in the app', () => {
+    expect(makeEstimateEntry({ name: 'x', servingDescription: '', fatGrams: 14.26 }).fatGrams).toBe(
+      14.3,
+    )
+  })
+
+  it('trims the name, since it is whatever she typed', () => {
+    expect(makeEstimateEntry({ name: '  soup  ', servingDescription: '', fatGrams: 1 }).name).toBe(
+      'soup',
+    )
+  })
+})
+
+describe('aiEstimated survives storage', () => {
+  it('is still there after a write and a read', () => {
+    const estimate = entry({ id: 'e2', foodId: null, aiEstimated: true })
+    const log: FoodLog = { '2026-08-03': [estimate] }
+
+    writeLog(log)
+    expect(readLog()['2026-08-03']?.[0]?.aiEstimated).toBe(true)
+    expect(readLog()).toEqual(log)
+  })
+
+  it('is absent rather than false on an ordinary dataset entry', () => {
+    writeLog({ '2026-08-03': [entry()] })
+
+    const restored = readLog()['2026-08-03']?.[0]
+    expect(restored).not.toHaveProperty('aiEstimated')
+  })
+
+  it('reads anything other than true as a dataset entry', () => {
+    // Understating provenance is the safe direction. Inventing it is not.
+    for (const value of ['true', 1, {}, null]) {
+      const log = hydrateLog({
+        '2026-08-03': [{ ...entry(), aiEstimated: value }],
+      })
+      expect(log['2026-08-03']?.[0], String(value)).not.toHaveProperty('aiEstimated')
+    }
+  })
+
+  it('leaves every log written before Phase 11 readable and unmarked', () => {
+    const legacy = {
+      '2026-08-03': [
+        {
+          id: 'old',
+          foodId: 'chicken-breast-skinless-baked',
+          name: 'Chicken breast, skinless, baked or grilled',
+          servingDescription: '4 oz cooked',
+          fatGrams: 3.5,
+          loggedAt: '2026-08-03T18:00:00.000Z',
+        },
+      ],
+    }
+
+    const log = hydrateLog(legacy)
+    expect(log['2026-08-03']).toHaveLength(1)
+    expect(log['2026-08-03']?.[0]).not.toHaveProperty('aiEstimated')
   })
 })

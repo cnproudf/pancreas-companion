@@ -44,6 +44,25 @@ export interface FoodLogEntry {
 
   /** ISO timestamp. The day it belongs to is the key it is filed under. */
   loggedAt: string
+
+  /**
+   * PHASE 11. True when fatGrams came from the Worker rather than from
+   * data/foods.json.
+   *
+   * foodId being null already says "not from the dataset", but it does not say
+   * where the number DID come from, and a future manual entry feature would set
+   * the same null. This field is narrower on purpose: it marks a gram value a
+   * model guessed from a name she typed.
+   *
+   * That distinction has to survive into the appointment prep export, because a
+   * clinician reading a fat total should know which of the numbers behind it
+   * were estimated by a language model. See patterns.ts summarize.
+   *
+   * Optional, and exactOptionalPropertyTypes is on, so write it with a
+   * conditional spread rather than assigning undefined. Same pattern as
+   * LiftEntry.attribution.
+   */
+  aiEstimated?: true
 }
 
 /** Local date key, "YYYY-MM-DD", to the entries logged that day. */
@@ -60,6 +79,56 @@ export function makeEntry(food: Food, when: Date = new Date()): FoodLogEntry {
   }
 }
 
+export interface EstimateEntryInput {
+  /** What she typed. There is no dataset name to use, because there is no entry. */
+  name: string
+  /** The model's assumed serving, already normalized and guarded. May be blank. */
+  servingDescription: string
+  fatGrams: number
+}
+
+/**
+ * PHASE 11. An entry whose gram value came from the Worker.
+ *
+ * foodId is null, which is what that field was reserved for: this did not come
+ * from the dataset and must never resolve against it. aiEstimated is what
+ * distinguishes it from any other null-foodId entry.
+ *
+ * Deliberately a separate constructor rather than a widened makeEntry. makeEntry
+ * takes a Food and copies four fields off it, and every one of those copies is
+ * load bearing for the reason in the comment above. Passing a fake Food shaped
+ * object through it to reach the same place would put a food id shaped hole in
+ * the middle of the one function that guarantees entries came from the dataset.
+ */
+export function makeEstimateEntry(
+  input: EstimateEntryInput,
+  when: Date = new Date(),
+): FoodLogEntry {
+  return {
+    id: newId(when),
+    foodId: null,
+    name: input.name.trim(),
+    servingDescription: input.servingDescription,
+    fatGrams: Math.round(input.fatGrams * 10) / 10,
+    loggedAt: when.toISOString(),
+    aiEstimated: true,
+  }
+}
+
+/**
+ * THIS REBUILDS THE ENTRY FIELD BY FIELD, AND THAT IS A TRAP FOR THE NEXT PERSON
+ * WHO ADDS ONE.
+ *
+ * An unlisted field is kept by the write, because writeLog stringifies the
+ * in-memory object, and dropped by the next read, because this function
+ * constructs a fresh object from named keys. So a new field works perfectly for
+ * the whole session that added it and is silently gone after a reload. Nothing
+ * throws, nothing fails to type check, and no test catches it unless the round
+ * trip is asserted.
+ *
+ * If you add a field above, add it here in the same commit, and add a case to
+ * the round trip test in foodLog.test.ts.
+ */
 function hydrateEntry(raw: unknown): FoodLogEntry | null {
   if (!isRecord(raw)) return null
   if (!isNonEmptyString(raw.id)) return null
@@ -75,6 +144,10 @@ function hydrateEntry(raw: unknown): FoodLogEntry | null {
     servingDescription: isNonEmptyString(raw.servingDescription) ? raw.servingDescription : '',
     fatGrams: raw.fatGrams,
     loggedAt: raw.loggedAt,
+    // Only ever true or absent. Anything else in storage reads as a dataset
+    // entry, which is the direction that understates provenance rather than
+    // inventing it.
+    ...(raw.aiEstimated === true ? { aiEstimated: true as const } : {}),
   }
 }
 

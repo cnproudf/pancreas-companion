@@ -39,8 +39,18 @@ React + Vite + Tailwind. No component library. No backend except the Worker.
   incidentally ("Bananas are berries", "Corn was bred from a grass called
   teosinte"), and the broader reading would push the Lift inside the gate and
   take away the one thing she should still see on her worst day.
-- All three guards ask `foodGuidanceAllowed` in lib/triage.ts. One definition,
-  three call sites. Do not write `currentMode === 'flare'` by hand.
+- All four guards ask `foodGuidanceAllowed` in lib/triage.ts. One definition,
+  four call sites: FlareGate, FatBudgetBar, AttachFoodSection, and the AI lookup
+  hook added in Phase 11. Do not write `currentMode === 'flare'` by hand.
+- Any new field on a hydrated type must be added to its hydrator in the same
+  commit. `hydrateEntry`, `hydrateLog`, `hydrateSettings`, and the symptom log
+  and saved-restaurant hydrators all rebuild their objects field by field rather
+  than spreading the input. An unlisted field therefore survives the write, which
+  stringifies the in-memory object, and vanishes on the next read: the feature
+  works for the whole session that added it and is silently gone after a reload.
+  Nothing throws, nothing fails to type check, and no test catches it unless the
+  round trip is asserted. If you add a field, add it to the hydrator and add a
+  round-trip case. `aiEstimated` in Phase 11 is the worked example.
 - Ask before adding any dependency.
 - Ask before changing anything in data/. Those files are hand-authored.
 - Do not build features from later phases before I ask for them.
@@ -88,3 +98,53 @@ much they would catch:
 The by-hand pass found two things the tests could not: the triage screens opened
 below a 700px header band, fixed by `useRevealOnMount`, and a 14px line on the
 When To Call card, under addendum C's 16px floor.
+
+## Phase 11: the AI layer is the only untrusted writer in the app
+
+Every user-facing string in the first ten phases was written by hand and swept by
+a suite before it shipped. AI output is generated at runtime and reaches the DOM
+without ever passing a test, which makes it the one input this codebase treats as
+hostile. Five decisions follow from that, and none of them should be optimized
+away as redundant.
+
+**The copy guards moved to `lib/copyGuards.ts`.** They were in `test/`, which
+production cannot import without inverting the dependency. `test/copyInvariants.ts`
+is now a re-export shim so the twenty-one existing import sites did not move.
+
+**Every AI string is normalized and guarded client side, `servingAssumed`
+included.** The Worker does sanitize, but it covers dashes only, on `reasoning`
+and `modifications` only, and `servingAssumed` reaches the client unnormalized
+(`worker/index.js:133`). The directive-"should" rule is prompt-only server side;
+`DIRECTIVE_PATTERN` is what enforces it. A client also cannot see whether a
+remote validator ran, which is why `askAI` re-validates the shape the Worker
+already validated.
+
+**A tripped `reasoning` discards the whole result, where a tripped modification
+drops one string.** A traffic light with no explanation is worse than no traffic
+light, because she cannot audit it. Every local card carries its reasons for
+exactly that purpose.
+
+**Rating reconciliation is one-directional.** `aiAdvice.ts` runs the estimated
+grams through `rateForSettings` and takes `worst` of that and the model's rating.
+The model may only ever make a result more cautious. It does not know her
+remaining budget or her thresholds and the local engine does, so it has no
+standing to upgrade a rating the arithmetic produced. What it can see that grams
+cannot is deep frying, cream, and alcohol, and all three point one way.
+
+**5 second timeout, not the README's 8.** Nothing appears for the first 400ms, so
+a fast call never flashes a placeholder; past that a quiet line holds the slot
+until the answer arrives or the request aborts. The bound is not how long an
+answer takes, it is how long she looks at a screen that is not going to produce
+one.
+
+Invariant 7 makes a broken Worker and a working one identical from the UI, which
+is right for her and unworkable for maintenance, so `askAI` logs to
+`console.warn` behind `import.meta.env.DEV`. Vite folds the branch and its
+strings out of production; the build check greps `dist` for `[askAI]`.
+
+`useAiLookup` is the fourth `foodGuidanceAllowed` consumer and it enforces
+invariant 1 twice: `run()` will not fire while triage is unanswered, and an
+effect aborts anything in flight the moment the gate closes. FlareGate alone is
+not enough here, because a request does not care that its component unmounted and
+`FlareGate.test.tsx` never awaits. `AiLookup.test.tsx` covers that gap by
+resolving the fetch after entering flare mode.
