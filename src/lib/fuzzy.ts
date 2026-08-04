@@ -12,6 +12,16 @@
 export const MIN_MATCH_SCORE = 0.45
 
 /**
+ * Not a match, but close enough to offer instead of an empty screen.
+ *
+ * Sits below the token tier's floor of 0.3, and corresponds to a Dice
+ * coefficient of roughly 0.42 on the character tier, so a genuine typo surfaces
+ * and unrelated words do not. Never used to rate anything: results in this band
+ * are shown as "the closest things I do have", never as an answer.
+ */
+export const NEAR_MISS_SCORE = 0.25
+
+/**
  * Lowercase, strip accents, spell out an ampersand, and turn everything that is
  * not a letter, a digit, or a space into a separator.
  *

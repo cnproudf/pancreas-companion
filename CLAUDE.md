@@ -32,3 +32,5 @@ React + Vite + Tailwind. No component library. No backend except the Worker.
 - Ask before changing anything in data/. Those files are hand-authored.
 - Do not build features from later phases before I ask for them.
 - At the end of each phase, commit, merge to main, and push.
+- Invariant 1 is structural via FlareGate but untested end to end until the
+  Phase 9 triage screen exists. Verify it by hand at Phase 9.

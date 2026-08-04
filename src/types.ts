@@ -37,6 +37,20 @@ export interface Settings {
    */
   dailyFatTarget: number | null
 
+  /**
+   * A starting number she entered herself so the app can rate anything at all
+   * before her body stats are in.
+   *
+   * Deliberately NOT dailyFatTarget. That field means a number from her care
+   * team, and every screen that says "your care team's number wins" depends on
+   * being able to tell the two apart. Merging them would make that claim a lie
+   * and leave the settings screen no way to recover the provenance.
+   *
+   * Ranks below a real calculation, and is ignored in flare mode exactly as the
+   * override is.
+   */
+  provisionalFatTarget: number | null
+
   age: number | null
   /** Stored in cm only. Feet and inches entry is a display-layer conversion. */
   heightCm: number | null
