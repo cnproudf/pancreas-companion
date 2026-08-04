@@ -98,6 +98,36 @@ export const OBLIGATION_PATTERN =
   /keep logging|logg?(?:ing)? more|the more you log|fill (?:it|this|them) in|remember to log|don'?t forget|come back (?:daily|each day|every day|tomorrow)|better (?:results|picture|sense|idea) if you|try to log|need(?:s)? you to log/i
 
 /**
+ * SPEC RULE 6, AS PROSE. Added in Phase 9 with the triage gate.
+ *
+ * Rule 6 forbids interpreting symptoms. The triage gate asks about symptoms,
+ * and the two are consistent because of a line the copy has to hold: the app
+ * asks a fixed list, routes every yes to a person, and never forms a view. See
+ * the long header note in lib/triage.ts.
+ *
+ * The structural half of that is enforced by what triage.ts does not do (it
+ * reads none of her logs, and reaches no conclusion). This is the wording half.
+ * There are two ways to break it in copy, and both are here.
+ *
+ * First, naming a condition. The panel must never say what it thinks is
+ * happening, in either direction. Second, grading her likelihood of having one,
+ * which is the same act in a softer voice: "this could be serious", "it is
+ * probably nothing", "you are fine".
+ *
+ * NOTE WHAT IS DELIBERATELY ABSENT. "Severe" is not here, and must not be
+ * added. "Severe pain in your upper abdomen" is the first red flag, verbatim
+ * from spec section 4, and "severe or worsening pain needs care now" is the
+ * When To Call card's one line of urgency. Both are descriptions of a symptom
+ * she is asked about, not verdicts about her. Same principle as
+ * SCOLDING_PATTERN: a guard that fails on correct copy gets weakened by whoever
+ * is in a hurry, and a weakened guard protects nothing.
+ *
+ * Every phrase below is the app speaking about her rather than to her.
+ */
+export const DIAGNOSIS_PATTERN =
+  /pancreatitis|pancreatic attack|gallstones?|\bsepsis\b|necrosis|pseudocyst|you (?:probably|likely|may|might|could) have|sounds like|this (?:could|might|may) be|it is probably|it'?s probably|nothing to worry|no need to worry|you are fine|you'?re fine|you are okay|you'?re okay|\bnot serious\b|\bis serious\b|does not sound|doesn'?t sound/i
+
+/**
  * Invariant 4, for copy that offers her something.
  *
  * "Alcohol is always red. No modifications are ever offered for it." The rating

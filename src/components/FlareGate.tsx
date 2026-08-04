@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useSettings } from '../state/settings.tsx'
+import { useTriage } from '../state/triage.tsx'
 
 /**
  * Invariant 1: flare mode opens the triage screen BEFORE any food content.
@@ -14,9 +14,9 @@ import { useSettings } from '../state/settings.tsx'
  * proves the gate closes.
  */
 export function FlareGate({ children }: { children: ReactNode }) {
-  const { settings } = useSettings()
+  const { foodAllowed } = useTriage()
 
-  if (settings.currentMode !== 'flare') return <>{children}</>
+  if (foodAllowed) return <>{children}</>
 
   return (
     <section

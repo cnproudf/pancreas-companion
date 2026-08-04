@@ -92,6 +92,19 @@ export const BAR_COPY = {
   usedUp: RATING_COPY.budgetUsedUp,
   noTarget: '{used}g logged today.',
   noTargetNote: 'Add a daily target and this bar fills against it.',
+  /*
+   * Phase 9. Shown under the bar in flare mode, once triage has cleared and the
+   * bar is allowed back on screen.
+   *
+   * The denominator in flare mode is FLARE_CEILING_GRAMS, which is not a target
+   * she is working toward. Addendum section A is explicit that it is "framed as
+   * an upper bound rather than a goal", and a bar filling toward a number reads
+   * as a goal unless something says otherwise. This is that something.
+   *
+   * It does not replace the "you have N left today" line, it sits under it.
+   * Knowing what is left still matters; what changes is what the number means.
+   */
+  flareCeilingNote: 'That is a ceiling for today, not something to aim for.',
 } as const
 
 /**

@@ -6,7 +6,7 @@ import {
   type AttachedFood,
 } from '../../lib/symptomLog.ts'
 import { useFoodLog } from '../../state/foodLog.tsx'
-import { useSettings } from '../../state/settings.tsx'
+import { useTriage } from '../../state/triage.tsx'
 
 /**
  * "Attach what I ate", addendum section B. The last 24 hours from the food log,
@@ -26,17 +26,22 @@ import { useSettings } from '../../state/settings.tsx'
  * markup so it travels with it, and anyone who later mounts this somewhere new
  * gets the rule for free.
  *
- * In flare mode the sheet renders without this and the entry is still completely
- * valid. The addendum is explicit that an entry carrying nothing but a timestamp
- * is valid and means "something was happening here".
+ * Since Phase 9 the guard asks foodGuidanceAllowed rather than the mode, so the
+ * section comes back as soon as triage clears rather than staying away for the
+ * whole flare. FlareGate and FatBudgetBar ask the same function. One definition,
+ * three call sites. See lib/triage.ts.
+ *
+ * While the gate is closed the sheet renders without this and the entry is still
+ * completely valid. The addendum is explicit that an entry carrying nothing but
+ * a timestamp is valid and means "something was happening here".
  *
  * THE COST IS A DEFERRAL, NOT A DENIAL, and that is by design.
  *
  * foodsInAttachWindow anchors on the ENTRY'S OWN TIMESTAMP rather than on now.
- * So when she comes back to this entry later, from outside flare mode, she is
- * offered the 24 hours around when she actually felt unwell, not the 24 hours
- * around whenever she happened to reopen it. Nothing is lost by the guard, only
- * postponed. Do not "fix" this by anchoring on the current time.
+ * So when she comes back to this entry later, from the other side of the gate,
+ * she is offered the 24 hours around when she actually felt unwell, not the 24
+ * hours around whenever she happened to reopen it. Nothing is lost by the guard,
+ * only postponed. Do not "fix" this by anchoring on the current time.
  */
 export function AttachFoodSection({
   at,
@@ -48,7 +53,7 @@ export function AttachFoodSection({
   attached: readonly AttachedFood[]
   onChange: (next: AttachedFood[]) => void
 }) {
-  const { settings } = useSettings()
+  const { foodAllowed } = useTriage()
   const groupId = useId()
 
   /*
@@ -65,7 +70,7 @@ export function AttachFoodSection({
   )
 
   // The guard. Everything above this line is inert when the gate is closed.
-  if (settings.currentMode === 'flare') return null
+  if (!foodAllowed) return null
 
   if (candidates.length === 0) {
     return (
