@@ -9,10 +9,12 @@ import { LiftCard } from './LiftCard.tsx'
  *
  * INVARIANT 1, and read this before moving anything.
  *
- * AppShell mounts this OUTSIDE FlareGate, which is the only component in the
- * app besides FatBudgetBar that sits above the gate. That is deliberate: this is
- * the one piece she should still see on her worst day, and it is allowed above
- * the gate for exactly one reason, which is that it renders no food content.
+ * AppShell mounts this OUTSIDE FlareGate, alongside FatBudgetBar and, from
+ * Phase 7, LogFeelingBar. That is deliberate: this is the one piece she should
+ * still see on her worst day, and it is allowed above the gate for exactly one
+ * reason, which is that it renders no food content. The log bar sits there on
+ * the same reasoning; FatBudgetBar sits there for layout and carries its own
+ * flare guard because it does show food content.
  *
  * That reason is load bearing. If anything here ever starts showing a rating, a
  * gram count, a meal suggestion, or a food name, this component moves inside

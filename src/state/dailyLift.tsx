@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { LiftItem } from '../lib/dailyLift.ts'
-import { dateKey } from '../lib/foodLog.ts'
+import { dateKey } from '../lib/days.ts'
 import {
   isFavorited,
   readFavorites,
