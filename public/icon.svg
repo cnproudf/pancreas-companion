@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Pancreas Companion</title>
+  <rect width="512" height="512" rx="112" fill="#F5F2EA"/>
+  <circle cx="256" cy="196" r="58" fill="#B5762C"/>
+  <g>
+    <path d="M0,300 L92,236 L184,282 L276,214 L368,268 L460,224 L512,262 L512,512 L0,512 Z" fill="#8FA9BC"/>
+    <path d="M0,344 L104,286 L200,330 L296,268 L384,314 L470,278 L512,306 L512,512 L0,512 Z" fill="#6C8CA2"/>
+    <path d="M0,390 L86,340 L190,384 L288,326 L382,372 L466,338 L512,360 L512,512 L0,512 Z" fill="#3D6382"/>
+    <path d="M0,438 L120,392 L226,432 L330,384 L424,424 L512,396 L512,512 L0,512 Z" fill="#1C3A4B"/>
+  </g>
+</svg>
