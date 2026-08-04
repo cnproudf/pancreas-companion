@@ -4,26 +4,34 @@ import { DailyLift } from './dailyLift/DailyLift.tsx'
 import { DisclaimerFooter } from './DisclaimerFooter.tsx'
 import { ModeSelector } from './ModeSelector.tsx'
 import { Ridgeline } from './Ridgeline.tsx'
+import { LogFeelingBar } from './symptomLog/LogFeelingBar.tsx'
 
 /**
- * Header band, main slot, persistent disclaimer footer. The mode selector lives
- * in the header so it is reachable in two taps from anywhere in the app.
+ * Header band, main slot, sticky log bar, persistent disclaimer footer. The mode
+ * selector lives in the header so it is reachable in two taps from anywhere in
+ * the app.
  *
  * The header is the app's signature image, addendum section C: sky, the Daily
  * Lift card sitting in it, and the ridgeline below with the sun coming up
  * behind. Sunrise over the ridge. It is the first thing she sees.
  *
- * TWO THINGS LIVE OUTSIDE FlareGate, AND FOR OPPOSITE REASONS.
+ * THREE THINGS LIVE OUTSIDE FlareGate, FOR TWO DIFFERENT REASONS.
  *
  * FatBudgetBar is here for layout convenience and carries its own flare guard,
  * because it does show food content and must not render above triage.
  *
- * DailyLift is here on purpose. It is the one piece of the app she should still
- * see on her worst day, and it is allowed above the gate because it renders no
- * food content: no rating, no grams, no meal, no food name. That is the entire
- * justification, so it has to stay true. If the Lift ever gains food content it
- * moves inside FlareGate, signature image and all. See the longer note in
- * DailyLift.tsx, which travels with the component.
+ * DailyLift and LogFeelingBar are here on purpose, and both rest on the same
+ * justification: they render no food content. No rating, no grams, no meal, no
+ * food name. The Lift is the one piece she should still see on her worst day,
+ * and the log bar is the one thing she most needs to REACH on it, because pain
+ * and symptom chips and a note carry nothing about food.
+ *
+ * That justification is load bearing and has to stay true. If either ever gains
+ * food content it moves inside FlareGate, signature image and all. The one part
+ * of the log sheet that is food content, AttachFoodSection, already carries its
+ * own flare guard for exactly this reason. See the longer notes in
+ * DailyLift.tsx, LogFeelingBar.tsx, and AttachFoodSection.tsx, which travel with
+ * their components.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -77,6 +85,17 @@ export function AppShell({ children }: { children: ReactNode }) {
       </header>
 
       <main className="flex-1 px-5 py-6">{children}</main>
+
+      {/*
+        Sticky and IN FLOW, not fixed. Addendum section B wants this reachable in
+        a single tap from anywhere, so it stays pinned to the bottom of the
+        viewport while she scrolls. Keeping it in the flex flow rather than
+        taking it out with `fixed` is what guarantees it can never cover the
+        disclaimer footer, which invariant 2 says is persistent and not
+        dismissable. At the end of a long page the bar settles above the footer
+        and both are readable at once.
+      */}
+      <LogFeelingBar />
 
       <DisclaimerFooter />
     </div>

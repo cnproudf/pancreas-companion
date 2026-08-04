@@ -8,9 +8,13 @@
  * Invariant 3: everything lives in localStorage, through storage.ts, which is
  * the only module allowed to touch it. Nothing here throws. A corrupted blob
  * should cost her one entry, never the screen.
+ *
+ * dateKey moved to days.ts in Phase 7, when the symptom log needed the same day
+ * boundary. Import it from there; this module is no longer where days live.
  */
 
 import type { Food } from '../types.ts'
+import { DATE_KEY_PATTERN, dateKey } from './days.ts'
 import { newId } from './ids.ts'
 import * as storage from './storage.ts'
 import { isFiniteNumber, isNonEmptyString, isRecord } from './validate.ts'
@@ -45,21 +49,6 @@ export interface FoodLogEntry {
 /** Local date key, "YYYY-MM-DD", to the entries logged that day. */
 export type FoodLog = Record<string, FoodLogEntry[]>
 
-function pad(value: number): string {
-  return String(value).padStart(2, '0')
-}
-
-/**
- * The local calendar day, "YYYY-MM-DD".
- *
- * Built from the local date parts on purpose. toISOString() would be UTC, which
- * rolls the day over at the wrong hour for everyone not on UTC and would move
- * an 8pm dinner into tomorrow's budget. Spec section 5.4 wants midnight local.
- */
-export function dateKey(when: Date = new Date()): string {
-  return `${when.getFullYear()}-${pad(when.getMonth() + 1)}-${pad(when.getDate())}`
-}
-
 export function makeEntry(food: Food, when: Date = new Date()): FoodLogEntry {
   return {
     id: newId(when),
@@ -88,9 +77,6 @@ function hydrateEntry(raw: unknown): FoodLogEntry | null {
     loggedAt: raw.loggedAt,
   }
 }
-
-/** Keys are local date strings. Anything else is not a day and is dropped. */
-const DATE_KEY_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 
 /**
  * Turns whatever came out of storage into a usable log, dropping only the parts

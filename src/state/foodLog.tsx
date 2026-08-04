@@ -8,9 +8,9 @@ import {
   useState,
   type ReactNode,
 } from 'react'
+import { dateKey } from '../lib/days.ts'
 import {
   appendEntry,
-  dateKey,
   entriesFor,
   makeEntry,
   readLog,
@@ -33,6 +33,16 @@ import type { Food } from '../types.ts'
  */
 
 export interface FoodLogApi {
+  /**
+   * The whole log, every day of it.
+   *
+   * Added in Phase 7. The budget bar only ever wants today, but the symptom
+   * log's attach window reaches back 24 hours from an arbitrary moment and the
+   * pattern view reads months at a time. Both would otherwise have to call
+   * readLog() themselves, which would be a second source of truth for the same
+   * data and would not see writes made through this provider.
+   */
+  log: FoodLog
   /** The local day the app currently considers "today". */
   todayKey: string
   /** Sorted by loggedAt, so display order and meal clustering agree. */
@@ -152,6 +162,7 @@ export function FoodLogProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<FoodLogApi>(
     () => ({
+      log,
       todayKey,
       entriesToday,
       gramsUsedToday,
@@ -162,6 +173,7 @@ export function FoodLogProvider({ children }: { children: ReactNode }) {
       persisted,
     }),
     [
+      log,
       todayKey,
       entriesToday,
       gramsUsedToday,

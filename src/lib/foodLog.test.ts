@@ -1,7 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   appendEntry,
-  dateKey,
   entriesFor,
   FOOD_LOG_STORAGE_KEY,
   hydrateLog,
@@ -46,23 +45,7 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-describe('dateKey', () => {
-  it('uses local date parts, not UTC', () => {
-    // 23:30 local on the 3rd. toISOString would push this to the 4th for anyone
-    // west of UTC, moving a late dinner into tomorrow's budget.
-    const late = new Date(2026, 7, 3, 23, 30, 0)
-    expect(dateKey(late)).toBe('2026-08-03')
-  })
-
-  it('does not roll over just before midnight, and does just after', () => {
-    expect(dateKey(new Date(2026, 7, 3, 23, 59, 59))).toBe('2026-08-03')
-    expect(dateKey(new Date(2026, 7, 4, 0, 0, 1))).toBe('2026-08-04')
-  })
-
-  it('pads single digit months and days', () => {
-    expect(dateKey(new Date(2026, 0, 9, 12, 0, 0))).toBe('2026-01-09')
-  })
-})
+/* dateKey moved to days.ts in Phase 7. Its suite went with it. */
 
 describe('makeEntry', () => {
   it('copies the name, serving, and grams rather than referencing the food', () => {

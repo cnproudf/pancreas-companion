@@ -28,6 +28,10 @@ React + Vite + Tailwind. No component library. No backend except the Worker.
 10. Never scold the user for a food choice. Neutral and forward-looking only.
 
 ## Working agreement
+- Symptom log and Daily Lift render above FlareGate because neither carries food
+  content. AttachFoodSection carries its own flare guard for the same reason
+  FatBudgetBar does. Anything added above the gate that names a food, a gram
+  value, or a meal must move inside it or carry its own guard.
 - Ask before adding any dependency.
 - Ask before changing anything in data/. Those files are hand-authored.
 - Do not build features from later phases before I ask for them.
