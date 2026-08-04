@@ -1,14 +1,22 @@
+import { EnzymeLog } from '../components/enzymes/EnzymeLog.tsx'
+import { EnzymeToggle } from '../components/enzymes/EnzymeToggle.tsx'
+import { HydrationRow } from '../components/hydration/HydrationRow.tsx'
 import { computeFatTarget, FLARE_CEILING_GRAMS } from '../lib/fatTarget.ts'
 import { useSettings } from '../state/settings.tsx'
 import { FoodChecker } from './FoodChecker.tsx'
 
 /**
- * The home screen: her daily fat target, then the food checker.
+ * The home screen: hydration, her daily fat target, the food checker, and the
+ * enzyme log when she takes enzymes.
  *
  * Neither the budget bar nor the Daily Lift is here. Both live in AppShell, for
  * different reasons: the bar so it is present on every screen once there is
  * more than one, and the Lift because it has to sit above FlareGate. There is
  * no router yet, so screens are composed rather than navigated to.
+ *
+ * Hydration is first on the screen and deliberately so. It is the cheapest
+ * thing on the page to act on, it matters most on the days she feels worst, and
+ * spec 5.8 is blunt about how little it should cost to build or to use.
  */
 export function Home() {
   const { settings, persisted } = useSettings()
@@ -16,6 +24,16 @@ export function Home() {
 
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6">
+      {/*
+        Inside FlareGate, along with the rest of this screen. Glasses of water
+        are not food guidance, so this could sit above the gate on the letter of
+        the rule, but there is no reason for it to: nothing about the triage
+        moment is improved by a hydration row beside it.
+      */}
+      <section className="rounded-lg border border-stone bg-white/50 p-5">
+        <HydrationRow />
+      </section>
+
       <section
         aria-labelledby="target-heading"
         className="rounded-lg border border-stone bg-white/50 p-5"
@@ -71,6 +89,29 @@ export function Home() {
       <section className="rounded-lg border border-stone bg-white/50 p-5">
         <FoodChecker />
       </section>
+
+      {/* Spec 5.7: only appears if she takes pancreatic enzymes. */}
+      {settings.takesEnzymes && <EnzymeLog />}
+
+      {/*
+        THE PLACEHOLDER FOR A SETTINGS SCREEN THAT DOES NOT EXIST YET.
+
+        The real one is Phase 1 scope and is still owed: the fat calculator's
+        inputs, the body stats, the manual override, and the 90 day soft prompt
+        all belong there and none of them have a UI. This disclosure holds the
+        one control Phase 9 needed, and it should not accumulate a second.
+
+        Collapsed by default and quiet, because a settings affordance she does
+        not need should not compete with the checker above it.
+      */}
+      <details className="rounded-lg border border-stone bg-white/50 p-4">
+        <summary className="min-h-11 cursor-pointer py-2 font-semibold text-creek">
+          Settings
+        </summary>
+        <div className="mt-3 border-t border-stone pt-3">
+          <EnzymeToggle />
+        </div>
+      </details>
 
       {!persisted && (
         <p role="status" className="m-0 text-sm text-gold-text">

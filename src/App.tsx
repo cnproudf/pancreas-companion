@@ -5,6 +5,7 @@ import { TabStrip, type TabId } from './components/TabStrip.tsx'
 import { Home } from './screens/Home.tsx'
 import { Patterns } from './screens/Patterns.tsx'
 import { RestaurantHelper } from './screens/RestaurantHelper.tsx'
+import { Staples } from './screens/Staples.tsx'
 import { Workarounds } from './screens/Workarounds.tsx'
 import { FoodLogProvider } from './state/foodLog.tsx'
 import { SettingsProvider } from './state/settings.tsx'
@@ -36,16 +37,16 @@ export default function App() {
                 Invariant 1: everything that could show food content goes inside
                 FlareGate, so flare mode always reaches triage first.
 
-                That includes the tab strip itself. Every destination is food
-                content, so in flare mode there is nothing to navigate between
-                and the gate is the whole screen.
+                That includes the tab strip itself. All five destinations are
+                food content, so in flare mode there is nothing to navigate
+                between and the gate is the whole screen.
 
                 Patterns is food content because its chart carries logged fat
                 intake and its entry list shows attached food names. Workarounds
                 is food content because every card on it names a food and a gram
-                value, including the ones she wrote herself. The symptom log
-                sheet is not food content, which is why AppShell mounts that one
-                above the gate instead.
+                value, including the ones she wrote herself. Staples is a list of
+                foods. The symptom log sheet is not food content, which is why
+                AppShell mounts that one above the gate instead.
               */}
               <FlareGate>
                 <TabStrip active={tab} onChange={setTab} />
@@ -66,6 +67,8 @@ export default function App() {
                     <RestaurantHelper />
                   ) : tab === 'patterns' ? (
                     <Patterns />
+                  ) : tab === 'staples' ? (
+                    <Staples />
                   ) : (
                     <Workarounds />
                   )}
