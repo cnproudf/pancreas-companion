@@ -179,3 +179,69 @@ a[role='button'] {
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+  THE APPOINTMENT PREP EXPORT. Spec section 5.6: "Print to PDF via the browser.
+  No server involvement." This block is the whole mechanism, alongside one
+  window.print() call. No dependency, and nothing leaves the device.
+
+  ONE SELECTOR DOES THE ISOLATION, and that is why PrepSheet portals itself to
+  document.body instead of rendering in place. As a body child it can be
+  addressed directly, so nothing else in the tree needs a print marker and no
+  future component can forget to carry one. Without :has() support the app shell
+  prints too, which is untidy rather than wrong.
+
+  NOTE WHY BOTH RULES ON [data-print-sheet] ARE NEEDED. The sheet is
+  position:fixed on screen, and a fixed element does not paginate: it would
+  print its first screenful and stop. Returning it to static is what lets a long
+  summary break across pages normally. The footer inside it stays fixed, which
+  is the opposite behaviour and the reason it repeats at the bottom of every
+  page.
+
+  PAGE NUMBERS ARE NOT IN HERE, AND CANNOT BE. counter(page) and counter(pages)
+  are only defined inside @page margin boxes (@bottom-center and the rest), and
+  no browser implements those at-rules, so a CSS "Page 1 of 2" would render as
+  nothing at all. The app supplies identification instead, which is the half
+  that actually matters: the running footer carries her name and the date range,
+  so a page that comes apart from the rest is never anonymous. The page number
+  comes from the browser's own headers and footers setting, and PREP_COPY
+  .printHint says so.
+*/
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  body:has([data-print-sheet]) > *:not([data-print-sheet]) {
+    display: none !important;
+  }
+
+  [data-print-sheet] {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  [data-print-footer] {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  /* A statistic, a question, or a possible pattern split across a page break
+     is a line somebody misreads. */
+  [data-print-keep] {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+}

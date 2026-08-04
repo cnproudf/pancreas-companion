@@ -126,3 +126,19 @@ export function formatDayLong(key: string): string {
   if (when === null) return ''
   return when.toLocaleDateString(undefined, { month: 'long', day: 'numeric' })
 }
+
+/**
+ * With the year. "August 4, 2026" style, in her locale.
+ *
+ * Added in Phase 10 for the appointment export, and the year is the whole
+ * reason it exists. The two in-app formats can drop it because she is looking
+ * at a chart of her own recent weeks. The printed page is a clinical document
+ * that may be read months later, next to notes from another visit, and a range
+ * reading "December 3 to January 12" with no year on it is genuinely ambiguous
+ * in exactly the place it matters most.
+ */
+export function formatDayFull(key: string): string {
+  const when = parseDateKey(key)
+  if (when === null) return ''
+  return when.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
+}

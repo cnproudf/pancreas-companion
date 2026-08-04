@@ -30,10 +30,17 @@
  */
 
 import { fireEvent, render, screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import App from '../App.tsx'
+import { PREP_COPY } from '../lib/appointmentPrep.ts'
 import { FOODS } from '../lib/foods.ts'
+import * as storage from '../lib/storage.ts'
 import { RED_FLAGS, TRIAGE_COPY } from '../lib/triage.ts'
+import { SETTINGS_STORAGE_KEY } from '../state/settingsModel.ts'
+
+afterEach(() => {
+  storage.remove(SETTINGS_STORAGE_KEY)
+})
 
 /** Both triage answers, by their visible label. */
 function answerRedFlagCheck(answer: 'yes' | 'no') {
@@ -433,5 +440,81 @@ describe('FlareGate, invariant 1', () => {
     expect(screen.getByRole('heading', { name: 'How are you doing?' })).toBeDefined()
     expect(screen.queryByText(/Attach what you ate/)).toBeNull()
     expectNoFoodContent('in the symptom sheet during a flare')
+  })
+
+  /* ------------------------------------------------------------------------ */
+  /* The appointment prep sheet, which portals itself to document.body         */
+  /* ------------------------------------------------------------------------ */
+
+  /**
+   * Gives the prep sheet a gram value to print, so the sweep below has
+   * something to catch.
+   *
+   * Without a target set, an empty log produces a prep sheet carrying no food
+   * name and no number, and expectNoFoodContent would pass on a LEAKED sheet
+   * for want of anything to find. Seeding a care team target makes the sheet
+   * print "35 grams of fat.", which is exactly the kind of line invariant 1
+   * exists to keep off the screen during a flare.
+   */
+  function seedTarget() {
+    storage.set(SETTINGS_STORAGE_KEY, { schemaVersion: 1, dailyFatTarget: 35 })
+  }
+
+  function openPrepSheet() {
+    fireEvent.click(screen.getByRole('tab', { name: 'How I have been' }))
+    fireEvent.click(screen.getByRole('button', { name: PREP_COPY.openAction }))
+    return screen.getByTestId('prep-sheet')
+  }
+
+  /*
+   * PrepSheet renders through createPortal into document.body, which puts its
+   * DOM outside the gate's subtree while leaving it inside the gate's REACT
+   * tree. That combination is worth a test of its own: it is precisely the
+   * shape somebody could later hoist above FlareGate without it looking like a
+   * change to where anything renders.
+   *
+   * It stays correct because the sheet mounts from the Patterns tab, so closing
+   * the gate unmounts the whole subtree and the portal with it. Note that
+   * pageTextOutsideTheLift reads document.body.textContent, so a leaked portal
+   * is inside the sweep rather than beside it.
+   */
+  it('takes the appointment prep sheet down with the gate', () => {
+    seedTarget()
+    render(<App />)
+
+    const sheet = openPrepSheet()
+    /* Present first, so the assertion below is about the gate. */
+    expect(within(sheet).getByText(/35 grams of fat/)).toBeDefined()
+
+    /*
+     * Driven directly. In a browser the sheet sets `inert` on the app root, so
+     * she would close it before reaching the mode selector; jsdom does not
+     * enforce inert, which lets this assert the structural claim rather than
+     * the click path: no prep sheet survives the gate closing, however she got
+     * there.
+     */
+    selectMode('A bad time')
+
+    expect(screen.queryByTestId('prep-sheet')).toBeNull()
+    expectNoFoodContent('with the appointment prep sheet open when flare mode began')
+  })
+
+  it('offers no way to reach the prep sheet while the gate is closed', () => {
+    seedTarget()
+    render(<App />)
+    selectMode('A bad time')
+
+    expect(screen.queryByRole('button', { name: PREP_COPY.openAction })).toBeNull()
+    expectNoFoodContent('looking for the appointment prep button during a flare')
+  })
+
+  /* And it comes back once triage has been answered, like the rest of the app. */
+  it('lets the prep sheet open again after triage clears', () => {
+    seedTarget()
+    render(<App />)
+    selectMode('A bad time')
+    answerRedFlagCheck('no')
+
+    expect(within(openPrepSheet()).getByText(/grams of fat/)).toBeDefined()
   })
 })
