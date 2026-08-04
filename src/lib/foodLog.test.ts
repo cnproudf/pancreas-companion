@@ -7,7 +7,9 @@ import {
   hydrateLog,
   makeEntry,
   readLog,
+  removeEntry,
   sumFat,
+  updateEntry,
   writeLog,
   type FoodLog,
   type FoodLogEntry,
@@ -96,6 +98,87 @@ describe('appendEntry', () => {
     const original: FoodLog = {}
     appendEntry(original, entry(), '2026-08-03')
     expect(original).toEqual({})
+  })
+})
+
+describe('removeEntry', () => {
+  const day = '2026-08-03'
+
+  it('drops the named entry and keeps its neighbours', () => {
+    let log = appendEntry({}, entry({ id: 'a' }), day)
+    log = appendEntry(log, entry({ id: 'b' }), day)
+    log = appendEntry(log, entry({ id: 'c' }), day)
+
+    expect(entriesFor(removeEntry(log, day, 'b'), day).map((e) => e.id)).toEqual(['a', 'c'])
+  })
+
+  it('deletes the day entirely when its last entry goes', () => {
+    // hydrateLog drops empty days on the way back in, so leaving an empty array
+    // here would mean a write then read round trip changed the shape.
+    const log = appendEntry({}, entry({ id: 'only' }), day)
+    const result = removeEntry(log, day, 'only')
+    expect(result).toEqual({})
+    expect(Object.keys(result)).not.toContain(day)
+    expect(hydrateLog(result)).toEqual(result)
+  })
+
+  it('does not mutate the log passed in', () => {
+    const log = appendEntry({}, entry({ id: 'a' }), day)
+    removeEntry(log, day, 'a')
+    expect(entriesFor(log, day)).toHaveLength(1)
+  })
+
+  it('returns the log unchanged for an unknown id or an unknown day', () => {
+    const log = appendEntry({}, entry({ id: 'a' }), day)
+    expect(removeEntry(log, day, 'nope')).toBe(log)
+    expect(removeEntry(log, '2026-08-04', 'a')).toBe(log)
+  })
+
+  it('leaves other days alone', () => {
+    let log = appendEntry({}, entry({ id: 'a' }), day)
+    log = appendEntry(log, entry({ id: 'b' }), '2026-08-02')
+    expect(Object.keys(removeEntry(log, day, 'a'))).toEqual(['2026-08-02'])
+  })
+})
+
+describe('updateEntry', () => {
+  const day = '2026-08-03'
+  const log = appendEntry({}, entry({ id: 'a', fatGrams: 12 }), day)
+
+  it('corrects the grams, which is the half portion case', () => {
+    expect(entriesFor(updateEntry(log, day, 'a', 6), day)[0]?.fatGrams).toBe(6)
+  })
+
+  it('leaves the name and serving as they were logged', () => {
+    const updated = entriesFor(updateEntry(log, day, 'a', 6), day)[0]
+    expect(updated?.name).toBe('Chicken breast, skinless, baked or grilled')
+    expect(updated?.servingDescription).toBe('4 oz cooked')
+    expect(updated?.loggedAt).toBe('2026-08-03T18:00:00.000Z')
+  })
+
+  it('rounds to one decimal', () => {
+    expect(entriesFor(updateEntry(log, day, 'a', 6.28), day)[0]?.fatGrams).toBe(6.3)
+  })
+
+  it('accepts zero, which is a real correction', () => {
+    expect(entriesFor(updateEntry(log, day, 'a', 0), day)[0]?.fatGrams).toBe(0)
+  })
+
+  it('rejects what hydrateEntry would reject, so an edit cannot write a droppable row', () => {
+    // A negative would quietly refund her budget.
+    expect(updateEntry(log, day, 'a', -4)).toBe(log)
+    expect(updateEntry(log, day, 'a', Number.NaN)).toBe(log)
+    expect(updateEntry(log, day, 'a', Number.POSITIVE_INFINITY)).toBe(log)
+  })
+
+  it('does not mutate the log passed in', () => {
+    updateEntry(log, day, 'a', 6)
+    expect(entriesFor(log, day)[0]?.fatGrams).toBe(12)
+  })
+
+  it('returns the log unchanged for an unknown id or an unknown day', () => {
+    expect(updateEntry(log, day, 'nope', 6)).toBe(log)
+    expect(updateEntry(log, '2026-08-04', 'a', 6)).toBe(log)
   })
 })
 

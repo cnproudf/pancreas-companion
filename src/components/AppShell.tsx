@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { FatBudgetBar } from './budgetBar/FatBudgetBar.tsx'
 import { DisclaimerFooter } from './DisclaimerFooter.tsx'
 import { ModeSelector } from './ModeSelector.tsx'
 import { Ridgeline } from './Ridgeline.tsx'
@@ -10,6 +11,11 @@ import { Ridgeline } from './Ridgeline.tsx'
  * The header reads as sky above ridges: title on a pale wash, ridgelines rising
  * from the bottom of the band. Phase 5 puts the Daily Lift card in the sky,
  * above the ridge, which is where the signature image comes from.
+ *
+ * The budget bar lives here rather than in Home so it is present on every
+ * screen once there is more than one. Note that this is OUTSIDE FlareGate:
+ * FatBudgetBar carries its own flare guard for invariant 1, and that guard is
+ * the only thing keeping food content from rendering above the triage screen.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -25,6 +31,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="bg-paper px-5 pt-5">
           <ModeSelector />
         </div>
+        <FatBudgetBar />
       </header>
 
       <main className="flex-1 px-5 py-6">{children}</main>

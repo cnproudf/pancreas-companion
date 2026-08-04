@@ -9,6 +9,7 @@ import {
 } from './dailyLift.ts'
 import friendsJson from '@data/friends-notes.json'
 import { LIFT_TYPES } from '../types.ts'
+import { DASH_PATTERN } from '../test/copyInvariants.ts'
 
 /**
  * The Daily Lift is the reason she opens the app, so the data layer for it gets
@@ -60,8 +61,8 @@ describe('the merged rotation', () => {
 
   it('contains no em dashes or en dashes', () => {
     for (const entry of LIFT_ENTRIES) {
-      expect(entry.content).not.toMatch(/[—–]/)
-      if (entry.attribution !== undefined) expect(entry.attribution).not.toMatch(/[—–]/)
+      expect(entry.content).not.toMatch(DASH_PATTERN)
+      if (entry.attribution !== undefined) expect(entry.attribution).not.toMatch(DASH_PATTERN)
     }
   })
 })
@@ -93,7 +94,7 @@ describe('friend notes', () => {
 
   it('contains no em dashes or en dashes', () => {
     for (const note of FRIEND_NOTES) {
-      expect(note.content).not.toMatch(/[—–]/)
+      expect(note.content).not.toMatch(DASH_PATTERN)
     }
   })
 })
