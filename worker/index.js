@@ -12,10 +12,8 @@
  */
 
 const ALLOWED_ORIGINS = [
-  "https://YOUR-DOMAIN-HERE",
-  "https://YOUR-GITHUB-USERNAME.github.io",
+  "https://cnproudf.github.io",
   "http://localhost:5173",
-  "http://localhost:8788",
 ];
 
 const MAX_BODY_BYTES = 2048;
@@ -36,6 +34,8 @@ RATING. Rate against the person's remaining fat budget for the day, which is pro
 MODIFICATIONS. Always give specific, orderable modifications, even for green items. Say what to ask the kitchen for in plain words the person can repeat to a server. Prefer concrete swaps ("ask for it grilled dry with no butter") over general advice ("choose healthier options").
 
 TONE. Warm, practical, never scolding. Never imply the person did something wrong.
+
+COPY. Never use em dashes or en dashes in any output. Use commas, colons, or separate sentences. Do not use the word "should" in a directive sense about what the person eats.
 
 OUTPUT. Return raw JSON only. No markdown fences, no preamble, no trailing text. Schema:
 {
@@ -109,6 +109,17 @@ function extractJson(text) {
   }
 }
 
+// Invariant 9 applies to model output too. The system prompt asks for this, but
+// an instruction is a request and not a guarantee, so the client is not asked to
+// trust it. Both prose fields are normalized on the way in.
+function normalizeCopy(s) {
+  return s
+    .replace(/[—–]/g, ", ")
+    .replace(/ {2,}/g, " ")
+    .replace(/ +,/g, ",")
+    .trim();
+}
+
 function validateShape(obj) {
   if (!obj || typeof obj !== "object") return null;
   const ratings = ["green", "yellow", "red", "unknown"];
@@ -120,9 +131,12 @@ function validateShape(obj) {
         ? obj.estimatedFatGrams
         : null,
     servingAssumed: typeof obj.servingAssumed === "string" ? obj.servingAssumed.slice(0, 120) : "",
-    reasoning: typeof obj.reasoning === "string" ? obj.reasoning.slice(0, 600) : "",
+    reasoning: typeof obj.reasoning === "string" ? normalizeCopy(obj.reasoning).slice(0, 600) : "",
     modifications: Array.isArray(obj.modifications)
-      ? obj.modifications.filter((m) => typeof m === "string").slice(0, 5).map((m) => m.slice(0, 300))
+      ? obj.modifications
+          .filter((m) => typeof m === "string")
+          .slice(0, 5)
+          .map((m) => normalizeCopy(m).slice(0, 300))
       : [],
     confidence: confidences.includes(obj.confidence) ? obj.confidence : "low",
     source: "ai-estimate",
