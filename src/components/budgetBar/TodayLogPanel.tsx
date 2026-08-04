@@ -54,6 +54,18 @@ function EntryRow({
         <div className="min-w-0">
           <p className="m-0 text-ink">{entry.name}</p>
           <p className="mt-0.5 mb-0 text-sm text-ridge-mid">{subtitle}</p>
+          {/*
+            Phase 11. Where the gram value came from, in words rather than in a
+            colour or an icon, for the same reason invariant 8 gives: the row has
+            to say what it means in greyscale and read aloud.
+
+            It matters here specifically because this is the panel where she
+            edits grams. Knowing a number was guessed from a name is what tells
+            her it is the one worth correcting.
+          */}
+          {entry.aiEstimated === true && (
+            <p className="mt-0.5 mb-0 text-sm text-ridge-mid">Estimated by the lookup, not measured.</p>
+          )}
         </div>
         <p className="numeral m-0 shrink-0 font-semibold text-ridge-deep">{entry.fatGrams}g</p>
       </div>

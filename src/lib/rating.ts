@@ -146,8 +146,14 @@ export const RATING_PRESENTATION: Record<Rating, RatingPresentation> = {
 
 const SEVERITY: Record<Rating, number> = { green: 0, yellow: 1, red: 2 }
 
-/** Returns whichever of the two is more severe. Nothing here ever lowers a rating. */
-function worst(a: Rating, b: Rating): Rating {
+/**
+ * Returns whichever of the two is more severe. Nothing here ever lowers a rating.
+ *
+ * Exported in Phase 11 for aiAdvice.ts, which reconciles a model's rating with
+ * this engine's in the same one direction. See the note at that call site: the
+ * model may make a result more cautious and never less.
+ */
+export function worst(a: Rating, b: Rating): Rating {
   return SEVERITY[a] >= SEVERITY[b] ? a : b
 }
 

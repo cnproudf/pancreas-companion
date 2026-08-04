@@ -237,6 +237,22 @@ export function PrepSheet({ onClose }: { onClose: () => void }) {
             {document_.malabsorptionInfo !== null && (
               <p className={SECONDARY_PRINTED}>{document_.malabsorptionInfo}</p>
             )}
+
+            {/*
+              Phase 11. Where the fat numbers came from, when any of them were
+              estimated. Absent entirely otherwise.
+
+              SECONDARY_PRINTED rather than text-sm, for the reason above this
+              file's constant: this prints, a clinician reads it off paper, and
+              provenance is not the thing to set in the smallest type on the
+              page.
+            */}
+            {document_.aiEstimatedLine !== null && (
+              <p className="numeral mt-3 mb-0 text-ink">{document_.aiEstimatedLine}</p>
+            )}
+            {document_.aiEstimatedNote !== null && (
+              <p className={SECONDARY_PRINTED}>{document_.aiEstimatedNote}</p>
+            )}
           </section>
         )}
 

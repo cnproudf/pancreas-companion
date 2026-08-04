@@ -1,4 +1,7 @@
 import { useMemo, useState } from 'react'
+import { AiEstimateCard } from '../components/ai/AiEstimateCard.tsx'
+import { AiLookupButton } from '../components/ai/AiLookupButton.tsx'
+import { AiPending } from '../components/ai/AiPending.tsx'
 import { ChainHit } from '../components/restaurant/ChainHit.tsx'
 import { CuisineGuidance } from '../components/restaurant/CuisineGuidance.tsx'
 import { CuisinePicker } from '../components/restaurant/CuisinePicker.tsx'
@@ -12,24 +15,43 @@ import {
   PLAYBOOK_BY_CUISINE,
   UNIVERSAL_PLAYBOOK,
 } from '../lib/restaurantPlaybook.ts'
+import { computeFatTarget } from '../lib/fatTarget.ts'
 import { findChain } from '../lib/restaurantSearch.ts'
 import { findByName } from '../lib/savedRestaurants.ts'
+import { useAiLookup } from '../state/useAiLookup.ts'
+import { useFoodLog } from '../state/foodLog.tsx'
 import { useSavedRestaurants } from '../state/restaurants.tsx'
+import { useSettings } from '../state/settings.tsx'
 import type { Cuisine } from '../types.ts'
 
 /**
  * The restaurant helper. Main spec section 5.2.
  *
- * Local data only. No Worker, no AI: that is Phase 11, and until it exists the
- * honest answer to a restaurant the playbook does not know is the universal
- * strategy plus a cuisine she picks herself, never a spinner that goes nowhere.
- * Same policy the food checker follows for an unknown food.
+ * THE WORKER IS ASKED AFTER THE LOCAL PLAYBOOK, NEVER INSTEAD OF IT. Spec 5.2
+ * puts AI suggestions at position five of its output ordering, under everything
+ * local, and that ordering is the whole policy: the universal strategy is at
+ * position one because it is the only part that works at a restaurant nobody has
+ * heard of, and it is true whether or not a model ever answers. So the lookup
+ * button sits below the cuisine guidance and the script line, and the card it
+ * produces sits below that.
+ *
+ * Unlike the food checker, this one is offered even when a chain matched. A
+ * chain hit gives her a nutrition PDF and a cuisine, not a dish, and "what
+ * should I order here" is still unanswered.
+ *
+ * No log button on the card. The recommendation lives inside prose, so there is
+ * no honest name and serving to write into the food log; on the food checker
+ * there is, because she typed the name herself.
  *
  * This screen renders inside FlareGate (see App.tsx). It is food content, so in
- * flare mode it does not mount at all and triage comes first. Invariant 1.
+ * flare mode it does not mount at all and triage comes first. Invariant 1, with
+ * the in-flight half handled in useAiLookup.ts.
  */
 export function RestaurantHelper() {
   const { saved, save, update, remove, persisted } = useSavedRestaurants()
+  const { settings } = useSettings()
+  const { gramsUsedToday } = useFoodLog()
+  const ai = useAiLookup()
 
   const [name, setName] = useState('')
   /*
@@ -54,11 +76,28 @@ export function RestaurantHelper() {
 
   const alreadySaved = findByName(saved, name) !== null
 
+  /* Same policy as the food checker: no target, nothing honest to rate against. */
+  const target = computeFatTarget(settings)
+  const lookupAvailable = target.source !== 'incomplete' && name.trim() !== ''
+
   function onNameChange(next: string) {
     setName(next)
     // A new restaurant means the chain match gets to speak again.
     setCuisineIsHers(false)
     setChosenCuisine(null)
+    ai.reset()
+  }
+
+  function runLookup() {
+    if (target.source === 'incomplete') return
+    ai.run({
+      query: name,
+      queryType: 'restaurant',
+      mode: settings.currentMode,
+      dailyTarget: target.grams,
+      remainingBudget: Math.max(0, target.grams - gramsUsedToday),
+      context: { settings, gramsUsedToday, query: name },
+    })
   }
 
   function onCuisineChange(next: Cuisine | null) {
@@ -119,6 +158,22 @@ export function RestaurantHelper() {
       {playbook !== null && <CuisineGuidance playbook={playbook} />}
 
       {script !== '' && <ScriptLine script={script} />}
+
+      {/*
+        Position five in spec 5.2's output ordering, and everything above it has
+        already rendered. If the Worker never answers, this block is simply
+        absent and the screen is what it was in Phase 8.
+      */}
+      {lookupAvailable && (
+        <AiLookupButton
+          onClick={runLookup}
+          disabled={ai.state.kind === 'pending'}
+          hasResult={ai.state.kind === 'ready'}
+        />
+      )}
+
+      {ai.state.kind === 'pending' && <AiPending />}
+      {ai.state.kind === 'ready' && <AiEstimateCard advice={ai.state.advice} />}
 
       <SaveRestaurantForm
         name={name}
