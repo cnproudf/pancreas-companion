@@ -35,7 +35,18 @@ export function DailyLift() {
   if (item === null) return null
 
   return (
-    <section aria-label={LIFT_COPY.regionLabel} className="mx-auto w-full max-w-xl">
+    <section
+      aria-label={LIFT_COPY.regionLabel}
+      /*
+        Read by FlareGate.test.tsx, which excludes this subtree from its
+        negative-space sweep for food names. Some entries in the data name a
+        food incidentally ("Bananas are berries"), and the rule this app holds
+        above the gate is about food GUIDANCE, not about the word banana. See
+        the working agreement in CLAUDE.md and the note in that test.
+      */
+      data-testid="daily-lift"
+      className="mx-auto w-full max-w-xl"
+    >
       {/*
         The live region wraps the card rather than living inside it, because the
         two variants render different roots and a live region that unmounts does

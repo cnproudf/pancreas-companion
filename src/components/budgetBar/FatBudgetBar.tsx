@@ -9,6 +9,7 @@ import { computeFatTarget } from '../../lib/fatTarget.ts'
 import { countMeals, mealNudgeText } from '../../lib/meals.ts'
 import { useFoodLog } from '../../state/foodLog.tsx'
 import { useSettings } from '../../state/settings.tsx'
+import { useTriage } from '../../state/triage.tsx'
 import { TodayLogPanel } from './TodayLogPanel.tsx'
 
 /**
@@ -39,6 +40,7 @@ const TONE_CLASSES: Record<BudgetTone, { fill: string; text: string }> = {
 
 export function FatBudgetBar() {
   const { settings } = useSettings()
+  const { foodAllowed } = useTriage()
   const { entriesToday, gramsUsedToday } = useFoodLog()
   const [open, setOpen] = useState(false)
   const panelId = useId()
@@ -52,13 +54,18 @@ export function FatBudgetBar() {
    * than in AppShell so it travels with the component: anyone mounting this
    * somewhere new gets the rule for free.
    *
-   * Do not "fix" this by showing the 15 gram flare ceiling instead. The ceiling
-   * is an upper bound whose framing belongs with the triage content, and a
-   * grams-used-today readout above it is exactly the ordering the invariant
-   * exists to prevent. Phase 9 can re-admit the bar after triage, once there is
-   * a real triage screen to sit behind.
+   * Phase 9 turned this from a mode check into a triage check, which is what
+   * the note here used to promise. The bar is now withheld only until the gate
+   * clears, and after that it fills against the 15 gram flare ceiling with the
+   * ceiling framing attached (BAR_COPY.flareCeilingNote). What has not changed
+   * is the ordering: a grams-used-today readout ABOVE the red flag check is
+   * exactly what the invariant exists to prevent, so do not swap this back to
+   * asking about the mode alone.
+   *
+   * foodGuidanceAllowed is the one definition of this rule. FlareGate and
+   * AttachFoodSection ask the same function. See lib/triage.ts.
    */
-  if (settings.currentMode === 'flare') return null
+  if (!foodAllowed) return null
 
   const target = computeFatTarget(settings)
   const meals = countMeals(entriesToday)
@@ -118,6 +125,13 @@ export function FatBudgetBar() {
             lighting. The meal nudge below it is genuinely secondary.
           */}
           <span className="mt-2 block text-ink">{note}</span>
+          {/*
+            Flare mode only. The denominator is a ceiling, not a goal, and a
+            bar filling toward a number reads as a goal without this line.
+          */}
+          {target.source === 'flare-ceiling' && (
+            <span className="mt-1 block text-sm text-ink">{BAR_COPY.flareCeilingNote}</span>
+          )}
           <span className="mt-1 block text-sm text-ridge-mid">{nudge}</span>
         </button>
 
