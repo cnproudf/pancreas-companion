@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest'
-import { budgetImpact, budgetImpactText, BUDGET_COPY } from './budget.ts'
+import {
+  budgetBarReadoutWithoutTarget,
+  budgetBarState,
+  budgetImpact,
+  budgetImpactText,
+  BAR_COPY,
+  BUDGET_COPY,
+} from './budget.ts'
 import { RATING_COPY } from './rating.ts'
+import { BUDGET_WARNING_GRAMS } from './ratingThresholds.ts'
+import { DASH_PATTERN, SCOLDING_PATTERN } from '../test/copyInvariants.ts'
 
 describe('budgetImpact', () => {
   it('reports what is left before and after the item', () => {
@@ -62,17 +71,74 @@ describe('budgetImpactText', () => {
   })
 })
 
-describe('budget copy', () => {
-  const strings = Object.values(BUDGET_COPY)
+describe('budgetBarState', () => {
+  it('reads out the compact glanceable form from spec section 5.4', () => {
+    expect(budgetBarState(40, 18).readout).toBe('18g of 40g used today')
+  })
 
-  it('contains no em dashes anywhere (invariant 9)', () => {
-    for (const line of strings) expect(line).not.toContain('—')
+  it('fills proportionally', () => {
+    expect(budgetBarState(40, 0).fillPercent).toBe(0)
+    expect(budgetBarState(40, 20).fillPercent).toBe(50)
+    expect(budgetBarState(40, 40).fillPercent).toBe(100)
+  })
+
+  it('pins the fill at the end of the track rather than drawing past it', () => {
+    const state = budgetBarState(40, 62)
+    expect(state.fillPercent).toBe(100)
+    expect(state.overflow).toBe(true)
+    // The number still tells the truth even though the bar has run out of room.
+    expect(state.readout).toBe('62g of 40g used today')
+    expect(state.remainingGrams).toBe(-22)
+  })
+
+  it('does not divide by a target of zero', () => {
+    const state = budgetBarState(0, 12)
+    expect(state.fillPercent).toBe(0)
+    expect(Number.isNaN(state.fillPercent)).toBe(false)
+  })
+
+  it('turns cautionary at the same point the rating engine does', () => {
+    // BUDGET_WARNING_GRAMS is 5. Exactly 5 left is still under; below it is close.
+    expect(budgetBarState(40, 35).remainingGrams).toBe(BUDGET_WARNING_GRAMS)
+    expect(budgetBarState(40, 35).tone).toBe('under')
+    expect(budgetBarState(40, 35.1).tone).toBe('close')
+    expect(budgetBarState(40, 39).tone).toBe('close')
+  })
+
+  it('is full at exactly the target and stays full past it', () => {
+    expect(budgetBarState(40, 40).tone).toBe('full')
+    expect(budgetBarState(40, 44).tone).toBe('full')
+    expect(budgetBarState(40, 40).overflow).toBe(false)
+  })
+
+  it('says what is left in words, so the colour is never carrying it alone', () => {
+    expect(budgetBarState(40, 18).note).toBe('You have 22 grams left today.')
+    expect(budgetBarState(40, 39).note).toBe('You have 1 gram left today.')
+    expect(budgetBarState(40, 40).note).toBe(BUDGET_COPY.usedUp)
+    expect(budgetBarState(40, 51).note).toBe(BUDGET_COPY.usedUp)
+  })
+
+  it('rounds away floating point drift in the readout', () => {
+    expect(budgetBarState(40, 0.1 + 3.5 + 16).readout).toBe('19.6g of 40g used today')
+  })
+})
+
+describe('budgetBarReadoutWithoutTarget', () => {
+  it('drops the denominator rather than inventing one', () => {
+    expect(budgetBarReadoutWithoutTarget(18)).toBe('18g logged today.')
+    expect(budgetBarReadoutWithoutTarget(0)).toBe('0g logged today.')
+  })
+})
+
+describe('budget copy', () => {
+  const strings = [...Object.values(BUDGET_COPY), ...Object.values(BAR_COPY)]
+
+  it('contains no em dashes or en dashes (invariant 9)', () => {
+    for (const line of strings) expect(line).not.toMatch(DASH_PATTERN)
   })
 
   it('never scolds (invariant 10)', () => {
-    // Not a proof, but it pins the words most likely to creep in on a rewrite.
-    for (const line of strings) {
-      expect(line.toLowerCase()).not.toMatch(/should|too much|avoid|careful|exceed|limit|allowance/)
-    }
+    // Not a proof, but it pins the phrases most likely to creep in on a rewrite.
+    for (const line of strings) expect(line).not.toMatch(SCOLDING_PATTERN)
   })
 })

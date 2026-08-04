@@ -141,6 +141,53 @@ export function appendEntry(
   return { ...log, [key]: [...(log[key] ?? []), entry] }
 }
 
+/**
+ * Pure. Drops one entry from a day.
+ *
+ * A day that empties is deleted outright rather than left as an empty array,
+ * because hydrateLog drops empty days on the way back in. Leaving one here
+ * would mean a write then read round trip changed the shape of the log, and the
+ * next comparison against stored state would be wrong for no visible reason.
+ */
+export function removeEntry(log: FoodLog, key: string, id: string): FoodLog {
+  const day = log[key]
+  if (day === undefined) return log
+
+  const kept = day.filter((entry) => entry.id !== id)
+  if (kept.length === day.length) return log
+
+  if (kept.length === 0) {
+    const { [key]: _removed, ...rest } = log
+    return rest
+  }
+  return { ...log, [key]: kept }
+}
+
+/**
+ * Pure. Corrects the grams on one entry, which is the "I only ate half of that"
+ * case and the only thing the log panel lets her edit.
+ *
+ * Name and serving stay as they were. The whole reason those fields are copied
+ * into the entry is that the log has to keep saying what was true at the time.
+ *
+ * Rejects the same values hydrateEntry rejects, so an edit cannot write a row
+ * that would be dropped on the next read. A negative would quietly refund her
+ * budget.
+ */
+export function updateEntry(log: FoodLog, key: string, id: string, fatGrams: number): FoodLog {
+  if (!Number.isFinite(fatGrams) || fatGrams < 0) return log
+
+  const day = log[key]
+  if (day === undefined) return log
+  if (!day.some((entry) => entry.id === id)) return log
+
+  const rounded = Math.round(fatGrams * 10) / 10
+  return {
+    ...log,
+    [key]: day.map((entry) => (entry.id === id ? { ...entry, fatGrams: rounded } : entry)),
+  }
+}
+
 export function entriesFor(log: FoodLog, key: string): FoodLogEntry[] {
   return log[key] ?? []
 }

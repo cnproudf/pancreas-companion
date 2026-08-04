@@ -9,6 +9,7 @@ import {
   thresholdsFor,
 } from './rating.ts'
 import { BUDGET_WARNING_GRAMS, THRESHOLD_FRACTIONS } from './ratingThresholds.ts'
+import { DASH_PATTERN, SCOLDING_PATTERN } from '../test/copyInvariants.ts'
 import type { Food } from '../types.ts'
 
 /**
@@ -362,13 +363,13 @@ describe('presentation and copy invariants', () => {
 
   it('contains no em dashes or en dashes', () => {
     for (const text of allCopy) {
-      expect(text).not.toMatch(/[—–]/)
+      expect(text).not.toMatch(DASH_PATTERN)
     }
   })
 
   it('never scolds', () => {
     for (const text of allCopy) {
-      expect(text).not.toMatch(/you should have|too much|bad choice|cheat|failed|guilt/i)
+      expect(text).not.toMatch(SCOLDING_PATTERN)
     }
   })
 

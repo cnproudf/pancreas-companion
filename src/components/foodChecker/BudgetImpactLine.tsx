@@ -1,4 +1,5 @@
 import { budgetImpact, budgetImpactText } from '../../lib/budget.ts'
+import { SOURCE_NOTE } from '../../lib/targetSource.ts'
 import type { TargetSource } from '../../lib/rateForSettings.ts'
 
 /**
@@ -8,15 +9,10 @@ import type { TargetSource } from '../../lib/rateForSettings.ts'
  * five grams remaining, because there it is a warning. This line is on every
  * result.
  *
- * The provenance of the target is named, so a number she typed in herself is
- * never presented as guidance from her care team.
+ * The provenance of the target is named via the shared SOURCE_NOTE, so a number
+ * she typed in herself is never presented as guidance from her care team. The
+ * budget bar's log panel names it the same way.
  */
-const SOURCE_NOTE: Record<TargetSource, string> = {
-  'flare-ceiling': 'Against the 15 gram working ceiling for flare mode.',
-  override: "Against the daily target from your care team.",
-  calculated: 'Against your estimated daily target.',
-  provisional: 'Against the starting number you entered.',
-}
 
 export function BudgetImpactLine({
   target,

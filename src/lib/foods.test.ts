@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { FOOD_PROBLEMS, FOODS, FOODS_BY_ID, FOODS_META, parseFoods } from './foods.ts'
 import { rateFoodEntry } from './rating.ts'
 import { FOOD_CATEGORIES, FOOD_FLAGS } from '../types.ts'
+import { DASH_PATTERN } from '../test/copyInvariants.ts'
 
 /**
  * The dataset is the app. If it stops loading cleanly, every screen downstream
@@ -103,7 +104,7 @@ describe('the real dataset', () => {
         ...(food.notes === null ? [] : [food.notes]),
       ]
       for (const text of strings) {
-        expect(text).not.toMatch(/[—–]/)
+        expect(text).not.toMatch(DASH_PATTERN)
       }
     }
   })

@@ -6,8 +6,9 @@ import { FoodChecker } from './FoodChecker.tsx'
 /**
  * The home screen: her daily fat target, then the food checker.
  *
- * The Daily Lift card and the fat budget bar land here in later phases. There
- * is no router yet, so screens are composed rather than navigated to.
+ * The budget bar is not here. It lives in AppShell so it is present on every
+ * screen. The Daily Lift card lands here in Phase 5. There is no router yet, so
+ * screens are composed rather than navigated to.
  */
 export function Home() {
   const { settings, persisted } = useSettings()
@@ -82,10 +83,7 @@ export function Home() {
           <h2 id="soon-heading" className="mt-0 mb-2 text-lg">
             Still being built
           </h2>
-          <p className="m-0 text-ink">
-            Your daily fat budget bar and the Daily Lift are the next things to
-            arrive.
-          </p>
+          <p className="m-0 text-ink">The Daily Lift is the next thing to arrive.</p>
         </div>
       </section>
 
