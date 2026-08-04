@@ -11,6 +11,7 @@
  */
 
 import type { Food } from '../types.ts'
+import { newId } from './ids.ts'
 import * as storage from './storage.ts'
 import { isFiniteNumber, isNonEmptyString, isRecord } from './validate.ts'
 
@@ -59,22 +60,9 @@ export function dateKey(when: Date = new Date()): string {
   return `${when.getFullYear()}-${pad(when.getMonth() + 1)}-${pad(when.getDate())}`
 }
 
-let entryCounter = 0
-
-/**
- * crypto.randomUUID is unavailable on http origins in some browsers, and this
- * app is meant to keep working in awkward places, so there is a fallback.
- */
-function entryId(when: Date): string {
-  const uuid = globalThis.crypto?.randomUUID
-  if (typeof uuid === 'function') return globalThis.crypto.randomUUID()
-  entryCounter += 1
-  return `${when.getTime()}-${entryCounter}`
-}
-
 export function makeEntry(food: Food, when: Date = new Date()): FoodLogEntry {
   return {
-    id: entryId(when),
+    id: newId(when),
     foodId: food.id,
     name: food.name,
     servingDescription: food.servingDescription,

@@ -1,0 +1,460 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Ordering playbook for eating out with pancreatitis. General strategies by cuisine, not menu data. Restaurants and kitchens vary, and any single dish can be made differently in two places on the same street. Treat every line as a starting point for a conversation with the kitchen.",
+    "disclaimer": "General information only. Not medical or dietetic advice. Your care team's instructions always win.",
+    "maintenanceNote": "Chain nutrition links move. If one is dead, search for the chain name plus 'nutrition PDF', update the URL here, and commit. If the chain stops publishing, set nutritionUrl to null rather than deleting the chain.",
+    "cuisines": ["american", "italian", "mexican", "chinese", "japanese", "indian", "thai", "mediterranean", "diner", "fast-food", "steakhouse", "seafood", "breakfast", "barbecue"]
+  },
+
+  "universal": {
+    "title": "How to order anywhere",
+    "strategies": [
+      "Look for grilled, baked, broiled, steamed, poached, or roasted. Those six words are most of the job. The ones to pass on are fried, crispy, breaded, battered, buttered, creamy, smothered, and au gratin.",
+      "Sauces, dressings, and gravy on the side, every single time. A dressing you spoon on yourself is a small fraction of the one they pour in the kitchen, and this one habit does more work than any other.",
+      "Ask what the kitchen cooks with. Almost every kitchen uses oil or butter by default, and almost every kitchen will use broth, stock, or a light spray instead if you ask them to.",
+      "Say it as a medical requirement rather than a preference. Kitchens take 'I have a medical condition that requires a very low fat diet' seriously in a way they do not take 'I am watching my fat'. It is also simply true.",
+      "Ask questions that have a yes or no answer. 'Can the kitchen cook that with no butter?' gets you a real answer. 'Is that dish low in fat?' gets you a guess from someone who has not seen the recipe.",
+      "Know what 'lightly oiled' means before you accept it. In most kitchens it is a tablespoon or two, which is 14 to 28 grams. If you want none, the word to use is none.",
+      "Order the kid's portion or the senior portion when there is one. Portion control is fat control, and it is the easiest lever you have that requires nothing from the kitchen.",
+      "Two appetizers often make a better meal than an entree. The portions are smaller, and the plain grilled and steamed things tend to live on that part of the menu anyway.",
+      "Ask for the box when the food arrives, not when you are finished. Boxing half up front makes the decision once instead of making it again with every bite.",
+      "Look up the nutrition information before you go. Chains publish it, it is usually accurate, and deciding at home in a quiet room is easier than deciding at the table with everyone waiting.",
+      "Call ahead during a slow hour. Kitchens are dramatically more accommodating at 3pm than at 7pm, and a chef who has already agreed on the phone is an ally when you arrive.",
+      "If the answer is no, order plain and move on. A baked potato, plain rice, a broth soup, and a salad with vinegar is a real meal, it is available almost everywhere, and it is a fine thing to eat.",
+      "Alcohol is the one item on any menu with no modified version. Everything else has one."
+    ],
+    "scriptLine": "I have a medical condition that requires a very low fat diet. Could you ask the kitchen to prepare mine with no butter and no oil, using broth or a light spray if they need something, and bring any sauce or dressing on the side?"
+  },
+
+  "cuisines": [
+
+    {
+      "cuisine": "american",
+      "label": "American",
+      "safeBets": [
+        "Grilled chicken breast, plain, with a baked potato and a vegetable that has not met butter",
+        "Roast turkey with the gravy on the side",
+        "A broth based soup, vegetable or chicken noodle, once you have confirmed it is not a cream base",
+        "Garden salad with balsamic or red wine vinegar in place of a creamy dressing",
+        "Grilled fish with lemon, and a shrimp cocktail as a starter"
+      ],
+      "avoid": [
+        "Anything fried, crispy, breaded, or battered, which is usually half the menu",
+        "Burgers, and especially anything described as a double, a stack, or loaded",
+        "Potato skins, cheese fries, spinach dip, and the rest of the shared appetizer page",
+        "Ranch, blue cheese, Caesar, and thousand island dressings",
+        "Alcohol, which is the one thing here with no modified version"
+      ],
+      "askFor": [
+        "Sauce, gravy, and dressing on the side",
+        "The vegetables steamed with nothing on them, and the potato plain",
+        "The chicken cooked dry, or with broth instead of oil",
+        "A lunch portion, or a box brought out with the plate"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could the kitchen cook the chicken with no oil or butter, steam the vegetables with nothing on them, and bring any sauce on the side?"
+    },
+
+    {
+      "cuisine": "italian",
+      "label": "Italian",
+      "safeBets": [
+        "Pasta with marinara, no meat and no cheese, and ask them to skip the oil they finish it with",
+        "Grilled chicken or grilled fish with a side of plain vegetables",
+        "Minestrone or pasta e fagioli, once you have confirmed it is broth based and not cream",
+        "Chicken piccata made with lemon and broth rather than butter, if the kitchen will do it that way",
+        "Plain bread with no oil dish, and a salad with vinegar"
+      ],
+      "avoid": [
+        "Alfredo, carbonara, vodka sauce, and anything the menu calls creamy",
+        "Fried calamari, arancini, and mozzarella sticks",
+        "Anything parmigiana, which is breaded, fried, and then covered in cheese",
+        "Pesto, which is mostly olive oil and pine nuts even when it looks like a vegetable",
+        "Sausage, pancetta, and prosciutto cooked into a sauce, where the fat is invisible",
+        "The oil at the table and the wine list, neither of which has a modified version"
+      ],
+      "askFor": [
+        "Marinara in place of any cream sauce, and no finishing oil on the pasta",
+        "No cheese on top, and none brought to the table",
+        "A lunch portion, a half order, or an appetizer portion of the pasta",
+        "The vegetables steamed rather than sauteed"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could you ask the kitchen to prepare the chicken with no oil or butter, use marinara rather than any cream sauce, skip the cheese, and bring the sauce on the side?"
+    },
+
+    {
+      "cuisine": "mexican",
+      "label": "Mexican",
+      "safeBets": [
+        "Chicken or shrimp fajitas cooked with no oil, on soft corn tortillas",
+        "Whole black beans or whole pinto beans in place of refried",
+        "Grilled chicken or grilled fish tacos, soft shell",
+        "Salsa, pico de gallo, and hot sauce, all of which are essentially fat free and do most of the flavor work",
+        "Plain rice, grilled vegetables, and a side of lime"
+      ],
+      "avoid": [
+        "Refried beans, which are traditionally cooked with lard",
+        "Cheese, queso, sour cream, and guacamole, which are where the fat actually is",
+        "Chimichangas, chile rellenos, taquitos, and anything else out of the fryer",
+        "The chip basket, which is fried and very hard to stop eating once it is in front of you",
+        "Carnitas, chorizo, and barbacoa, all of which are fatty cuts by design",
+        "Margaritas and beer, which have no modified version"
+      ],
+      "askFor": [
+        "The meat and the fajita vegetables cooked with no oil, or on a dry flat top",
+        "No cheese, no sour cream, and no guacamole, with extra pico and salsa instead",
+        "Whole beans rather than refried",
+        "Corn tortillas rather than a fried shell or a fried bowl"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could the kitchen cook the chicken and vegetables with no oil, and leave off the cheese, sour cream, and guacamole? Extra salsa and pico de gallo would be great."
+    },
+
+    {
+      "cuisine": "chinese",
+      "label": "Chinese",
+      "safeBets": [
+        "Steamed chicken or steamed shrimp with vegetables, sauce on the side",
+        "Steamed white or brown rice",
+        "Wonton soup or hot and sour soup, in a small bowl",
+        "Moo goo gai pan, or any steamed vegetable dish with the sauce served separately",
+        "Steamed dumplings rather than fried, in a small portion"
+      ],
+      "avoid": [
+        "General Tso's, sesame chicken, orange chicken, sweet and sour, and anything the menu calls crispy",
+        "Egg rolls, spring rolls, crab rangoon, and fried wontons",
+        "Fried rice and lo mein, both of which are cooked in a real quantity of oil",
+        "Duck, spare ribs, and dishes built around cashews or peanuts"
+      ],
+      "askFor": [
+        "The dish steamed rather than stir fried, with the sauce on the side",
+        "No oil in the wok, or a dry wok if they are able",
+        "Steamed rice in place of fried rice",
+        "A small portion, or a box brought with the meal"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I get the chicken and vegetables steamed rather than stir fried, with the sauce on the side and steamed rice?"
+    },
+
+    {
+      "cuisine": "japanese",
+      "label": "Japanese",
+      "safeBets": [
+        "Sashimi and simple nigiri, which are among the leanest things you can order in any restaurant",
+        "Edamame, steamed, with no butter",
+        "Miso soup, seaweed salad, and a cucumber roll",
+        "Chicken teriyaki with the sauce on the side",
+        "Steamed rice, and a plain vegetable roll"
+      ],
+      "avoid": [
+        "Tempura and anything else that arrives in a batter",
+        "Spicy mayo, eel sauce, and any roll described as dynamite, crunchy, or creamy",
+        "Katsu, which is breaded and fried",
+        "Fatty tuna, sold as toro, and large portions of salmon, which carries real fat even though it is good fat"
+      ],
+      "askFor": [
+        "No spicy mayo and no crunchy topping on any roll",
+        "The teriyaki sauce on the side",
+        "Steamed rice rather than fried rice",
+        "Grilled rather than tempura or katsu"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the chicken grilled with the teriyaki sauce on the side, and no spicy mayo or crunchy topping on anything?"
+    },
+
+    {
+      "cuisine": "indian",
+      "label": "Indian",
+      "safeBets": [
+        "Tandoori chicken or tandoori fish, which is cooked dry in a very hot oven",
+        "Chicken tikka, meaning the dry version rather than tikka masala",
+        "Plain basmati rice",
+        "Dal, once you have confirmed it was not finished with ghee or cream",
+        "Tandoori roti or plain naan rather than butter naan",
+        "Raita made with low fat yogurt, and the chutneys, most of which carry no fat at all"
+      ],
+      "avoid": [
+        "Korma, tikka masala, butter chicken, and anything else in a cream or coconut base",
+        "Samosas, pakoras, and bhaji, all of which are deep fried",
+        "Paneer, which is a full fat fresh cheese however gently it is cooked",
+        "Butter naan, garlic naan, and paratha, which are layered with fat as they are made",
+        "Ghee anywhere it appears, including brushed on bread at the end"
+      ],
+      "askFor": [
+        "Tandoori rather than any curry with a cream base",
+        "The dish made with no ghee, no cream, and no coconut milk",
+        "A tomato based sauce rather than a cream based one, when the kitchen offers both",
+        "Plain rice and plain roti, with nothing brushed on"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the tandoori chicken with no ghee brushed on it, plain rice, and plain roti rather than butter naan?"
+    },
+
+    {
+      "cuisine": "thai",
+      "label": "Thai",
+      "safeBets": [
+        "Tom yum soup, which is broth based, rather than tom kha, which is coconut milk",
+        "Steamed rice with grilled chicken or grilled shrimp",
+        "Larb or green papaya salad, both dressed with lime and fish sauce rather than oil",
+        "Steamed vegetables with the sauce served on the side",
+        "Basil chicken, asked for with very little oil"
+      ],
+      "avoid": [
+        "Anything built on coconut milk, which means most of the curries, green, red, yellow, massaman, and panang",
+        "Pad thai, which carries oil, egg, and crushed peanuts together",
+        "Fried spring rolls, crab rangoon, and fried tofu",
+        "Peanut sauce and satay",
+        "Anything described as crispy"
+      ],
+      "askFor": [
+        "A broth base rather than a coconut base",
+        "Steamed, or cooked with very little oil, with the sauce on the side",
+        "No peanuts and no peanut sauce",
+        "Mild rather than hot, since very spicy food is uncomfortable for a lot of people while they are recovering"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the chicken and vegetables steamed or cooked with very little oil, no coconut milk, no peanuts, and the sauce on the side?"
+    },
+
+    {
+      "cuisine": "mediterranean",
+      "label": "Mediterranean",
+      "safeBets": [
+        "Grilled chicken or grilled fish souvlaki with no oil brushed on",
+        "Chicken shawarma, which is considerably leaner than the lamb or the gyro cone",
+        "Plain rice pilaf and grilled vegetables",
+        "Greek salad with no feta and no olives, dressed with lemon and red wine vinegar",
+        "Lentil soup or avgolemono, once you have confirmed the base",
+        "Tzatziki made with low fat yogurt, in a small amount"
+      ],
+      "avoid": [
+        "Gyro meat and lamb, both of which are high fat before anything is added",
+        "Falafel, which is deep fried however green it looks",
+        "Hummus and baba ganoush in any real quantity, since both are built on tahini and oil",
+        "Feta, olives, and the olive oil poured over almost everything at the end",
+        "Spanakopita and baklava, which are layered with butter"
+      ],
+      "askFor": [
+        "The meat grilled with no oil brushed on before or after",
+        "No feta, no olives, and no oil on the salad",
+        "Lemon and vinegar in place of dressing",
+        "Pita plain rather than brushed and grilled"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the chicken grilled with no oil brushed on, a salad with no feta or olives and just lemon on it, and plain rice?"
+    },
+
+    {
+      "cuisine": "diner",
+      "label": "Diner",
+      "safeBets": [
+        "Grilled chicken sandwich on a dry bun with mustard in place of mayonnaise",
+        "Turkey sandwich on plain bread with lettuce, tomato, and mustard",
+        "A broth based soup with crackers",
+        "Baked potato with salsa or salt, and a side salad with vinegar",
+        "Grilled chicken over a salad with the dressing on the side"
+      ],
+      "avoid": [
+        "Everything out of the fryer, which at a diner is fries, rings, mozzarella sticks, and most of the appetizers",
+        "Melts, clubs, and anything that arrives with mayonnaise already on it",
+        "Gravy, biscuits, and anything country fried",
+        "Milkshakes and pie"
+      ],
+      "askFor": [
+        "No butter on the bun and no butter on the grill",
+        "Mustard in place of mayonnaise",
+        "A side salad or fruit in place of the fries",
+        "Dressing and gravy on the side"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I get the grilled chicken with no butter on the grill or the bun, mustard instead of mayonnaise, and a side salad instead of fries?"
+    },
+
+    {
+      "cuisine": "fast-food",
+      "label": "Fast food",
+      "safeBets": [
+        "Grilled chicken sandwich with no mayonnaise and no cheese",
+        "A plain single hamburger with mustard and ketchup",
+        "Grilled chicken wrap or salad with the dressing on the side",
+        "Apple slices, a side salad, or a plain baked potato where they have one",
+        "Chili in a small size, at the places that make it"
+      ],
+      "avoid": [
+        "Anything fried, which is most of the menu at most of these places",
+        "Cheese, bacon, mayonnaise, and special sauce, which is where nearly all of the fat lives",
+        "Anything sized up, doubled, or described as loaded",
+        "Milkshakes, frozen coffee drinks, and fried pies"
+      ],
+      "askFor": [
+        "No mayonnaise, no cheese, and no special sauce",
+        "Grilled rather than crispy",
+        "The smallest size, or the kid's meal, which is a real portion",
+        "A side salad or fruit in place of the fries"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the grilled chicken sandwich with no mayonnaise, no cheese, and no special sauce?"
+    },
+
+    {
+      "cuisine": "steakhouse",
+      "label": "Steakhouse",
+      "safeBets": [
+        "Filet or sirloin, the smallest cut on the menu, trimmed, with no butter finish",
+        "Grilled chicken or grilled fish, which most steakhouses do very well and rarely get ordered",
+        "Shrimp cocktail, which is lean, and the cocktail sauce carries no fat",
+        "Plain baked potato and steamed vegetables with nothing on them",
+        "Side salad with vinegar, dressing on the side"
+      ],
+      "avoid": [
+        "Ribeye, prime rib, porterhouse, and anything the menu calls marbled",
+        "The butter finish, which most steakhouses add by default and almost never mention",
+        "Creamed spinach, loaded potatoes, and macaroni and cheese",
+        "Bread with butter, and the giant fried onion appetizer",
+        "Bearnaise, hollandaise, and any compound or blue cheese butter"
+      ],
+      "askFor": [
+        "No butter on the steak, which is the one that has to be said out loud every time",
+        "The smallest cut, the 6 ounce rather than the 12",
+        "The potato plain, with nothing on it and nothing alongside it",
+        "Vegetables steamed with no butter"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the smallest sirloin, trimmed, with no butter on it at all, a plain baked potato with nothing on it, and steamed vegetables with no butter?"
+    },
+
+    {
+      "cuisine": "seafood",
+      "label": "Seafood",
+      "safeBets": [
+        "Grilled, baked, or broiled white fish, cooked with lemon and broth in place of butter",
+        "Steamed shrimp, steamed crab legs, or a shrimp cocktail, with cocktail sauce rather than drawn butter",
+        "Steamed clams or mussels in a broth, once you have confirmed it is not a butter or cream broth",
+        "Plain rice, a plain baked potato, or steamed vegetables",
+        "A broth based seafood soup rather than a chowder"
+      ],
+      "avoid": [
+        "The fried half of the menu, which at most seafood places is the larger half",
+        "Drawn butter, which is about 11 grams a tablespoon and arrives without anyone asking for it",
+        "Chowder and bisque, both of which are cream based",
+        "Crab cakes and stuffed fish, usually bound with mayonnaise or butter",
+        "Blackened, which in most kitchens means dredged in butter before it hits the pan"
+      ],
+      "askFor": [
+        "Broiled dry, with lemon and broth in place of butter",
+        "No drawn butter, and none brought to the table",
+        "Old Bay, lemon, vinegar, or cocktail sauce for flavor",
+        "Steamed rather than fried, which every seafood kitchen can do"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could the kitchen broil the fish dry with lemon and no butter at all, and bring no drawn butter to the table?"
+    },
+
+    {
+      "cuisine": "breakfast",
+      "label": "Breakfast",
+      "safeBets": [
+        "Egg whites or an egg white omelet cooked with spray rather than butter",
+        "Oatmeal made with water or skim milk, with fruit on it",
+        "Dry toast or an English muffin with jam in place of butter",
+        "A small stack of plain pancakes with syrup rather than butter",
+        "Fresh fruit, and yogurt when it is a nonfat one",
+        "Turkey bacon or Canadian bacon in a small portion"
+      ],
+      "avoid": [
+        "Bacon, sausage, biscuits, and gravy, which is most of what a breakfast menu is built on",
+        "Home fries and hash browns, both cooked on a well greased flat top",
+        "Anything described as loaded, stuffed, or a skillet",
+        "Croissants, danishes, and buttered toast",
+        "Cream cheese, which is very nearly all fat"
+      ],
+      "askFor": [
+        "Egg whites cooked with cooking spray, no butter and no cream added",
+        "Dry toast, which in a kitchen means no butter on it at all",
+        "Fruit in place of the potatoes",
+        "Syrup on the side rather than butter on top"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have an egg white omelet cooked with spray and no butter or cream, dry toast with no butter, and fruit instead of the potatoes?"
+    },
+
+    {
+      "cuisine": "barbecue",
+      "label": "Barbecue",
+      "safeBets": [
+        "Smoked turkey breast, or smoked chicken breast with the skin removed",
+        "Pulled chicken with a vinegar based or tomato based sauce",
+        "The lean end of the brisket rather than the point, in a small portion",
+        "Green beans, collards, or vegetables cooked without fatback, when the kitchen makes them that way",
+        "Vinegar slaw rather than creamy slaw, and corn on the cob with no butter"
+      ],
+      "avoid": [
+        "Ribs, burnt ends, sausage links, and pork belly",
+        "The point end of the brisket, which is the fatty half of the same cut",
+        "Macaroni and cheese, baked beans made with bacon, and creamy coleslaw",
+        "Cornbread, which is usually built on butter or bacon fat",
+        "White sauce and any mayonnaise based sauce"
+      ],
+      "askFor": [
+        "The lean end of the brisket, sliced, with the fat cap trimmed off",
+        "Sauce on the side, and a vinegar or tomato based one rather than a creamy one",
+        "Chicken breast with the skin removed",
+        "A sandwich portion rather than a plate, or a box brought with the plate"
+      ],
+      "scriptLine": "I have a medical condition that requires a very low fat diet. Could I have the sliced turkey or the lean end of the brisket with the fat trimmed, sauce on the side, and no butter on the vegetables?"
+    }
+
+  ],
+
+  "chains": [
+
+    {"id": "applebees", "name": "Applebee's", "aliases": ["applebees"], "cuisine": "american", "nutritionUrl": "https://www.applebees.com/en/nutrition"},
+    {"id": "chilis", "name": "Chili's", "aliases": ["chilis"], "cuisine": "american", "nutritionUrl": null},
+    {"id": "tgi-fridays", "name": "TGI Fridays", "aliases": ["fridays", "tgifridays"], "cuisine": "american", "nutritionUrl": "https://www.tgifridays.com/nutrition"},
+    {"id": "cheesecake-factory", "name": "The Cheesecake Factory", "aliases": ["cheesecake factory"], "cuisine": "american", "nutritionUrl": null},
+
+    {"id": "olive-garden", "name": "Olive Garden", "aliases": [], "cuisine": "italian", "nutritionUrl": "https://www.olivegarden.com/nutrition"},
+    {"id": "carrabbas", "name": "Carrabba's Italian Grill", "aliases": ["carrabbas"], "cuisine": "italian", "nutritionUrl": "https://www.carrabbas.com/nutrition"},
+    {"id": "maggianos", "name": "Maggiano's Little Italy", "aliases": ["maggianos"], "cuisine": "italian", "nutritionUrl": null},
+    {"id": "fazolis", "name": "Fazoli's", "aliases": ["fazolis"], "cuisine": "italian", "nutritionUrl": "https://fazolis.com/nutrition/"},
+
+    {"id": "chipotle", "name": "Chipotle", "aliases": ["chipotle mexican grill"], "cuisine": "mexican", "nutritionUrl": "https://www.chipotle.com/nutrition-calculator"},
+    {"id": "taco-bell", "name": "Taco Bell", "aliases": ["tacobell"], "cuisine": "mexican", "nutritionUrl": "https://www.tacobell.com/nutrition"},
+    {"id": "qdoba", "name": "Qdoba", "aliases": ["qdoba mexican eats"], "cuisine": "mexican", "nutritionUrl": null},
+    {"id": "moes", "name": "Moe's Southwest Grill", "aliases": ["moes"], "cuisine": "mexican", "nutritionUrl": "https://www.moes.com/nutrition"},
+    {"id": "on-the-border", "name": "On The Border", "aliases": ["ontheborder"], "cuisine": "mexican", "nutritionUrl": "https://www.ontheborder.com/nutrition"},
+
+    {"id": "panda-express", "name": "Panda Express", "aliases": ["panda"], "cuisine": "chinese", "nutritionUrl": "https://www.pandaexpress.com/nutrition"},
+    {"id": "pf-changs", "name": "P.F. Chang's", "aliases": ["pf changs", "pfchangs"], "cuisine": "chinese", "nutritionUrl": "https://www.pfchangs.com/nutrition"},
+
+    {"id": "benihana", "name": "Benihana", "aliases": [], "cuisine": "japanese", "nutritionUrl": null},
+
+    {"id": "cava", "name": "Cava", "aliases": [], "cuisine": "mediterranean", "nutritionUrl": "https://cava.com/nutrition"},
+
+    {"id": "cracker-barrel", "name": "Cracker Barrel", "aliases": ["crackerbarrel"], "cuisine": "diner", "nutritionUrl": "https://www.crackerbarrel.com/nutrition"},
+    {"id": "dennys", "name": "Denny's", "aliases": ["dennys"], "cuisine": "diner", "nutritionUrl": null},
+    {"id": "waffle-house", "name": "Waffle House", "aliases": ["wafflehouse"], "cuisine": "diner", "nutritionUrl": "https://www.wafflehouse.com/nutrition/"},
+
+    {"id": "mcdonalds", "name": "McDonald's", "aliases": ["mcdonalds", "mickey ds"], "cuisine": "fast-food", "nutritionUrl": "https://www.mcdonalds.com/us/en-us/about-our-food/nutrition-calculator.html"},
+    {"id": "wendys", "name": "Wendy's", "aliases": ["wendys"], "cuisine": "fast-food", "nutritionUrl": "https://www.wendys.com/nutrition-allergens"},
+    {"id": "burger-king", "name": "Burger King", "aliases": ["burgerking", "bk"], "cuisine": "fast-food", "nutritionUrl": "https://www.bk.com/nutrition"},
+    {"id": "chick-fil-a", "name": "Chick-fil-A", "aliases": ["chickfila", "chick fil a"], "cuisine": "fast-food", "nutritionUrl": "https://www.chick-fil-a.com/nutrition-allergens"},
+    {"id": "subway", "name": "Subway", "aliases": [], "cuisine": "fast-food", "nutritionUrl": "https://www.subway.com/en-us/menunutrition/nutrition"},
+    {"id": "kfc", "name": "KFC", "aliases": ["kentucky fried chicken"], "cuisine": "fast-food", "nutritionUrl": "https://www.kfc.com/nutrition"},
+    {"id": "popeyes", "name": "Popeyes", "aliases": ["popeyes louisiana kitchen"], "cuisine": "fast-food", "nutritionUrl": "https://www.popeyes.com/nutrition"},
+    {"id": "arbys", "name": "Arby's", "aliases": ["arbys"], "cuisine": "fast-food", "nutritionUrl": "https://www.arbys.com/nutrition"},
+    {"id": "jimmy-johns", "name": "Jimmy John's", "aliases": ["jimmy johns", "jimmyjohns"], "cuisine": "fast-food", "nutritionUrl": "https://www.jimmyjohns.com/nutrition"},
+    {"id": "jersey-mikes", "name": "Jersey Mike's", "aliases": ["jersey mikes"], "cuisine": "fast-food", "nutritionUrl": "https://www.jerseymikes.com/menu/nutrition"},
+    {"id": "five-guys", "name": "Five Guys", "aliases": ["fiveguys"], "cuisine": "fast-food", "nutritionUrl": "https://www.fiveguys.com/nutritional-information"},
+    {"id": "in-n-out", "name": "In-N-Out Burger", "aliases": ["in n out", "innout"], "cuisine": "fast-food", "nutritionUrl": "https://www.in-n-out.com/nutrition-info"},
+    {"id": "sonic", "name": "Sonic Drive-In", "aliases": ["sonic"], "cuisine": "fast-food", "nutritionUrl": null},
+    {"id": "dairy-queen", "name": "Dairy Queen", "aliases": ["dq", "dairyqueen"], "cuisine": "fast-food", "nutritionUrl": "https://www.dairyqueen.com/en-us/nutrition/"},
+
+    {"id": "outback", "name": "Outback Steakhouse", "aliases": ["outback"], "cuisine": "steakhouse", "nutritionUrl": "https://www.outback.com/nutrition"},
+    {"id": "texas-roadhouse", "name": "Texas Roadhouse", "aliases": ["texasroadhouse"], "cuisine": "steakhouse", "nutritionUrl": "https://www.texasroadhouse.com/menu/nutrition"},
+    {"id": "longhorn", "name": "LongHorn Steakhouse", "aliases": ["longhorn"], "cuisine": "steakhouse", "nutritionUrl": "https://www.longhornsteakhouse.com/nutrition"},
+
+    {"id": "red-lobster", "name": "Red Lobster", "aliases": ["redlobster"], "cuisine": "seafood", "nutritionUrl": "https://www.redlobster.com/nutrition-information"},
+    {"id": "long-john-silvers", "name": "Long John Silver's", "aliases": ["long john silvers"], "cuisine": "seafood", "nutritionUrl": "https://www.ljsilvers.com/nutrition"},
+    {"id": "bonefish-grill", "name": "Bonefish Grill", "aliases": ["bonefish"], "cuisine": "seafood", "nutritionUrl": "https://www.bonefishgrill.com/nutrition"},
+
+    {"id": "ihop", "name": "IHOP", "aliases": ["international house of pancakes"], "cuisine": "breakfast", "nutritionUrl": "https://www.ihop.com/en/nutrition"},
+    {"id": "bob-evans", "name": "Bob Evans", "aliases": ["bobevans"], "cuisine": "breakfast", "nutritionUrl": "https://www.bobevans.com/nutrition"},
+    {"id": "first-watch", "name": "First Watch", "aliases": ["firstwatch"], "cuisine": "breakfast", "nutritionUrl": "https://www.firstwatch.com/nutrition"},
+    {"id": "panera", "name": "Panera Bread", "aliases": ["panera"], "cuisine": "breakfast", "nutritionUrl": "https://www.panerabread.com/en-us/nutrition-and-allergens.html"},
+    {"id": "starbucks", "name": "Starbucks", "aliases": [], "cuisine": "breakfast", "nutritionUrl": "https://www.starbucks.com/menu"},
+
+    {"id": "dickeys", "name": "Dickey's Barbecue Pit", "aliases": ["dickeys"], "cuisine": "barbecue", "nutritionUrl": null}
+
+  ]
+}
