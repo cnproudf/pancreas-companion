@@ -1,0 +1,564 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Workarounds for foods she loves and misses. Each entry names the standard version and the structural swaps that get close to it. Kitchens and recipes vary, and a swap that works in one dish can fall flat in another, so treat every line as a starting point rather than a rule.",
+    "disclaimer": "General information only. Not medical or dietetic advice. Your care team's instructions always win.",
+    "maintenanceNote": "Community links move, the same way the chain nutrition links in restaurant-playbook.json do. If one is dead, search for the name, update the url here, and commit. If a resource closes for good, set its url to null rather than deleting the entry, because the name is still worth knowing. FAT NUMBERS ARE NOT STORED IN THIS FILE. An entry names an id from foods.json and the grams and serving are read from there, so correcting a number in foods.json corrects this screen too. A swap with no matching entry in foods.json carries its own fatGrams and servingDescription instead, and carries exactly one of the two forms, never both.",
+    "swapForms": ["foodId", "fatGrams + servingDescription"]
+  },
+
+  "resources": [
+
+    {"id": "npf-nutrition", "name": "National Pancreas Foundation, nutrition and cookbooks", "url": "https://pancreasfoundation.org/patient-resources/nutrition-cookbook/", "note": "The foundation's own nutrition page. Their pocket guide is where the 30 to 50 gram range comes from."},
+    {"id": "npf-cookbook", "name": "NPF Chronic Pancreatitis Cookbook", "url": "https://pancreasfoundation.org/wp-content/uploads/2013/11/NPF-CHRONIC-PANCREATITIS-COOKBOOK_081916.pdf", "note": "A free PDF you can save to your phone. Newer editions are on the nutrition page above and those are sold rather than given away, so this is the one that is still free."},
+    {"id": "npf-inspire", "name": "Pancreatitis community on Inspire", "url": "https://www.inspire.com/groups/pancreatitis/", "note": "Sponsored by the National Pancreas Foundation. People post what worked and what did not. You can read the whole thing without ever posting."},
+    {"id": "healthunlocked-cp", "name": "Chronic Pancreatitis Support on HealthUnlocked", "url": "https://healthunlocked.com/pancreatitis-support", "note": "Moderated by Mission:Cure. Smaller and quieter than Inspire, which some people prefer."},
+    {"id": "mission-cure-nutrition", "name": "Mission:Cure, nutrition for chronic pancreatitis", "url": "https://mission-cure.org/managing-pancreatitis/nutrition-for-chronic-pancreatitis/", "note": "Plain guidance on daily fat, small meals, and enzymes, written for patients rather than for clinicians."}
+
+  ],
+
+  "substitutions": [
+
+    {
+      "id": "sour-cream",
+      "name": "Sour cream",
+      "aliases": ["sour cream on a baked potato", "dip"],
+      "standardFoodId": "sour-cream",
+      "why": "Sour cream is about a fifth fat by weight, and the two spoonfuls that land on a potato or go into a dip are most of that.",
+      "swaps": [
+        {"to": "Nonfat Greek yogurt", "foodId": "greek-yogurt-nonfat", "how": "Straight swap on a potato, in a dip, or stirred into chili. Let it come to room temperature first so it does not seize when it hits something hot.", "tradeoff": "Slightly tangier. A pinch of salt closes most of the gap."},
+        {"to": "Fat free sour cream", "foodId": "sour-cream-fat-free", "how": "Sold next to the regular kind in most stores. Best cold, on a potato or in a dip.", "tradeoff": "It thins out when heated, so add it at the end rather than cooking it in."}
+      ]
+    },
+
+    {
+      "id": "mayonnaise",
+      "name": "Mayonnaise",
+      "aliases": ["mayo", "sandwich spread"],
+      "standardFoodId": "mayonnaise",
+      "why": "Mayonnaise is oil and egg yolk held together. There is nothing else in it, which is why one tablespoon carries what it does.",
+      "swaps": [
+        {"to": "Mustard", "foodId": "mustard", "how": "The straight swap on a sandwich. Yellow, brown, or grainy all work, and none of them need a substitute for anything.", "tradeoff": "Sharper and wetter. On a dry sandwich, a slice of tomato does the work the mayo was doing."},
+        {"to": "Nonfat Greek yogurt with lemon", "foodId": "greek-yogurt-nonfat", "how": "A squeeze of lemon and a pinch of salt into plain nonfat Greek yogurt gives you the creamy, slightly sour thing mayonnaise was there for.", "tradeoff": "Better mixed into a salad than spread plain on bread."},
+        {"to": "Fat free mayonnaise", "foodId": "mayo-fat-free", "how": "Fine mixed into tuna, chicken salad, or slaw, where other flavors are doing the work.", "tradeoff": "Spread plain on bread it does not taste like much. Mixed into something it disappears."}
+      ]
+    },
+
+    {
+      "id": "oil-saute",
+      "name": "Sauteing in oil",
+      "aliases": ["fried in oil", "cooked in oil", "pan fry", "saute"],
+      "standardFoodId": "zucchini-sauteed-oil",
+      "why": "Vegetables act like a sponge in a hot pan. Whatever oil goes in ends up in the food rather than left behind in the skillet.",
+      "swaps": [
+        {"to": "Sauteing in broth", "foodId": "mushrooms-broth-sauteed", "how": "Get the pan hot, add a splash of fat free broth, and keep adding small splashes as it cooks off. Garlic, onion, and a little salt do the rest.", "tradeoff": "You do not get browning the way oil gives it. A minute in a dry hot pan first, before the broth, gets some of it back."},
+        {"to": "Cooking spray", "foodId": "cooking-spray", "how": "A one second spray on a nonstick pan is enough to keep anything from sticking.", "tradeoff": "Nonstick only. On a bare steel pan it burns off before the food is done."}
+      ]
+    },
+
+    {
+      "id": "butter",
+      "name": "Butter",
+      "aliases": ["butter on toast", "butter on vegetables", "melted butter"],
+      "standardFoodId": "butter",
+      "why": "Butter is roughly four fifths fat, so a single tablespoon on toast or across a plate of vegetables is a real share of a day.",
+      "swaps": [
+        {"to": "Fat free butter spray", "foodId": "butter-spray-fat-free", "how": "Best on things that are already hot and a little wet: vegetables, potatoes, grits, popcorn. Five sprays goes further than it looks.", "tradeoff": "It does not brown and it does not work for baking. It is a finishing thing."},
+        {"to": "Fat free broth", "foodId": "chicken-broth", "how": "A few spoonfuls stirred into vegetables or mashed potatoes gives you the moisture and the salt that butter was carrying.", "tradeoff": "Savory rather than rich. Not a swap for anything sweet."},
+        {"to": "Apple butter", "foodId": "apple-butter", "how": "On toast, on a biscuit, on cornbread. It is a genuinely good trade rather than a consolation.", "tradeoff": "Sweet, so it goes where jam would go and not where butter melts into something salty."}
+      ]
+    },
+
+    {
+      "id": "ground-beef",
+      "name": "Ground beef",
+      "aliases": ["hamburger meat", "burger meat", "chili meat", "taco meat"],
+      "standardFoodId": "ground-beef-80",
+      "why": "The number on the package is the whole story. Eighty percent lean means a fifth of the weight is fat, and it stays in the pan with the meat unless you take it out.",
+      "swaps": [
+        {"to": "99% fat free ground turkey", "foodId": "ground-turkey-99", "how": "Substitutes cleanly in chili, tacos, spaghetti sauce, and casseroles. Season it harder than you would beef, and add a little broth, because there is no fat to carry the flavor.", "tradeoff": "It will not hold together as a patty on a grill. It is a crumble, not a burger."},
+        {"to": "93% lean beef, browned and rinsed", "foodId": "ground-beef-93", "how": "Brown it, then tip the crumbles into a colander and run hot water through. That takes out several more grams before it goes in the pot.", "tradeoff": "Still the highest of these three, and rinsing takes some flavor with it. Best where a sauce is going over it."}
+      ]
+    },
+
+    {
+      "id": "cream-sauce",
+      "name": "Cream sauce",
+      "aliases": ["alfredo", "fettuccine alfredo", "white sauce", "cream pasta"],
+      "standardFoodId": "fettuccine-alfredo",
+      "why": "A restaurant alfredo is cream, butter, and cheese with pasta added at the end. There is no light version of it on any menu, which is why the number is what it is.",
+      "swaps": [
+        {"to": "Marinara", "foodId": "spaghetti-marinara", "how": "The swap that is available everywhere, in every Italian restaurant, without asking anyone for a favor. Ask them to skip the oil they finish the pasta with.", "tradeoff": "A different dish rather than a version of the same one. Some nights that is fine and some nights it is not."},
+        {"to": "Evaporated skim milk thickened with cornstarch", "fatGrams": 5, "servingDescription": "1 plate at home", "how": "Warm evaporated skim milk with a cornstarch slurry, garlic, black pepper, and a small amount of real parmesan. The parmesan is the only fat in it and a little goes a long way.", "tradeoff": "Thinner than the real thing until it sits a minute. It is the closest anything gets at home."},
+        {"to": "Broth and cornstarch base", "fatGrams": 1, "servingDescription": "1 cup sauce", "how": "For savory sauces and gravies rather than pasta. Fat free broth thickened with cornstarch carries herbs, mushrooms, and black pepper the same way a cream base does.", "tradeoff": "Silky rather than rich. It reads as a sauce, not as cream."}
+      ]
+    },
+
+    {
+      "id": "cheese",
+      "name": "Cheese",
+      "aliases": ["cheddar", "shredded cheese", "cheese on top"],
+      "standardFoodId": "cheddar-cheese",
+      "why": "Hard cheese is close to a third fat by weight, and an ounce is smaller than most people picture. The handful that goes on top of something is usually two or three.",
+      "swaps": [
+        {"to": "Fat free cheese", "foodId": "fat-free-cheese", "how": "Works cold on a sandwich, and melts better than its reputation if you add a splash of skim milk and keep the heat low.", "tradeoff": "It does not brown and it does not stretch. Where cheese is the whole point, it will not carry the dish."},
+        {"to": "A smaller amount of very sharp cheddar", "fatGrams": 4.5, "servingDescription": "1/2 oz", "how": "Half the cheese, but the sharpest one on the shelf, grated fine so it covers more surface. Extra sharp tastes like more cheese than mild does.", "tradeoff": "Still real fat, so it counts against the day. This is portion control rather than a swap."}
+      ]
+    },
+
+    {
+      "id": "ice-cream",
+      "name": "Ice cream",
+      "aliases": ["ice cream cone", "scoop of ice cream", "dessert"],
+      "standardFoodId": "ice-cream",
+      "why": "Cream is what makes it ice cream. The fat is the texture, which is why the low fat versions of it have always been disappointing and the fat free frozen things that are not trying to be ice cream are good.",
+      "swaps": [
+        {"to": "Sorbet or Italian ice", "foodId": "sorbet", "how": "Fat free outright, and most ice cream counters have one. Lemon and raspberry hold up best after a heavy meal.", "tradeoff": "Icy rather than creamy. It is a good thing on its own terms rather than a copy."},
+        {"to": "Nonfat frozen yogurt", "foodId": "frozen-yogurt-nonfat", "how": "Closer to the texture you are missing than sorbet is, and soft serve shops nearly always have a nonfat one.", "tradeoff": "Tangy underneath the sweet. Fruit on top covers it."}
+      ]
+    },
+
+    {
+      "id": "fried-foods",
+      "name": "Fried food",
+      "aliases": ["fried chicken", "deep fried", "fried", "breading", "crispy"],
+      "standardFoodId": "chicken-fried-breaded",
+      "why": "Breading is a sponge and the fryer is oil, so the coating that makes it good is also what carries the fat. This is the one where the appliance does more for you than any ingredient swap.",
+      "swaps": [
+        {"to": "Air fried with a light breading", "fatGrams": 6, "servingDescription": "4 oz", "how": "Dredge, spray the coating rather than the basket, and give it room. Cornflake crumbs crisp harder than flour and are worth trying.", "tradeoff": "The crust is thinner than a fryer's. It is genuinely good rather than a near miss."},
+        {"to": "Oven baked with cornflake crumbs and cooking spray", "fatGrams": 6, "servingDescription": "4 oz", "how": "On a rack over a sheet pan so the air gets underneath, at 425 until the coating sets and colors.", "tradeoff": "Takes longer than the air fryer and browns less evenly."},
+        {"to": "The grilled version of the same thing", "foodId": "grilled-chicken-sandwich", "how": "At a restaurant this is almost always already on the menu next to the crispy one, at a fraction of the fat, and it takes no conversation with the kitchen.", "tradeoff": "None worth mentioning, other than that it is not fried."}
+      ]
+    },
+
+    {
+      "id": "whole-milk",
+      "name": "Whole milk",
+      "aliases": ["milk", "2% milk", "milk in cereal"],
+      "standardFoodId": "whole-milk",
+      "why": "Whole milk is under four percent fat, which sounds small until you notice how much of it goes in a bowl of cereal, a pot of soup, and three cups of coffee across one day.",
+      "swaps": [
+        {"to": "Skim milk", "foodId": "skim-milk", "how": "A nearly invisible swap in coffee, cereal, baking, and cooking. If the change is jarring, 1% for a week first makes skim taste normal after.", "tradeoff": "Thinner in a glass on its own. In anything else it is hard to tell."}
+      ]
+    },
+
+    {
+      "id": "cream-in-coffee",
+      "name": "Cream in coffee",
+      "aliases": ["half and half", "coffee creamer", "creamer"],
+      "standardFoodId": "cream-in-coffee",
+      "why": "It is a small pour, but it happens two or three times a day, and the daily number is what matters rather than any one cup.",
+      "swaps": [
+        {"to": "Skim milk", "foodId": "skim-milk", "how": "Warm it for fifteen seconds first and it behaves much more like cream in the cup.", "tradeoff": "Lighter color and less body. Warming it is most of the fix."},
+        {"to": "Nonfat powdered creamer", "fatGrams": 0, "servingDescription": "1 tsp", "how": "Sold next to the regular kind, and it keeps at a desk or in a bag without refrigeration.", "tradeoff": "Sweeter than milk, so it is worth trying the unsweetened one."}
+      ]
+    },
+
+    {
+      "id": "cream-cheese",
+      "name": "Cream cheese",
+      "aliases": ["cream cheese on a bagel", "schmear"],
+      "standardFoodId": "cream-cheese",
+      "why": "Cream cheese is very nearly all fat, and the amount that goes on a bagel is more than the two tablespoons anyone pictures.",
+      "swaps": [
+        {"to": "Fat free cream cheese", "foodId": "cream-cheese-fat-free", "how": "A direct swap on a bagel or in a dip. Whip it with a fork first so it spreads instead of tearing the bread.", "tradeoff": "Slightly firmer and a little tangier. On a warm bagel the difference mostly disappears."},
+        {"to": "Apple butter", "foodId": "apple-butter", "how": "On a plain bagel or toast, apple butter is a real thing to want rather than a stand in.", "tradeoff": "Sweet rather than savory, so it does not go where cream cheese meets salt."}
+      ]
+    },
+
+    {
+      "id": "ranch-dressing",
+      "name": "Ranch and creamy dressings",
+      "aliases": ["ranch", "salad dressing", "blue cheese dressing", "caesar dressing"],
+      "standardFoodId": "ranch-dressing",
+      "why": "Creamy dressings are built on oil and buttermilk, and the pour at a restaurant is closer to four tablespoons than two.",
+      "swaps": [
+        {"to": "Fat free ranch", "foodId": "ranch-fat-free", "how": "Every grocery store carries one. Keep a bottle at home and ask for dressing on the side when you are out.", "tradeoff": "Thinner and a little sweeter than the full fat kind."},
+        {"to": "Nonfat Greek yogurt with dill and garlic", "foodId": "greek-yogurt-nonfat", "how": "Yogurt, dried dill, garlic powder, onion powder, a little buttermilk powder, salt, and lemon. It makes a real ranch rather than an apology for one.", "tradeoff": "Needs an hour in the refrigerator before the dried herbs taste like anything."},
+        {"to": "Plain balsamic vinegar", "foodId": "balsamic-vinegar", "how": "Straight vinegar with no oil in it, on a salad, is genuinely good and it is available in every restaurant in America.", "tradeoff": "Sharp. It wants a salad with something sweet in it, like a sliced apple or a few grapes."}
+      ]
+    },
+
+    {
+      "id": "tuna-salad",
+      "name": "Tuna salad",
+      "aliases": ["tuna sandwich", "tuna fish"],
+      "standardFoodId": "tuna-salad-mayo",
+      "why": "The tuna itself is about a gram. Everything else in the number is the mayonnaise it is bound with.",
+      "swaps": [
+        {"to": "Nonfat Greek yogurt, lemon, and chopped pickle", "foodId": "greek-yogurt-nonfat", "how": "Use water packed tuna, a spoonful of yogurt, a squeeze of lemon, chopped dill pickle, and black pepper. Salt it more than feels right.", "tradeoff": "Looser than a mayonnaise version until it sits a few minutes."},
+        {"to": "Water packed tuna in place of oil packed", "foodId": "tuna-canned-water", "how": "Same price, same shelf, and it is the easier of the two to spot once you know to look at the label.", "tradeoff": "Drier out of the can, which stops mattering once anything is mixed into it."}
+      ]
+    },
+
+    {
+      "id": "chicken-salad",
+      "name": "Chicken salad",
+      "aliases": ["chicken salad sandwich"],
+      "standardFoodId": "chicken-salad-mayo",
+      "why": "Same shape as tuna salad. The chicken breast underneath is lean, and the mayonnaise is the whole number.",
+      "swaps": [
+        {"to": "Nonfat Greek yogurt and mustard", "foodId": "greek-yogurt-nonfat", "how": "Yogurt, a spoonful of mustard, celery, halved grapes, and a lot of fresh dill. The grapes are what keep it from tasting like a compromise.", "tradeoff": "Tangier than the deli version. The grapes and a little honey balance it."}
+      ]
+    },
+
+    {
+      "id": "french-fries",
+      "name": "French fries",
+      "aliases": ["fries", "chips", "side of fries"],
+      "standardFoodId": "french-fries",
+      "why": "Potatoes carry almost nothing on their own. The whole number is the fryer.",
+      "swaps": [
+        {"to": "Oven or air fried potato wedges", "fatGrams": 3, "servingDescription": "1 medium order", "how": "Cut thick wedges, spray them, salt and paprika, 425 on a rack until the edges go dark. The thick cut is what makes them taste like a side rather than a diet.", "tradeoff": "Softer in the middle than a fry. Worth it."},
+        {"to": "A plain baked potato", "foodId": "baked-potato-plain", "how": "Most places will swap the side without charging for it, and you only have to ask for it plain.", "tradeoff": "It is a different side. Salsa or fat free butter spray on top makes it feel like one you chose."}
+      ]
+    },
+
+    {
+      "id": "mashed-potatoes",
+      "name": "Mashed potatoes",
+      "aliases": ["mashed potatoes with butter", "taters"],
+      "standardFoodId": "mashed-potatoes-butter",
+      "why": "The potatoes are nothing. The butter and cream stirred into them at the end are the entire number.",
+      "swaps": [
+        {"to": "Skim milk and fat free chicken broth", "fatGrams": 1, "servingDescription": "1 cup", "how": "Mash with hot broth first, then skim milk, then salt and a lot of black pepper. Some of the cooking water back in the pot helps too.", "tradeoff": "Almost none. This one comes out tasting like mashed potatoes, which is not true of every swap on this screen."}
+      ]
+    },
+
+    {
+      "id": "sausage-gravy",
+      "name": "Sausage gravy",
+      "aliases": ["biscuits and gravy", "white gravy", "milk gravy"],
+      "standardFoodId": "sausage-gravy",
+      "why": "It is drippings and flour and whole milk. The sausage renders the fat and then the fat is the sauce.",
+      "swaps": [
+        {"to": "Turkey sausage gravy on skim milk", "fatGrams": 2, "servingDescription": "1/4 cup gravy", "how": "Brown 99% fat free ground turkey with a lot of sage, black pepper, and a pinch of red pepper. Sprinkle flour over it dry, then skim milk, then let it thicken. No drippings to start from, so the seasoning has to do more work.", "tradeoff": "Paler than the real thing and it needs more salt than you expect."},
+        {"to": "Over an English muffin instead of a biscuit", "foodId": "english-muffin", "how": "The gravy is only half the arithmetic here. Changing what is under it saves about as much again.", "tradeoff": "Not a biscuit. See the biscuit entry, which is honest about that."}
+      ]
+    },
+
+    {
+      "id": "biscuit",
+      "name": "Biscuit",
+      "aliases": ["buttermilk biscuit", "cathead biscuit"],
+      "standardFoodId": "biscuit",
+      "why": "A biscuit is flour, buttermilk, and cold fat cut into it. The layers are made of the fat, so there is no version of this that takes the fat out and stays a biscuit. This entry is here to say that plainly rather than to pretend otherwise.",
+      "swaps": [
+        {"to": "Half a biscuit", "fatGrams": 6, "servingDescription": "1/2 medium", "how": "Split it, put whatever was going on it on one half, and let the other half go. Portion is the only real lever this one has.", "tradeoff": "Still a real share of the day. But it is the actual thing rather than a version of it."},
+        {"to": "An English muffin with apple butter", "foodId": "english-muffin", "how": "Where the biscuit was the vehicle rather than the point, this carries the same jam or apple butter for almost nothing.", "tradeoff": "It is not a biscuit and it does not pretend to be."}
+      ]
+    },
+
+    {
+      "id": "cornbread",
+      "name": "Cornbread",
+      "aliases": ["corn bread", "cornbread and beans"],
+      "standardFoodId": "cornbread",
+      "why": "Most of the fat is the oil or bacon grease in the batter and the greased skillet, not the cornmeal.",
+      "swaps": [
+        {"to": "Applesauce in place of the oil", "fatGrams": 1.5, "servingDescription": "1 piece", "how": "Skim buttermilk, egg whites, and applesauce cup for cup where the oil went, in a sprayed hot skillet. Keep the skillet, because the crust is the whole reason.", "tradeoff": "A little more tender and a little less crumbly."},
+        {"to": "Sorghum instead of butter on top", "foodId": "sorghum", "how": "Sorghum is fat free and it belongs on cornbread anyway.", "tradeoff": "Sweet, so it goes with beans rather than into them."}
+      ]
+    },
+
+    {
+      "id": "soup-beans",
+      "name": "Soup beans",
+      "aliases": ["pinto beans with fatback", "ham hock beans", "beans and cornbread"],
+      "standardFoodId": "soup-beans-fatback",
+      "why": "The beans are about a gram. The fatback or the ham hock is everything else, and it is in the pot liquor as much as the meat.",
+      "swaps": [
+        {"to": "Smoked turkey wing", "fatGrams": 2, "servingDescription": "1 cup", "how": "One smoked turkey wing in the pot gives you the same smoke and salt and body. This is the standard swap and most people at the table cannot tell.", "tradeoff": "Very little. Fish the wing out before serving the way you would a hock."},
+        {"to": "A few drops of liquid smoke", "foodId": "soup-beans-plain", "how": "For when there is no turkey wing in the house. Liquid smoke, a little onion, and more salt than usual gets most of the way there.", "tradeoff": "Smoke without the body. The beans are thinner in the bowl."}
+      ]
+    },
+
+    {
+      "id": "green-beans-fatback",
+      "name": "Green beans cooked with fatback",
+      "aliases": ["green beans", "fatback beans", "long cooked green beans"],
+      "standardFoodId": "green-beans-fatback",
+      "why": "Same story as soup beans. The vegetable carries nothing and the seasoning meat carries all of it.",
+      "swaps": [
+        {"to": "Simmered in fat free chicken broth", "foodId": "chicken-broth", "how": "Broth, sliced onion, a dash of liquid smoke, and an hour on low. Long cooked green beans want time more than they want fat.", "tradeoff": "Less glossy in the pot. Salt at the end rather than the beginning."}
+      ]
+    },
+
+    {
+      "id": "collards",
+      "name": "Collard greens with ham hock",
+      "aliases": ["collards", "greens", "turnip greens"],
+      "standardFoodId": "collards-ham-hock",
+      "why": "The greens are nearly nothing. The hock is the number, and like the beans it ends up in the pot liquor.",
+      "swaps": [
+        {"to": "Smoked turkey wing or neck", "fatGrams": 1.5, "servingDescription": "1 cup", "how": "Same swap that works in the beans. Turkey, a splash of vinegar, red pepper flakes, and a long slow pot.", "tradeoff": "Almost none. The vinegar matters more than the meat did."}
+      ]
+    },
+
+    {
+      "id": "pimento-cheese",
+      "name": "Pimento cheese",
+      "aliases": ["pimiento cheese", "pimento cheese sandwich"],
+      "standardFoodId": "pimento-cheese",
+      "why": "Sharp cheddar and mayonnaise, and not much else. Both halves of it are fat, which is why a quarter cup lands where it does.",
+      "swaps": [
+        {"to": "Fat free cheddar, fat free cream cheese, and a little fat free mayo", "fatGrams": 1, "servingDescription": "1/4 cup", "how": "Grate the cheese fine, whip the cream cheese first, then the pimentos, a little fat free mayo, black pepper, and a dash of hot sauce. The hot sauce is what makes it taste like pimento cheese.", "tradeoff": "The texture differs and the flavor lands. Grating fine rather than buying shredded is most of the difference."},
+        {"to": "A smaller amount made with extra sharp cheddar", "fatGrams": 6, "servingDescription": "1 tbsp", "how": "The real thing, on a cracker rather than in a sandwich, made with the sharpest cheddar so a little reads as a lot.", "tradeoff": "Real fat, counted against the day. Sometimes that is the trade you want to make."}
+      ]
+    },
+
+    {
+      "id": "fried-green-tomatoes",
+      "name": "Fried green tomatoes",
+      "aliases": ["green tomatoes"],
+      "standardFoodId": "fried-green-tomatoes",
+      "why": "Green tomatoes carry nothing. The cornmeal dredge and the skillet of grease are the whole number.",
+      "swaps": [
+        {"to": "Cornmeal dredged and air fried", "fatGrams": 3, "servingDescription": "3 slices", "how": "Buttermilk, then cornmeal with salt and black pepper, spray both sides, 400 until the crust sets and colors. Do not crowd the basket.", "tradeoff": "The crust is thinner than skillet fried. The crunch is still there."}
+      ]
+    },
+
+    {
+      "id": "fried-apples",
+      "name": "Fried apples",
+      "aliases": ["skillet apples", "apples and cinnamon"],
+      "standardFoodId": "fried-apples",
+      "why": "The apples are nothing at all. It is the butter or the bacon grease they are cooked down in.",
+      "swaps": [
+        {"to": "Simmered in cider with cinnamon and brown sugar", "fatGrams": 0.3, "servingDescription": "1/2 cup", "how": "Sliced apples in a sprayed pan with cinnamon, brown sugar, and a splash of apple cider, covered until they give up their liquid, then uncovered until it thickens. No butter needed.", "tradeoff": "Almost none. This is one of the swaps that is simply as good."}
+      ]
+    },
+
+    {
+      "id": "chicken-and-dumplings",
+      "name": "Chicken and dumplings",
+      "aliases": ["dumplings", "chicken n dumplings"],
+      "standardFoodId": "chicken-and-dumplings",
+      "why": "Two sources at once. The dark meat and skin in the pot, and the shortening or drippings worked into the dumplings.",
+      "swaps": [
+        {"to": "Skinless breast, fat free broth, and rolled dumplings", "fatGrams": 3, "servingDescription": "1 cup", "how": "Poach skinless breast in fat free broth, roll flat dumplings made with skim milk and a sprayed board rather than shortening, and thicken the pot with a little cornstarch at the end.", "tradeoff": "The broth is less rich, so it wants more salt, black pepper, and a bay leaf."}
+      ]
+    },
+
+    {
+      "id": "brunswick-stew",
+      "name": "Brunswick stew",
+      "aliases": ["brunswick"],
+      "standardFoodId": "brunswick-stew",
+      "why": "It is usually built on pulled pork, and the fat renders into the pot where you cannot see it or spoon it off at the table.",
+      "swaps": [
+        {"to": "Pulled chicken breast, chilled and skimmed", "fatGrams": 3, "servingDescription": "1 cup", "how": "Make it with pulled chicken breast instead of pork, then refrigerate the pot overnight and lift the fat cap off before reheating. It tastes better the second day anyway.", "tradeoff": "None worth naming. Chilling and skimming is the step that does most of the work."}
+      ]
+    },
+
+    {
+      "id": "ramps",
+      "name": "Ramps",
+      "aliases": ["ramp", "wild leeks", "ramps and potatoes"],
+      "standardFoodId": "ramps-sauteed",
+      "why": "Ramps themselves are essentially fat free. It is the bacon grease they almost always meet that puts them here.",
+      "swaps": [
+        {"to": "Wilted in broth or roasted with cooking spray", "fatGrams": 0.5, "servingDescription": "1/2 cup", "how": "Roast them on a sprayed sheet at 425 until the edges char, or wilt them in a splash of broth at the end of something else. Ramps do not need help tasting like ramps.", "tradeoff": "No bacon in it, which for some people is the whole tradition. The ramps are unchanged."}
+      ]
+    },
+
+    {
+      "id": "banana-pudding",
+      "name": "Banana pudding",
+      "aliases": ["nanner pudding", "pudding"],
+      "standardFoodId": "banana-pudding",
+      "why": "The bananas and the wafers are close to nothing. It is the custard made with whole milk and yolks, and the real whipped cream on top.",
+      "swaps": [
+        {"to": "Fat free instant pudding and fat free whipped topping", "foodId": "pudding-fat-free", "how": "Fat free vanilla instant pudding made with skim milk, real bananas, vanilla wafers, and fat free whipped topping. A day in the refrigerator so the wafers soften is what makes it taste homemade.", "tradeoff": "Less rich on the tongue. The overnight rest closes most of the gap."}
+      ]
+    },
+
+    {
+      "id": "country-ham",
+      "name": "Country ham",
+      "aliases": ["salt cured ham", "ham biscuit"],
+      "standardFoodId": "country-ham",
+      "why": "It is cured and it is fatty by design, and the fat edge is part of what makes it what it is.",
+      "swaps": [
+        {"to": "Trimmed and used as seasoning", "fatGrams": 2, "servingDescription": "1/2 oz", "how": "Trim the fat edge off completely and use a small amount of the lean to flavor beans, greens, or a pot of soup rather than eating it as a portion.", "tradeoff": "It stops being the thing on the plate and becomes the thing in the pot. That is the honest version of this one."}
+      ]
+    },
+
+    {
+      "id": "bacon",
+      "name": "Bacon",
+      "aliases": ["breakfast bacon", "streak of lean"],
+      "standardFoodId": "bacon",
+      "why": "Two slices is the serving on the package and almost nobody eats two slices. That is really what makes bacon hard rather than the number itself.",
+      "swaps": [
+        {"to": "Turkey bacon", "fatGrams": 4, "servingDescription": "2 slices", "how": "Cook it harder than you think, until the edges go dark. Underdone turkey bacon is what gives it its reputation.", "tradeoff": "It does not render, so it never gets that glassy crisp."},
+        {"to": "Smoked paprika or a few drops of liquid smoke", "fatGrams": 0, "servingDescription": "1 tsp", "how": "Where the bacon was there to season something else, in beans, greens, or a soup, this gets you the smoke with none of the fat.", "tradeoff": "No swap at all for bacon you actually wanted to eat. This one is for bacon as an ingredient."}
+      ]
+    },
+
+    {
+      "id": "breakfast-sausage",
+      "name": "Breakfast sausage",
+      "aliases": ["sausage patty", "pork sausage", "sausage links"],
+      "standardFoodId": "sausage-patty",
+      "why": "Breakfast sausage is ground pork with a high fat ratio on purpose, because the fat is what carries the sage.",
+      "swaps": [
+        {"to": "Turkey sausage", "fatGrams": 6, "servingDescription": "2 oz", "how": "Sold in patties and links next to the pork kind in most stores.", "tradeoff": "Drier. Cook it a shade less than you would pork."},
+        {"to": "Seasoned 99% fat free ground turkey", "foodId": "ground-turkey-99", "how": "Sage, thyme, black pepper, a pinch of red pepper, a little salt, and a spoonful of broth for moisture. Form patties and cook them in a sprayed pan. This is the closest homemade version there is.", "tradeoff": "Needs the broth or it goes chalky. Season it the night before if you can."}
+      ]
+    },
+
+    {
+      "id": "milkshake",
+      "name": "Milkshake",
+      "aliases": ["shake", "malt", "frosty"],
+      "standardFoodId": "milkshake",
+      "why": "It is ice cream, thinned. Everything the ice cream entry says applies here at about triple the portion.",
+      "swaps": [
+        {"to": "Frozen banana blended with skim milk and cocoa", "fatGrams": 1, "servingDescription": "1 medium", "how": "Freeze ripe bananas in chunks, blend with skim milk, unsweetened cocoa powder, and a little vanilla. The frozen banana is what makes it thick rather than watery.", "tradeoff": "Tastes like banana, so it works best as a chocolate one."},
+        {"to": "A smoothie made with nonfat yogurt and fruit", "foodId": "greek-yogurt-nonfat", "how": "Nonfat yogurt, frozen fruit, and a splash of juice or skim milk. Frozen fruit rather than fresh plus ice, which waters it down.", "tradeoff": "A different drink rather than a milkshake. It is a good one."}
+      ]
+    },
+
+    {
+      "id": "tartar-sauce",
+      "name": "Tartar sauce",
+      "aliases": ["tartar", "fish sauce for fried fish"],
+      "standardFoodId": "tartar-sauce",
+      "why": "Tartar sauce is mayonnaise with relish in it. The relish is nothing and the mayonnaise is all of it.",
+      "swaps": [
+        {"to": "Nonfat Greek yogurt with relish, lemon, and dill", "foodId": "greek-yogurt-nonfat", "how": "Yogurt, sweet pickle relish, lemon juice, dried dill, and black pepper. It is a close match, closer than most of the yogurt swaps on this screen.", "tradeoff": "Tangier. A pinch of sugar in it evens that out."}
+      ]
+    },
+
+    {
+      "id": "gravy",
+      "name": "Brown gravy",
+      "aliases": ["gravy", "pan gravy", "drippings gravy"],
+      "standardFoodId": "brown-gravy",
+      "why": "Gravy made from pan drippings starts with fat by definition. That is the roux.",
+      "swaps": [
+        {"to": "Fat free broth thickened with cornstarch", "fatGrams": 1, "servingDescription": "1/4 cup", "how": "Broth, a cornstarch slurry, black pepper, and a splash of the deglazed pan after the fat has been poured off. Under a gram and it goes on anything.", "tradeoff": "Lighter in color. A few drops of browning sauce or a little soy fixes the look."}
+      ]
+    },
+
+    {
+      "id": "coleslaw",
+      "name": "Coleslaw",
+      "aliases": ["slaw", "cole slaw"],
+      "standardFoodId": "coleslaw-mayo",
+      "why": "Cabbage is nothing. The dressing is mayonnaise, and slaw takes a lot of dressing.",
+      "swaps": [
+        {"to": "Vinegar slaw", "fatGrams": 1, "servingDescription": "1/2 cup", "how": "Cider vinegar, a little sugar, celery seed, salt, and black pepper. It gets better after a few hours, which mayonnaise slaw does not.", "tradeoff": "Sharper and looser. On a barbecue sandwich it is arguably the better one anyway."},
+        {"to": "Nonfat Greek yogurt dressing", "foodId": "greek-yogurt-nonfat", "how": "For when you want the creamy kind. Yogurt, a little sugar, cider vinegar, and celery seed.", "tradeoff": "Thinner than a mayonnaise slaw and it weeps if it sits overnight."}
+      ]
+    },
+
+    {
+      "id": "grits-butter-cheese",
+      "name": "Grits with butter and cheese",
+      "aliases": ["cheese grits", "grits"],
+      "standardFoodId": "grits-butter-cheese",
+      "why": "Plain grits are half a gram. It is entirely what gets stirred in at the end.",
+      "swaps": [
+        {"to": "Fat free sharp cheddar and fat free butter spray", "fatGrams": 1, "servingDescription": "1 cup", "how": "Stir the cheese in off the heat so it melts rather than seizes, then spray and a lot of black pepper.", "tradeoff": "It will not go stringy the way real cheese does."},
+        {"to": "Plain grits with salt, pepper, and spray", "foodId": "grits-plain", "how": "Cooked in fat free broth instead of water, which does more for grits than butter does.", "tradeoff": "None. The broth is a genuine improvement rather than a substitution."}
+      ]
+    },
+
+    {
+      "id": "pizza",
+      "name": "Pizza",
+      "aliases": ["pepperoni pizza", "slice of pizza"],
+      "standardFoodId": "pizza-pepperoni",
+      "why": "The crust and the sauce are modest. It is the cheese and the pepperoni, and the oil that pools on top is a real part of it.",
+      "swaps": [
+        {"to": "Thin crust, light cheese, vegetable toppings", "foodId": "pizza-veggie-light-cheese", "how": "Ask for light cheese, which almost every place will do without comment, and blot the surface oil with a napkin before the first bite. The blotting is worth a couple of grams on its own.", "tradeoff": "Still a real number for two slices. This is a smaller version rather than a small one."}
+      ]
+    },
+
+    {
+      "id": "steak",
+      "name": "Ribeye and marbled steak",
+      "aliases": ["ribeye", "steak", "prime rib"],
+      "standardFoodId": "ribeye",
+      "why": "The marbling is the fat, and it is distributed through the muscle where you cannot trim it off.",
+      "swaps": [
+        {"to": "Sirloin or filet, trimmed", "foodId": "sirloin-trimmed", "how": "Order the smallest cut on the menu and ask for no butter finish, which most steakhouses add by default and rarely mention.", "tradeoff": "Less forgiving on the grill. It wants to come off a shade earlier than a ribeye would."}
+      ]
+    },
+
+    {
+      "id": "chicken-skin",
+      "name": "Chicken with the skin on",
+      "aliases": ["roast chicken skin", "dark meat", "chicken thighs"],
+      "standardFoodId": "chicken-breast-with-skin",
+      "why": "The skin is nearly all of the fat on a piece of roasted chicken, and dark meat carries about three times what breast meat does.",
+      "swaps": [
+        {"to": "Skinless breast", "foodId": "chicken-breast-skinless-baked", "how": "Roast it with the skin on so it stays moist, then take the skin off before it goes on the plate. That is the trick that makes skinless breast worth eating.", "tradeoff": "None, if you remove the skin after cooking rather than before."}
+      ]
+    },
+
+    {
+      "id": "scrambled-eggs",
+      "name": "Scrambled eggs",
+      "aliases": ["eggs", "omelet", "eggs cooked in butter"],
+      "standardFoodId": "eggs-scrambled-butter",
+      "why": "Two eggs are ten grams between them, and the butter on a restaurant flat top usually adds about as much again. Kitchens often add cream too, without saying so.",
+      "swaps": [
+        {"to": "Egg whites cooked in cooking spray", "foodId": "egg-white", "how": "Out, ask for egg whites cooked with spray, dry, no butter and no cream. At home, a nonstick pan and low heat.", "tradeoff": "Pale and a little rubbery if they go a second too long. Take them off while they still look underdone."},
+        {"to": "One whole egg plus two whites", "foodId": "egg-whole", "how": "The yolk brings back the color and most of the richness for about five grams total.", "tradeoff": "None worth mentioning. This is the version most people settle on."}
+      ]
+    },
+
+    {
+      "id": "baking-with-oil",
+      "name": "Oil in baking",
+      "aliases": ["cake", "muffins", "brownies", "boxed cake mix"],
+      "standardFoodId": "chocolate-cake",
+      "why": "A boxed mix calls for a half cup of oil and two whole eggs, and that is nearly all of the fat in the finished cake.",
+      "swaps": [
+        {"to": "Applesauce in place of the oil", "foodId": "applesauce", "how": "Cup for cup where the oil went, with egg whites in place of the whole eggs. Works in cakes, muffins, and quick breads. Not in anything that needs to be flaky.", "tradeoff": "Denser and a little more moist. In a chocolate cake it is undetectable."},
+        {"to": "Cocoa powder in place of chocolate", "fatGrams": 0.5, "servingDescription": "1 tbsp", "how": "Unsweetened cocoa is nearly fat free. Chocolate chips, baking chocolate, and frosting are not.", "tradeoff": "You lose the melt. For flavor rather than texture it is a clean trade."}
+      ]
+    },
+
+    {
+      "id": "chocolate",
+      "name": "Chocolate",
+      "aliases": ["candy bar", "chocolate bar"],
+      "standardFoodId": "chocolate-bar",
+      "why": "Cocoa butter is what makes chocolate melt the way it does, and cocoa butter is fat. That is the whole number.",
+      "swaps": [
+        {"to": "Chocolate syrup over angel food cake or nonfat frozen yogurt", "foodId": "angel-food-cake", "how": "Syrup is cocoa and sugar with essentially no fat in it. Over angel food cake with berries it is a real dessert.", "tradeoff": "Sweet rather than rich. It scratches the chocolate itch without the melt."}
+      ]
+    },
+
+    {
+      "id": "cream-soup",
+      "name": "Cream soups and chowders",
+      "aliases": ["potato soup", "cream of mushroom", "chowder", "bisque"],
+      "standardFoodId": "potato-soup-cream",
+      "why": "Cream soup is thickened with cream and often finished with butter, and a bowl at a restaurant is bigger than a cup.",
+      "swaps": [
+        {"to": "Pureed potato with fat free broth and skim milk", "fatGrams": 1, "servingDescription": "1 cup", "how": "Cook the potatoes soft in broth, puree half and leave half in chunks, then skim milk and black pepper. The starch is what makes it creamy, not the cream.", "tradeoff": "None to speak of. Potato soup is the easiest of the cream soups to rebuild."},
+        {"to": "98% fat free condensed cream soup", "fatGrams": 1, "servingDescription": "1 cup", "how": "For casseroles, where a can of cream of mushroom is doing structural work rather than being tasted on its own.", "tradeoff": "Saltier than the regular kind. Use less of the salt the recipe calls for."},
+        {"to": "A broth based soup instead", "foodId": "vegetable-soup-broth", "how": "The swap that is always available when eating out. Confirm it is broth based before ordering, because a menu will call a chowder a soup.", "tradeoff": "A different bowl rather than a lighter version of the same one."}
+      ]
+    },
+
+    {
+      "id": "fried-fish",
+      "name": "Fried fish",
+      "aliases": ["fried catfish", "fish fry", "fish sticks", "fried shrimp"],
+      "standardFoodId": "catfish-fried",
+      "why": "The fish underneath is among the leanest things you can eat. The cornmeal and the fryer are the entire difference.",
+      "swaps": [
+        {"to": "Cornmeal dredged and air fried", "fatGrams": 6, "servingDescription": "4 oz", "how": "Buttermilk, then seasoned cornmeal, spray both sides, 400 until it flakes. Catfish takes to this better than most fish do.", "tradeoff": "The crust is lighter. It still crunches."},
+        {"to": "Baked or broiled", "foodId": "catfish-baked", "how": "With lemon and a splash of broth instead of butter, and Old Bay or a cornmeal dusting on top for something to bite.", "tradeoff": "Not fried, and it does not claim to be."},
+        {"to": "Steamed or grilled shrimp with cocktail sauce", "foodId": "shrimp-steamed", "how": "Cocktail sauce is fat free. Drawn butter is about eleven grams a tablespoon and arrives whether you asked for it or not, so say no to it up front.", "tradeoff": "None. This is one of the best orders on any seafood menu."}
+      ]
+    }
+
+  ]
+}

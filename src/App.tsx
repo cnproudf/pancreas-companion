@@ -5,6 +5,7 @@ import { TabStrip, type TabId } from './components/TabStrip.tsx'
 import { Home } from './screens/Home.tsx'
 import { Patterns } from './screens/Patterns.tsx'
 import { RestaurantHelper } from './screens/RestaurantHelper.tsx'
+import { Workarounds } from './screens/Workarounds.tsx'
 import { FoodLogProvider } from './state/foodLog.tsx'
 import { SettingsProvider } from './state/settings.tsx'
 import { SymptomLogProvider } from './state/symptomLog.tsx'
@@ -27,14 +28,16 @@ export default function App() {
               Invariant 1: everything that could show food content goes inside
               FlareGate, so flare mode always reaches triage first.
 
-              That includes the tab strip itself. All three destinations are
+              That includes the tab strip itself. All four destinations are
               food content, so in flare mode there is nothing to navigate
               between and the gate is the whole screen.
 
               Patterns is food content because its chart carries logged fat
-              intake and its entry list shows attached food names. The symptom
-              log sheet is not, which is why AppShell mounts that one above the
-              gate instead.
+              intake and its entry list shows attached food names. Workarounds
+              is food content because every card on it names a food and a gram
+              value, including the ones she wrote herself. The symptom log sheet
+              is not, which is why AppShell mounts that one above the gate
+              instead.
             */}
             <FlareGate>
               <TabStrip active={tab} onChange={setTab} />
@@ -53,8 +56,10 @@ export default function App() {
                   <Home />
                 ) : tab === 'restaurant' ? (
                   <RestaurantHelper />
-                ) : (
+                ) : tab === 'patterns' ? (
                   <Patterns />
+                ) : (
+                  <Workarounds />
                 )}
               </div>
             </FlareGate>

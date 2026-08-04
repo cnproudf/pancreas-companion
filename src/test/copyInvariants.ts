@@ -112,6 +112,8 @@ export const OBLIGATION_PATTERN =
  * dressing and belongs in a safe bets list. "Shrimp cocktail" and "cocktail
  * sauce" are two of the best things on a seafood or steakhouse menu and belong
  * in three of them. "Beer-battered" belongs in an avoid list on its own merits.
+ * "Pot liquor" is the broth left in the pot after beans or greens, and it is the
+ * thing the smoked turkey swap in substitutions.json is trying to preserve.
  * All of these are stripped before the terms are applied.
  *
  * Second, the terms match whole words only. Without \b, "sake" hits "sakes" and
@@ -119,7 +121,7 @@ export const OBLIGATION_PATTERN =
  * gets weakened by whoever is in a hurry.
  */
 const ALCOHOL_COMPOUNDS =
-  /\b(?:red |white |rice )?wine vinegar\b|\bsherry vinegar\b|\bbeer[- ]batter(?:ed)?\b|\bnon[- ]alcoholic\b|\b(?:shrimp|seafood|crab|fruit) cocktail\b|\bcocktail sauce\b/gi
+  /\b(?:red |white |rice )?wine vinegar\b|\bsherry vinegar\b|\bbeer[- ]batter(?:ed)?\b|\bnon[- ]alcoholic\b|\b(?:shrimp|seafood|crab|fruit) cocktail\b|\bcocktail sauce\b|\bpot ?li(?:qu|kk)or\b/gi
 
 const ALCOHOL_TERMS =
   /\b(?:alcohol|wine|beer|cocktail|liquor|sake|margarita|tequila|vodka|bourbon|whiskey|whisky|rum|gin|mimosa|sangria|prosecco|champagne|hard seltzer)\b/i

@@ -239,6 +239,61 @@ export interface CuisinePlaybook {
   scriptLine: string
 }
 
+/* -------------------------------------------------------------------------- */
+/* Phase 8: favorites and workarounds                                          */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * One community or guidance link on the workarounds screen.
+ *
+ * Same nullable-url policy as RestaurantChain.nutritionUrl below, for the same
+ * reason: a resource that closes gets null here rather than being deleted,
+ * because knowing the name is still worth something.
+ */
+export interface SubstitutionResource {
+  id: string
+  name: string
+  url: string | null
+  note: string
+}
+
+/**
+ * One swap, after the loader has resolved it.
+ *
+ * As authored in data/substitutions.json a swap carries EITHER a `foodId` into
+ * foods.json OR a literal `fatGrams` plus `servingDescription`, never both. By
+ * the time it reaches a component both numbers are filled in, so nothing in the
+ * UI has to know which form it started as.
+ */
+export interface SubstitutionSwap {
+  /** What to use instead. */
+  to: string
+  fatGrams: number
+  servingDescription: string
+  /** How to actually do it. */
+  how: string
+  /** What she gives up. Null when there is nothing honest to warn about. */
+  tradeoff: string | null
+  /** The foods.json id the numbers came from, or null when they were literal. */
+  foodId: string | null
+}
+
+/** One entry in data/substitutions.json, after resolution. */
+export interface Substitution {
+  id: string
+  name: string
+  aliases: string[]
+  /** Always a real id in foods.json, and never one carrying the alcohol flag. */
+  standardFoodId: string
+  /** Read from foods.json, not stored in substitutions.json. */
+  standardFatGrams: number
+  standardServingDescription: string
+  /** Why the standard version lands where it does. Spec section 5.3. */
+  why: string
+  /** Never empty. An entry with no swaps is dropped by the loader. */
+  swaps: SubstitutionSwap[]
+}
+
 /**
  * A chain she might type by name. Matching one auto-selects its cuisine and
  * offers the published nutrition page.
