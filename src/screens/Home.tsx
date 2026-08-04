@@ -1,14 +1,14 @@
 import { computeFatTarget, FLARE_CEILING_GRAMS } from '../lib/fatTarget.ts'
 import { useSettings } from '../state/settings.tsx'
-import { Ridgeline } from '../components/Ridgeline.tsx'
 import { FoodChecker } from './FoodChecker.tsx'
 
 /**
  * The home screen: her daily fat target, then the food checker.
  *
- * The budget bar is not here. It lives in AppShell so it is present on every
- * screen. The Daily Lift card lands here in Phase 5. There is no router yet, so
- * screens are composed rather than navigated to.
+ * Neither the budget bar nor the Daily Lift is here. Both live in AppShell, for
+ * different reasons: the bar so it is present on every screen once there is
+ * more than one, and the Lift because it has to sit above FlareGate. There is
+ * no router yet, so screens are composed rather than navigated to.
  */
 export function Home() {
   const { settings, persisted } = useSettings()
@@ -70,21 +70,6 @@ export function Home() {
       */}
       <section className="rounded-lg border border-stone bg-white/50 p-5">
         <FoodChecker />
-      </section>
-
-      <section
-        aria-labelledby="soon-heading"
-        className="relative overflow-hidden rounded-lg border border-stone p-5"
-      >
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 opacity-15">
-          <Ridgeline variant="band" />
-        </div>
-        <div className="relative">
-          <h2 id="soon-heading" className="mt-0 mb-2 text-lg">
-            Still being built
-          </h2>
-          <p className="m-0 text-ink">The Daily Lift is the next thing to arrive.</p>
-        </div>
       </section>
 
       {!persisted && (
